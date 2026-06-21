@@ -32,7 +32,6 @@
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  padding-top: calc(var(--header-height) + var(--space-4));
 }
 
 .hero-services-wrapper::before {
@@ -48,11 +47,11 @@
 }
 
 .hero-header {
-  position: absolute;
-  inset-inline: 0;
-  top: 0;
-  z-index: 2;
+  position: relative;
+  height: auto;
+  padding-block: var(--space-5) var(--space-4);
   background: transparent;
+  text-align: center;
 }
 
 .hero {
@@ -104,24 +103,20 @@
 .services-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-3);
+  gap: var(--space-6);
   margin-top: var(--space-3);
-  justify-items: center;
+  direction: ltr;
+  width: 100%;
+  padding: 0;
 }
 
 .service-card {
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
   padding: var(--space-3);
   text-align: center;
-  transition: border-color 0.2s ease, transform 0.2s ease;
 }
 
-.service-card:hover {
-  border-color: var(--color-accent);
-  transform: translateY(-4px);
-}
+.service-card:first-child { text-align: left; }
+.service-card:last-child  { text-align: right; }
 
 /* ---------- Portfolio ---------- */
 .portfolio {
@@ -129,28 +124,30 @@
 }
 .portfolio-filters {
   display: flex;
-  gap: var(--space-1);
+  gap: 0;
   margin: var(--space-3) 0 var(--space-4);
-  flex-wrap: wrap;
-  justify-content: center;
+  width: 100%;
 }
 
 .filter-btn {
-  border: 1px solid var(--color-border);
-  border-radius: 999px;
-  padding: 0.5rem 1.25rem;
+  flex: 1;
+  border: none;
+  border-radius: 0;
+  padding: 0.75rem 0;
   font-weight: 700;
-  font-size: var(--fs-xs);
+  font-size: var(--fs-sm);
   color: var(--color-text-muted);
-  transition: all 0.2s ease;
+  background: transparent;
+  text-align: center;
+  transition: color 0.2s ease;
+  cursor: pointer;
 }
 
 .filter-btn:hover { color: var(--color-text); }
 
 .filter-btn.is-active {
-  background: var(--color-accent);
-  border-color: var(--color-accent);
-  color: #0a0a0c;
+  color: var(--color-accent);
+  background: transparent;
 }
 
 .portfolio-grid {
