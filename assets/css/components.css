@@ -70,9 +70,15 @@
   margin-bottom: var(--space-1);
 }
 
+.hero-text {
+  text-align: center;
+  width: 100%;
+}
+
 .hero-tagline {
   font-size: var(--fs-md);
   max-width: 560px;
+  margin-inline: auto;
   margin-bottom: var(--space-3);
 }
 
@@ -115,8 +121,6 @@
   text-align: center;
 }
 
-.service-card:first-child { text-align: left; }
-.service-card:last-child  { text-align: right; }
 
 /* ---------- Portfolio ---------- */
 .portfolio {
