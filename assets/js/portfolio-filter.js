@@ -22,21 +22,16 @@
       });
     }
 
-    // Lock min-height to the tallest grid so the background never resizes
+    // Lock min-height to the tallest tab so the background never resizes
     function lockHeight() {
       if (!inner) return;
       var max = 0;
-      groups.forEach(function (g) {
-        g.removeAttribute("hidden");
-        g.style.position = "absolute";
-        g.style.visibility = "hidden";
-      });
-      groups.forEach(function (g) {
-        max = Math.max(max, g.offsetHeight);
-      });
-      groups.forEach(function (g) {
-        g.style.position = "";
-        g.style.visibility = "";
+      inner.style.minHeight = "";
+      buttons.forEach(function (btn) {
+        groups.forEach(function (g) {
+          g.hidden = g.getAttribute("data-category") !== btn.getAttribute("data-filter");
+        });
+        max = Math.max(max, inner.offsetHeight);
       });
       inner.style.minHeight = max + "px";
       applyFilter(currentFilter);
