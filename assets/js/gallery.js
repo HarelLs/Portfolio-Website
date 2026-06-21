@@ -42,7 +42,8 @@
   var touchStartX = 0;
   wrapper.addEventListener("touchstart", function (e) {
     touchStartX = e.touches[0].clientX;
-    pauseBriefly(2000);
+    isPaused = true;
+    clearTimeout(resumeTimer);
   }, { passive: true });
 
   wrapper.addEventListener("touchmove", function (e) {
@@ -50,7 +51,10 @@
     wrapper.scrollLeft += dx;
     normalize();
     touchStartX = e.touches[0].clientX;
-    pauseBriefly(2000);
+  }, { passive: true });
+
+  wrapper.addEventListener("touchend", function () {
+    pauseBriefly(800);
   }, { passive: true });
 
   // Click-drag

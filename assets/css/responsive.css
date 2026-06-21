@@ -3,11 +3,12 @@
    ========================================================= */
 
 /* Fix background-attachment: fixed on mobile (iOS Safari ignores it and breaks centering) */
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .hero-services-wrapper,
   .portfolio {
-    background-attachment: scroll;
-    background-position: center center;
+    background-attachment: scroll !important;
+    background-position: 50% 50% !important;
+    background-size: cover !important;
   }
 }
 
