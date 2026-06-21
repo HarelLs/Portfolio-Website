@@ -13,7 +13,8 @@
 
   function measureHalfWidth() {
     var w = track.offsetWidth;
-    if (w > 0) halfWidth = w / 2;
+    // Only accept once images have loaded and track is wider than the viewport
+    if (w > window.innerWidth) halfWidth = w / 2;
   }
 
   function normalize() {
@@ -23,7 +24,7 @@
   }
 
   function applyOffset() {
-    track.style.transform = "translateX(" + offset + "px)";
+    track.style.transform = "translateX(" + Math.round(offset) + "px)";
   }
 
   function pauseBriefly(ms) {
