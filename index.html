@@ -26,25 +26,10 @@
 
   <header class="site-header">
     <div class="container header-inner">
-      <a class="logo" href="#hero" data-i18n="hero.title">הראל לסניק</a>
-
-      <nav class="main-nav" id="main-nav" aria-label="ניווט ראשי">
-        <ul>
-          <li><a href="#hero" data-i18n="nav.home">בית</a></li>
-          <li><a href="#about" data-i18n="nav.about">אודות</a></li>
-          <li><a href="#services" data-i18n="nav.services">שירותים</a></li>
-          <li><a href="#portfolio" data-i18n="nav.portfolio">תיק עבודות</a></li>
-          <li><a href="#contact" data-i18n="nav.contact">יצירת קשר</a></li>
-        </ul>
-      </nav>
 
       <div class="header-actions">
         <button class="lang-switch" id="lang-switch" type="button" aria-label="החלף שפה / Switch language">
           <span data-i18n="nav.langSwitch">EN</span>
-        </button>
-        <button class="hamburger" id="hamburger" type="button" aria-expanded="false" aria-controls="main-nav"
-          aria-label="פתח תפריט ניווט">
-          <span></span><span></span><span></span>
         </button>
       </div>
     </div>
@@ -60,40 +45,24 @@
         <p class="hero-tagline" data-i18n="hero.tagline">
           מיקס, מאסטרינג וסאונד דיזיין למשחקי מחשב — מוכן לכל סוג עבודה, בקליבר גבוה.
         </p>
-        <a class="btn btn-primary" href="#contact" data-i18n="hero.cta">קבעו שיחה</a>
-      </div>
-      <div class="hero-media-placeholder" aria-hidden="true">
-        <span data-i18n="placeholders.heroImage">תמונת פרופיל — בקרוב</span>
-      </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about" class="about">
-      <div class="container">
-        <h2 data-i18n="about.heading">קצת עליי</h2>
-        <p data-i18n="about.text">
-          אני הראל לסניק — מהנדס סאונד, צלם ועורך וידאו. אני משלב טכניקה מדויקת עם תשוקה אמיתית לסאונד
-          ולתמונה, ועובד על כל פרויקט כאילו הוא שלי. אני פתוח לכל סוג עבודה, מהקלטה ועד גימור סופי, בקליבר גבוה.
-        </p>
       </div>
     </section>
 
     <!-- SERVICES -->
     <section id="services" class="services">
       <div class="container">
-        <h2 data-i18n="services.heading">שירותים</h2>
         <div class="services-grid">
           <article class="service-card">
-            <h3 data-i18n="services.mix.title">מיקס</h3>
-            <p data-i18n="services.mix.desc">מיקס מקצועי לסינגלים ואלבומים, עם דגש על בהירות ואיזון.</p>
+            <h3 data-i18n="services.mix.title">מיקסינג</h3>
+            <p data-i18n="services.mix.desc">לסינגלים ואלבומים, כל ז׳אנר כל מוד</p>
           </article>
           <article class="service-card">
             <h3 data-i18n="services.master.title">מאסטרינג</h3>
-            <p data-i18n="services.master.desc">מאסטרינג בסטנדרט תעשייתי, מוכן להפצה בכל הפלטפורמות.</p>
+            <p data-i18n="services.master.desc">פינש עם צבע אקרילי, סטרילי ורועש בקטע מכבד</p>
           </article>
           <article class="service-card">
-            <h3 data-i18n="services.sounddesign.title">סאונד דיזיין למשחקים</h3>
-            <p data-i18n="services.sounddesign.desc">עיצוב אפקטים ואטמוספרות סאונד למשחקי מחשב.</p>
+            <h3 data-i18n="services.sounddesign.title">סאונד למשחקי מחשב</h3>
+            <p data-i18n="services.sounddesign.desc">אפקטים, אטמוספרות ומוזיקה</p>
           </article>
         </div>
       </div>
@@ -115,37 +84,55 @@
         <div class="portfolio-grid" data-category="music">
           <article class="portfolio-card">
             <span class="portfolio-card-tag" data-i18n="portfolio.music.tag">מוזיקה</span>
-            <h3 data-i18n="portfolio.music.single1">סינגל</h3>
+            <img src="assets/images/singlephoto.png" alt="Single cover" />
             <div class="music-links">
-              <a class="btn btn-secondary music-link" href="https://www.youtube.com/@Harel_Lesnick/videos" target="_blank" rel="noopener" aria-label="YouTube">
-                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10 15l5-3-5-3v6zm11-6.5s0-1.5-.6-2.2c-.6-.6-1.4-.7-1.8-.8-2.5-.2-6.3-.2-6.3-.2s-3.8 0-6.3.2c-.4 0-1.2.2-1.8.8C1 7 1 8.5 1 8.5S0 10 0 11.5v1c0 1.5 1 3 1 3s0 1.5.6 2.2c.6.6 1.4.7 1.8.8 2.5.2 6.3.2 6.3.2s3.8 0 6.3-.2c.4 0 1.2-.2 1.8-.8.6-.7.6-2.2.6-2.2s1-1.5 1-3v-1c0-1.5-1-3-1-3z"/></svg>
+              <a class="btn btn-secondary music-link" href="https://www.youtube.com/@Harel_LesNick/videos" target="_blank" rel="noopener" aria-label="YouTube">
+                <img src="assets/images/logos/youtube.svg" alt="YouTube" class="music-logo" aria-hidden="true" />
                 <span class="sr-only">YouTube</span>
               </a>
               <a class="btn btn-secondary music-link" href="https://distrokid.com/hyperfollow/harellesnick/----2" target="_blank" rel="noopener" aria-label="Spotify">
-                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm4.4 14.2a.8.8 0 01-1.1.3c-2.9-1.7-6.5-2.1-10.8-1.3a.8.8 0 01-.3-1.6c4.9-.9 8.9-.4 12.2 1.5a.8.8 0 01.3 1.1zm1.5-3a1 1 0 01-1.4.4c-3.3-1.9-8.4-2.4-12.3-1.5a1 1 0 11-.4-1.9c4.4-1 9.9-.5 13.7 1.7a1 1 0 01.4 1.3zm.2-3.1c-3.9-2.4-10.4-2.6-14.1-1.6a1 1 0 01-.5-1.9c4.4-1.1 11.5-.9 15.8 1.8a1 1 0 01-.5 1.7z"/></svg>
+                <img src="assets/images/logos/spotify.svg" alt="Spotify" class="music-logo" aria-hidden="true" />
                 <span class="sr-only">Spotify</span>
               </a>
               <a class="btn btn-secondary music-link" href="https://distrokid.com/hyperfollow/harellesnick/----2" target="_blank" rel="noopener" aria-label="Apple Music">
-                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M16.5 6.5c-.7.8-1.5 1.3-2.1 1.3-.1 0-.1 0-.2-.1-.7-.1-1.5-.9-2.3-.9-.9 0-1.9.5-2.8 1.4-.9.8-1.3 2-1.3 3.4 0 .3 0 .6.1.9.3 1.6.8 2.9 1.7 3.8.7.8 1.4 1.5 2.2 1.5.8 0 1.1-.4 2.3-.4 1.1 0 1.4.4 2.3.4.9 0 1.6-.7 2.2-1.5.8-.8 1.3-2.2 1.6-3.8.1-.4.1-.7.1-1.1 0-1.4-.5-2.6-1.4-3.4zM13 4.5c.4-.5.7-1.1.6-1.8-.6.1-1.3.4-1.8.9-.4.4-.8 1-1 1.6-.2.6-.2 1.3 0 1.9.5.1 1.1-.1 1.6-.5.4-.4.8-1 1.2-1.5z"/></svg>
+                <img src="assets/images/logos/Apple_logo_white.svg" alt="Apple Music" class="music-logo" aria-hidden="true" />
                 <span class="sr-only">Apple Music</span>
               </a>
             </div>
           </article>
           <article class="portfolio-card">
             <span class="portfolio-card-tag" data-i18n="portfolio.music.tag">מוזיקה</span>
-            <h3 data-i18n="portfolio.music.electronic">אלבום אלקטרוני</h3>
+            <img src="assets/images/epphoto.png" alt="Electronic album cover" />
             <div class="music-links">
-              <a class="btn btn-secondary music-link" href="https://www.youtube.com/@Harel_Lesnick/videos" target="_blank" rel="noopener" aria-label="YouTube">
-                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10 15l5-3-5-3v6zm11-6.5s0-1.5-.6-2.2c-.6-.6-1.4-.7-1.8-.8-2.5-.2-6.3-.2-6.3-.2s-3.8 0-6.3.2c-.4 0-1.2.2-1.8.8C1 7 1 8.5 1 8.5S0 10 0 11.5v1c0 1.5 1 3 1 3s0 1.5.6 2.2c.6.6 1.4.7 1.8.8 2.5.2 6.3.2 6.3.2s3.8 0 6.3-.2c.4 0 1.2-.2 1.8-.8.6-.7.6-2.2.6-2.2s1-1.5 1-3v-1c0-1.5-1-3-1-3z"/></svg>
+              <a class="btn btn-secondary music-link" href="https://www.youtube.com/@Harel_LesNick/videos" target="_blank" rel="noopener" aria-label="YouTube">
+                <img src="assets/images/logos/youtube.svg" alt="YouTube" class="music-logo" aria-hidden="true" />
                 <span class="sr-only">YouTube</span>
               </a>
               <a class="btn btn-secondary music-link" href="https://distrokid.com/hyperfollow/arl51/iz-514" target="_blank" rel="noopener" aria-label="Spotify">
-                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm4.4 14.2a.8.8 0 01-1.1.3c-2.9-1.7-6.5-2.1-10.8-1.3a.8.8 0 01-.3-1.6c4.9-.9 8.9-.4 12.2 1.5a.8.8 0 01.3 1.1zm1.5-3a1 1 0 01-1.4.4c-3.3-1.9-8.4-2.4-12.3-1.5a1 1 0 11-.4-1.9c4.4-1 9.9-.5 13.7 1.7a1 1 0 01.4 1.3zm.2-3.1c-3.9-2.4-10.4-2.6-14.1-1.6a1 1 0 01-.5-1.9c4.4-1.1 11.5-.9 15.8 1.8a1 1 0 01-.5 1.7z"/></svg>
+                <img src="assets/images/logos/spotify.svg" alt="Spotify" class="music-logo" aria-hidden="true" />
                 <span class="sr-only">Spotify</span>
               </a>
               <a class="btn btn-secondary music-link" href="https://distrokid.com/hyperfollow/arl51/iz-514" target="_blank" rel="noopener" aria-label="Apple Music">
-                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M16.5 6.5c-.7.8-1.5 1.3-2.1 1.3-.1 0-.1 0-.2-.1-.7-.1-1.5-.9-2.3-.9-.9 0-1.9.5-2.8 1.4-.9.8-1.3 2-1.3 3.4 0 .3 0 .6.1.9.3 1.6.8 2.9 1.7 3.8.7.8 1.4 1.5 2.2 1.5.8 0 1.1-.4 2.3-.4 1.1 0 1.4.4 2.3.4.9 0 1.6-.7 2.2-1.5.8-.8 1.3-2.2 1.6-3.8.1-.4.1-.7.1-1.1 0-1.4-.5-2.6-1.4-3.4zM13 4.5c.4-.5.7-1.1.6-1.8-.6.1-1.3.4-1.8.9-.4.4-.8 1-1 1.6-.2.6-.2 1.3 0 1.9.5.1 1.1-.1 1.6-.5.4-.4.8-1 1.2-1.5z"/></svg>
+                <img src="assets/images/logos/Apple_logo_white.svg" alt="Apple Music" class="music-logo" aria-hidden="true" />
                 <span class="sr-only">Apple Music</span>
+              </a>
+            </div>
+          </article>
+          <article class="portfolio-card">
+            <span class="portfolio-card-tag" data-i18n="portfolio.music.tag">מוזיקה</span>
+            <img src="assets/images/albumphoto.png" alt="Album cover" />
+            <div class="music-links">
+              <a class="btn btn-secondary music-link" href="https://open.spotify.com/album/4ICGliqAb3IBwSABn0lHQ4" target="_blank" rel="noopener" aria-label="Spotify">
+                <img src="assets/images/logos/spotify.svg" alt="Spotify" class="music-logo" aria-hidden="true" />
+                <span class="sr-only">Spotify</span>
+              </a>
+              <a class="btn btn-secondary music-link" href="https://music.apple.com/il/album/%D7%90%D7%A0%D7%99-%D7%9C%D7%90-%D7%A0%D7%95%D7%A9%D7%9D/1732744733" target="_blank" rel="noopener" aria-label="Apple Music">
+                <img src="assets/images/logos/Apple_logo_white.svg" alt="Apple Music" class="music-logo" aria-hidden="true" />
+                <span class="sr-only">Apple Music</span>
+              </a>
+              <a class="btn btn-secondary music-link" href="https://youtube.com/playlist?list=OLAK5uy_l1dK7-aktezl01ma8WuBNfSyT3Tc8ME5c&si=xJ8-sx8VsCn-VFXi" target="_blank" rel="noopener" aria-label="YouTube">
+                <img src="assets/images/logos/youtube.svg" alt="YouTube" class="music-logo" aria-hidden="true" />
+                <span class="sr-only">YouTube</span>
               </a>
             </div>
           </article>

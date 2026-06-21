@@ -26,12 +26,12 @@
       "about.heading": "קצת עליי",
       "about.text": "אני הראל לסניק — מהנדס סאונד, צלם ועורך וידאו. אני משלב טכניקה מדויקת עם תשוקה אמיתית לסאונד ולתמונה, ועובד על כל פרויקט כאילו הוא שלי. אני פתוח לכל סוג עבודה, מהקלטה ועד גימור סופי, בקליבר גבוה.",
       "services.heading": "שירותים",
-      "services.mix.title": "מיקס",
-      "services.mix.desc": "מיקס מקצועי לסינגלים ואלבומים, עם דגש על בהירות ואיזון.",
+      "services.mix.title": "מיקסינג",
+      "services.mix.desc": "לסינגלים ואלבומים, כל ז׳אנר כל מוד",
       "services.master.title": "מאסטרינג",
-      "services.master.desc": "מאסטרינג בסטנדרט תעשייתי, מוכן להפצה בכל הפלטפורמות.",
-      "services.sounddesign.title": "סאונד דיזיין למשחקים",
-      "services.sounddesign.desc": "עיצוב אפקטים ואטמוספרות סאונד למשחקי מחשב.",
+      "services.master.desc": "פינש עם צבע אקרילי, סטרילי ורועש בקטע מכבד",
+      "services.sounddesign.title": "סאונד למשחקי מחשב",
+      "services.sounddesign.desc": "אפקטים, אטמוספרות ומוזיקה",
       "portfolio.heading": "תיק עבודות",
       "portfolio.filters.all": "הכול",
       "portfolio.filters.music": "מוזיקה",
@@ -41,7 +41,7 @@
       "portfolio.music.single1": "סינגל",
       "portfolio.music.single2": "סינגל",
       "portfolio.music.album": "אלבום אישי",
-      "portfolio.music.electronic": "אלבום אלקטרוני (ARL51)",
+      "portfolio.music.electronic": "אלבום אלקטרוני",
       "portfolio.music.listen": "האזינו ב-Spotify / Apple Music / YouTube",
       "portfolio.video.first": "קליפ ראשון",
       "portfolio.video.final1": "עבודת סוף קורס",
@@ -76,11 +76,11 @@
       "about.text": "I'm Harel Lesnick — a sound engineer, photographer and video editor. I combine precise technique with real passion for sound and image, treating every project like it's my own. I'm open to any kind of work, from recording to final polish, at a high caliber.",
       "services.heading": "Services",
       "services.mix.title": "Mixing",
-      "services.mix.desc": "Professional mixing for singles and albums, with a focus on clarity and balance.",
+      "services.mix.desc": "Mixing for singles and albums across genres and use-cases.",
       "services.master.title": "Mastering",
-      "services.master.desc": "Industry-standard mastering, ready for distribution on every platform.",
+      "services.master.desc": "Clear, loud, and punchy mastering to make tracks stand out.",
       "services.sounddesign.title": "Game Sound Design",
-      "services.sounddesign.desc": "Sound effects and atmosphere design for video games.",
+      "services.sounddesign.desc": "Designing sound effects, atmospheres, and music.",
       "portfolio.heading": "Portfolio",
       "portfolio.filters.all": "All",
       "portfolio.filters.music": "Music",
@@ -90,7 +90,7 @@
       "portfolio.music.single1": "Single",
       "portfolio.music.single2": "Single",
       "portfolio.music.album": "Solo Album",
-      "portfolio.music.electronic": "Electronic Album (ARL51)",
+      "portfolio.music.electronic": "Electronic Album",
       "portfolio.music.listen": "Listen on Spotify / Apple Music / YouTube",
       "portfolio.video.first": "First music video",
       "portfolio.video.final1": "Final course project",
@@ -126,6 +126,27 @@
     });
 
     if (dict["meta.title"]) document.title = dict["meta.title"];
+    // Reorder music icons so English shows: Apple, Spotify, YouTube
+    reorderMusicLinks(lang);
+  }
+
+  function reorderMusicLinks(lang) {
+    var containers = document.querySelectorAll('.music-links');
+    containers.forEach(function (container) {
+      var apple = container.querySelector('[aria-label="Apple Music"]');
+      var spotify = container.querySelector('[aria-label="Spotify"]');
+      var yt = container.querySelector('[aria-label="YouTube"]');
+
+      if (lang === 'en') {
+        if (apple) container.appendChild(apple);
+        if (spotify) container.appendChild(spotify);
+        if (yt) container.appendChild(yt);
+      } else {
+        if (yt) container.appendChild(yt);
+        if (spotify) container.appendChild(spotify);
+        if (apple) container.appendChild(apple);
+      }
+    });
   }
 
   window.App = window.App || {};
