@@ -364,6 +364,8 @@
 /* ---------- Photo Gallery ---------- */
 .gallery-section {
   padding-block: var(--space-5);
+  overflow: hidden;
+  max-width: 100%;
 }
 
 .gallery-track-wrapper {

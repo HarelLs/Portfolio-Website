@@ -11,6 +11,7 @@ html {
 
 body {
   margin: 0;
+  overflow-x: hidden;
   background-color: var(--color-bg);
   background-image: url("../images/bg.jpg");
   background-position: center;
