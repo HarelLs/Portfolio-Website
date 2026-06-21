@@ -8,7 +8,7 @@
 
   var translations = {
     he: {
-      "meta.title": "הראל לסניק | מהנדס סאונד, צלם ועורך וידאו",
+      "meta.title": "הראל לסניק",
       "meta.description": "הראל לסניק - מהנדס סאונד, צלם ועורך וידאו. מיקס, מאסטרינג וסאונד דיזיין למשחקי מחשב.",
       "a11y.skipLink": "דלגו לתוכן הראשי",
       "nav.home": "בית",
@@ -57,7 +57,7 @@
       "footer.rights": "© 2026 הראל לסניק. כל הזכויות שמורות."
     },
     en: {
-      "meta.title": "Harel Lesnick | Sound Engineer, Photographer & Video Editor",
+      "meta.title": "Harel Lesnick",
       "meta.description": "Harel Lesnick - sound engineer, photographer and video editor. Mixing, mastering and sound design for video games.",
       "a11y.skipLink": "Skip to main content",
       "nav.home": "Home",

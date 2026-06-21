@@ -1,27 +1,34 @@
-# Harel Lesnick — Portfolio Landing Page
+# Harel Lesnick
 
 דף נחיתה דו-לשוני (עברית RTL / אנגלית LTR) לפורטפוליו של הראל לסניק — מהנדס סאונד, צלם ועורך וידאו.
 נבנה כ-HTML/CSS/JS טהור (ללא Build step), כי תהליך הבנייה לא דרש שום תלות חיצונית — מתאים להפצה ישירה ב-GitHub Pages / Netlify / Vercel.
+
+*Header, Hero ו-Services חולקים עכשיו רקע אחיד באמצעות `assets/images/bg_intro.jpg`.*
 
 ## מבנה הריפו
 
 ```
 .
-├── index.html                 # כל המבנה הסמנטי של הדף (Header → Hero → About → Services → Portfolio → Current Project → Contact → Footer)
+├── index.html                 # מבנה הדף הנוכחי: Header שקוף עם כפתור שפה בלבד → Hero → Services → Portfolio → Current Project → Contact → Footer
 ├── assets/
 │   ├── css/
 │   │   ├── variables.css      # טוקנים: צבעים, פונטים, מרווחים
 │   │   ├── base.css           # reset + טיפוגרפיה בסיסית + נגישות
-│   │   ├── layout.css         # Header, ניווט, מבנה סקשנים, Footer
+│   │   ├── layout.css         # Header, מבנה סקשנים, fixed lang switch, Footer
 │   │   ├── components.css     # כפתורים, כרטיסי שירות/פורטפוליו, גלריה, badge
-│   │   └── responsive.css     # שינויים ל-Mobile (תפריט המבורגר וכו')
+│   │   └── responsive.css     # שינויים ל-Mobile
 │   ├── js/
 │   │   ├── i18n.js            # מילון תרגומים he/en + מתג שפה (משנה גם dir)
-│   │   ├── nav.js              # תפריט המבורגר + כפתור שפה
+│   │   ├── nav.js             # כפתור שפה + תמיכה בניווט
 │   │   ├── portfolio-filter.js # סינון תיק עבודות (הכול/מוזיקה/וידאו/תמונות)
-│   │   └── main.js             # אתחול האפליקציה
+│   │   └── main.js            # אתחול האפליקציה
 │   └── images/
-│       └── favicon.svg
+│       ├── favicon.svg
+│       ├── albumphoto.png
+│       ├── bg_intro.jpg       # רקע אחיד ל-Header/Hero/Services
+│       ├── epphoto.png
+│       ├── singlephoto.png
+│       └── logos/             # לוגואים של Spotify / Apple Music / YouTube
 └── 01-site-brief.md           # מסמך האפיון/פרומפט המלא (15 הסעיפים) — להגשה במטלה
 ```
 
