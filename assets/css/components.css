@@ -29,7 +29,7 @@
 .hero-services-wrapper {
   position: relative;
   background-image: url("../images/bg_intro.jpg");
-  background-position: center;
+  background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -117,7 +117,7 @@
 .portfolio {
   text-align: center;
   background-image: url("../images/bg_port.jpg");
-  background-position: center;
+  background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
@@ -126,7 +126,7 @@
   background: rgba(200, 200, 210, 0.08);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  padding: 0 var(--space-5) var(--space-5);
+  padding: 0 var(--space-6) var(--space-6);
   border-radius: var(--radius-lg);
   overflow: hidden;
 }
@@ -136,6 +136,7 @@
   gap: 0;
   margin: 0 0 var(--space-4);
   width: 100%;
+  direction: ltr;
 }
 
 .filter-btn {
@@ -164,6 +165,7 @@
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: var(--space-3);
   margin-bottom: var(--space-4);
+  direction: ltr;
 }
 
 .portfolio-grid[hidden] { display: none; }
@@ -203,6 +205,7 @@
   margin-top: var(--space-3);
   justify-content: center;
   overflow: visible;
+  direction: ltr;
 }
 
 .music-link {
@@ -343,6 +346,7 @@
   width: 100%;
   cursor: grab;
   scrollbar-width: none;
+  direction: ltr;
 }
 
 .gallery-track-wrapper::-webkit-scrollbar { display: none; }

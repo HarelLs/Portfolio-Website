@@ -2,6 +2,15 @@
    responsive.css — Breakpoints (mobile-first overrides)
    ========================================================= */
 
+/* Fix background-attachment: fixed on mobile (iOS Safari ignores it and breaks centering) */
+@media (max-width: 768px) {
+  .hero-services-wrapper,
+  .portfolio {
+    background-attachment: scroll;
+    background-position: center center;
+  }
+}
+
 @media (max-width: 900px) {
   .services-grid { grid-template-columns: repeat(2, 1fr); }
   .portfolio-grid { grid-template-columns: repeat(2, 1fr); }

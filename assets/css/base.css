@@ -6,6 +6,7 @@
 
 html {
   scroll-behavior: smooth;
+  direction: ltr; /* keep scrollbar on the right in both languages */
 }
 
 body {

@@ -111,7 +111,7 @@
     var dict = translations[lang] || translations.he;
 
     document.documentElement.lang = lang;
-    document.documentElement.dir = lang === "he" ? "rtl" : "ltr";
+    document.body.dir = lang === "he" ? "rtl" : "ltr";
 
     document.querySelectorAll("[data-i18n]").forEach(function (el) {
       var key = el.getAttribute("data-i18n");

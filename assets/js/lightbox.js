@@ -18,7 +18,7 @@
     document.body.style.overflow = "";
   }
 
-  document.querySelectorAll(".gallery-track img:not([aria-hidden]), .portfolio-card img").forEach(function (img) {
+  document.querySelectorAll(".gallery-track img:not([aria-hidden]), .portfolio-card img:not(.music-logo)").forEach(function (img) {
     img.style.cursor = "pointer";
     img.addEventListener("click", function () { open(img.src, img.alt); });
   });
