@@ -152,7 +152,7 @@
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   padding: 0 var(--space-6) var(--space-6);
-  border-radius: 0;
+  border-radius: var(--radius-lg);
   overflow: hidden;
 }
 
