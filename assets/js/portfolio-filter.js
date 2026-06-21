@@ -10,18 +10,20 @@
     var groups = document.querySelectorAll(".portfolio-grid");
     if (!buttons.length || !groups.length) return;
 
+    function applyFilter(filter) {
+      buttons.forEach(function (b) { b.classList.remove("is-active"); });
+      document.querySelector('[data-filter="' + filter + '"]').classList.add("is-active");
+      groups.forEach(function (group) {
+        group.hidden = group.getAttribute("data-category") !== filter;
+      });
+    }
+
+    var defaultBtn = document.querySelector(".filter-btn.is-active");
+    applyFilter(defaultBtn ? defaultBtn.getAttribute("data-filter") : "music");
+
     buttons.forEach(function (btn) {
       btn.addEventListener("click", function () {
-        var filter = btn.getAttribute("data-filter");
-
-        buttons.forEach(function (b) { b.classList.remove("is-active"); });
-        btn.classList.add("is-active");
-
-        groups.forEach(function (group) {
-          var category = group.getAttribute("data-category");
-          var show = filter === "all" || filter === category;
-          group.hidden = !show;
-        });
+        applyFilter(btn.getAttribute("data-filter"));
       });
     });
   }
