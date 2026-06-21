@@ -1,0 +1,40 @@
+/* =========================================================
+   variables.css — Design tokens (colors, type, spacing)
+   Single source of truth for the visual language.
+   ========================================================= */
+
+:root {
+  /* Colors — dark, bold (Metro Boomin / Roy Kafri direction) */
+  --color-bg: #0a0a0c;
+  --color-bg-alt: #131318;
+  --color-surface: #1a1a21;
+  --color-border: #2b2b34;
+  --color-text: #f5f5f7;
+  --color-text-muted: #a6a6b3;
+  --color-accent: #ff5a2d;       /* primary CTA / highlight */
+  --color-accent-hover: #ff7849;
+  --color-accent-soft: rgba(255, 90, 45, 0.12);
+
+  /* Typography */
+  --font-base: "Noto Sans Hebrew", "Inter", system-ui, sans-serif;
+  --fs-xs: 0.85rem;
+  --fs-sm: 1rem;
+  --fs-md: 1.125rem;
+  --fs-lg: 1.5rem;
+  --fs-xl: 2.25rem;
+  --fs-xxl: clamp(2.5rem, 6vw, 4.5rem);
+
+  /* Spacing scale */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2.5rem;
+  --space-5: 4rem;
+  --space-6: 6rem;
+
+  /* Layout */
+  --container-max: 1140px;
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --header-height: 72px;
+}

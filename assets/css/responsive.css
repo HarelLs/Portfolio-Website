@@ -1,0 +1,41 @@
+/* =========================================================
+   responsive.css — Breakpoints (mobile-first overrides)
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+  .hero-media-placeholder { width: 260px; height: 260px; inset-inline-end: -15%; opacity: 0.6; }
+}
+
+@media (max-width: 720px) {
+  .main-nav {
+    position: fixed;
+    inset-inline-end: 0;
+    top: var(--header-height);
+    bottom: 0;
+    width: min(80vw, 320px);
+    background: var(--color-bg-alt);
+    border-inline-start: 1px solid var(--color-border);
+    transform: translateX(100%);
+    transition: transform 0.25s ease;
+    padding: var(--space-3);
+  }
+
+  [dir="rtl"] .main-nav { transform: translateX(-100%); }
+
+  .main-nav.is-open { transform: translateX(0); }
+
+  .main-nav ul {
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .hamburger { display: flex; }
+
+  .services-grid, .portfolio-grid { grid-template-columns: 1fr; }
+
+  .hero-media-placeholder { display: none; }
+
+  h1 { font-size: clamp(2rem, 9vw, 3rem); }
+}
