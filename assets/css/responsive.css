@@ -2,12 +2,15 @@
    responsive.css — Breakpoints (mobile-first overrides)
    ========================================================= */
 
-/* Fix background-attachment: fixed on mobile — target pseudo-elements directly */
+/* iOS Safari doesn't support background-attachment: fixed — JS parallax.js drives these variables */
 @media (max-width: 1024px) {
-  .hero-services-wrapper::before,
+  .hero-services-wrapper::before {
+    background-attachment: scroll;
+    background-position: center var(--hero-bg-y, 50%);
+  }
   .portfolio::before {
     background-attachment: scroll;
-    background-position: center center;
+    background-position: center var(--port-bg-y, 50%);
   }
 }
 
