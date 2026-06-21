@@ -66,20 +66,3 @@ button {
   padding-inline: var(--space-3);
 }
 
-/* Skip link — keyboard accessibility */
-.skip-link {
-  position: fixed;
-  top: 0;
-  left: var(--space-2);
-  transform: translateY(-200%);
-  background: var(--color-accent);
-  color: #0a0a0c;
-  padding: var(--space-1) var(--space-2);
-  z-index: 9999;
-  border-radius: var(--radius-sm);
-  transition: transform 0.2s ease;
-}
-
-.skip-link:focus {
-  transform: translateY(var(--space-1));
-}

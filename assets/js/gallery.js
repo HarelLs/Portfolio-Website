@@ -11,6 +11,11 @@
   var halfWidth   = 0;
   var offset      = 0;
 
+  function measureHalfWidth() {
+    var w = track.offsetWidth;
+    if (w > 0) halfWidth = w / 2;
+  }
+
   function normalize() {
     if (halfWidth <= 0) return;
     offset = offset % halfWidth;
@@ -28,7 +33,9 @@
   }
 
   function tick() {
-    if (!isPaused) {
+    if (halfWidth <= 0) measureHalfWidth();
+
+    if (!isPaused && halfWidth > 0) {
       offset -= speed;
       normalize();
       applyOffset();
@@ -39,6 +46,7 @@
   // Mouse wheel
   wrapper.addEventListener("wheel", function (e) {
     e.preventDefault();
+    if (halfWidth <= 0) return;
     offset -= (e.deltaY !== 0 ? e.deltaY : e.deltaX);
     normalize();
     applyOffset();
@@ -48,12 +56,14 @@
   // Touch drag
   var touchStartX = 0;
   wrapper.addEventListener("touchstart", function (e) {
+    if (halfWidth <= 0) return;
     touchStartX = e.touches[0].clientX;
     isPaused = true;
     clearTimeout(resumeTimer);
   }, { passive: true });
 
   wrapper.addEventListener("touchmove", function (e) {
+    if (halfWidth <= 0) return;
     var dx = e.touches[0].clientX - touchStartX;
     offset += dx;
     normalize();
@@ -71,6 +81,7 @@
   var dragStartOffset = 0;
 
   wrapper.addEventListener("mousedown", function (e) {
+    if (halfWidth <= 0) return;
     isDragging = true;
     dragStartX = e.pageX;
     dragStartOffset = offset;
@@ -80,7 +91,7 @@
   });
 
   window.addEventListener("mousemove", function (e) {
-    if (!isDragging) return;
+    if (!isDragging || halfWidth <= 0) return;
     offset = dragStartOffset + (e.pageX - dragStartX);
     normalize();
     applyOffset();
@@ -93,9 +104,5 @@
     pauseBriefly(1500);
   });
 
-  window.addEventListener("load", function () {
-    halfWidth = track.scrollWidth / 2;
-    offset = 0;
-    requestAnimationFrame(tick);
-  });
+  requestAnimationFrame(tick);
 })();
