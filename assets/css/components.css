@@ -28,23 +28,34 @@
 /* ---------- Hero/Services wrapper ---------- */
 .hero-services-wrapper {
   position: relative;
+  overflow: hidden;
+}
+
+/* Background image on pseudo-element — avoids iOS Safari fixed-attachment positioning bug */
+.hero-services-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
   background-image: url("../images/bg_intro.jpg");
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  z-index: 0;
 }
 
-.hero-services-wrapper::before {
+/* Dark overlay */
+.hero-services-wrapper::after {
   content: "";
   position: absolute;
   inset: 0;
   background: rgba(10, 10, 12, 0.45);
+  z-index: 1;
 }
 
 .hero-services-wrapper > * {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 .hero-services-inner {
@@ -116,11 +127,25 @@
 /* ---------- Portfolio ---------- */
 .portfolio {
   text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.portfolio::before {
+  content: "";
+  position: absolute;
+  inset: 0;
   background-image: url("../images/bg_port.jpg");
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
+  z-index: 0;
+}
+
+.portfolio .container {
+  position: relative;
+  z-index: 1;
 }
 .portfolio-inner {
   background: rgba(200, 200, 210, 0.08);
@@ -342,14 +367,11 @@
 }
 
 .gallery-track-wrapper {
-  overflow-x: scroll;
+  overflow: hidden;
   width: 100%;
   cursor: grab;
-  scrollbar-width: none;
   direction: ltr;
 }
-
-.gallery-track-wrapper::-webkit-scrollbar { display: none; }
 
 .gallery-track-wrapper:active { cursor: grabbing; }
 
@@ -357,6 +379,7 @@
   display: flex;
   gap: var(--space-2);
   width: max-content;
+  will-change: transform;
 }
 
 .gallery-track img {

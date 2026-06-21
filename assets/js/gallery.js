@@ -9,11 +9,16 @@
   var isPaused    = false;
   var resumeTimer = null;
   var halfWidth   = 0;
+  var offset      = 0;
 
   function normalize() {
     if (halfWidth <= 0) return;
-    if (wrapper.scrollLeft >= halfWidth) wrapper.scrollLeft -= halfWidth;
-    if (wrapper.scrollLeft < 0)          wrapper.scrollLeft += halfWidth;
+    offset = offset % halfWidth;
+    if (offset > 0) offset -= halfWidth;
+  }
+
+  function applyOffset() {
+    track.style.transform = "translateX(" + offset + "px)";
   }
 
   function pauseBriefly(ms) {
@@ -24,17 +29,19 @@
 
   function tick() {
     if (!isPaused) {
-      wrapper.scrollLeft += speed;
+      offset -= speed;
       normalize();
+      applyOffset();
     }
     requestAnimationFrame(tick);
   }
 
-  // Mouse-wheel
+  // Mouse wheel
   wrapper.addEventListener("wheel", function (e) {
     e.preventDefault();
-    wrapper.scrollLeft += e.deltaY !== 0 ? e.deltaY : e.deltaX;
+    offset -= (e.deltaY !== 0 ? e.deltaY : e.deltaX);
     normalize();
+    applyOffset();
     pauseBriefly(500);
   }, { passive: false });
 
@@ -47,9 +54,10 @@
   }, { passive: true });
 
   wrapper.addEventListener("touchmove", function (e) {
-    var dx = touchStartX - e.touches[0].clientX;
-    wrapper.scrollLeft += dx;
+    var dx = e.touches[0].clientX - touchStartX;
+    offset += dx;
     normalize();
+    applyOffset();
     touchStartX = e.touches[0].clientX;
   }, { passive: true });
 
@@ -60,28 +68,34 @@
   // Click-drag
   var isDragging    = false;
   var dragStartX    = 0;
-  var dragStartScroll = 0;
+  var dragStartOffset = 0;
 
   wrapper.addEventListener("mousedown", function (e) {
     isDragging = true;
     dragStartX = e.pageX;
-    dragStartScroll = wrapper.scrollLeft;
-    pauseBriefly(9999);
+    dragStartOffset = offset;
+    isPaused = true;
+    clearTimeout(resumeTimer);
+    wrapper.style.cursor = "grabbing";
   });
 
   window.addEventListener("mousemove", function (e) {
     if (!isDragging) return;
-    wrapper.scrollLeft = dragStartScroll - (e.pageX - dragStartX);
+    offset = dragStartOffset + (e.pageX - dragStartX);
     normalize();
+    applyOffset();
   });
 
   window.addEventListener("mouseup", function () {
-    if (isDragging) { isDragging = false; pauseBriefly(1500); }
+    if (!isDragging) return;
+    isDragging = false;
+    wrapper.style.cursor = "";
+    pauseBriefly(1500);
   });
 
   window.addEventListener("load", function () {
     halfWidth = track.scrollWidth / 2;
-    wrapper.scrollLeft = 0;
+    offset = 0;
     requestAnimationFrame(tick);
   });
 })();

@@ -2,13 +2,12 @@
    responsive.css — Breakpoints (mobile-first overrides)
    ========================================================= */
 
-/* Fix background-attachment: fixed on mobile (iOS Safari ignores it and breaks centering) */
+/* Fix background-attachment: fixed on mobile — target pseudo-elements directly */
 @media (max-width: 1024px) {
-  .hero-services-wrapper,
-  .portfolio {
-    background-attachment: scroll !important;
-    background-position: 50% 50% !important;
-    background-size: cover !important;
+  .hero-services-wrapper::before,
+  .portfolio::before {
+    background-attachment: scroll;
+    background-position: center center;
   }
 }
 
