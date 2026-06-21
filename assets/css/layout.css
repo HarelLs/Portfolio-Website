@@ -48,10 +48,10 @@
 
 .lang-switch {
   font-weight: 800;
-  font-size: var(--fs-xs);
+  font-size: var(--fs-md);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
-  padding: 0.35rem 0.75rem;
+  padding: 0.6rem 1.25rem;
   color: var(--color-text);
   position: fixed;
   top: var(--space-3);
@@ -90,6 +90,7 @@ section {
 
 .about, .current-project {
   background: var(--color-bg-alt);
+  text-align: center;
 }
 
 /* ---------- Footer ---------- */

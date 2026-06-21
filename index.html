@@ -24,28 +24,22 @@
 <body>
   <a class="skip-link" href="#main-content" data-i18n="a11y.skipLink">דלגו לתוכן הראשי</a>
 
+  <button class="lang-switch" id="lang-switch" type="button" aria-label="החלף שפה / Switch language">
+    <span data-i18n="nav.langSwitch">EN</span>
+  </button>
+
   <main id="main-content">
     <div class="hero-services-wrapper">
-      <header class="site-header hero-header">
-        <div class="container header-inner">
-          <div class="hero-text">
-            <p class="hero-eyebrow" data-i18n="hero.subtitle">מהנדס סאונד, צלם ועורך וידאו</p>
-            <h1 data-i18n="hero.title">הראל לסניק</h1>
-            <p class="hero-tagline" data-i18n="hero.tagline">
-              מיקס, מאסטרינג וסאונד דיזיין למשחקי מחשב — מוכן לכל סוג עבודה, בקליבר גבוה.
-            </p>
-          </div>
-          <div class="header-actions">
-            <button class="lang-switch" id="lang-switch" type="button" aria-label="החלף שפה / Switch language">
-              <span data-i18n="nav.langSwitch">EN</span>
-            </button>
-          </div>
+      <div class="hero-services-inner">
+        <div class="hero-text">
+          <p class="hero-eyebrow" data-i18n="hero.subtitle">מהנדס סאונד, צלם ועורך וידאו</p>
+          <h1 data-i18n="hero.title">הראל לסניק</h1>
+          <p class="hero-tagline" data-i18n="hero.tagline">
+            מיקס, מאסטרינג וסאונד דיזיין למשחקי מחשב — מוכן לכל סוג עבודה, בקליבר גבוה.
+          </p>
         </div>
-      </header>
 
-      <!-- SERVICES -->
-      <section id="services" class="services">
-          <div class="services-grid">
+        <div class="services-grid">
           <article class="service-card">
             <h3 data-i18n="services.mix.title">מיקסינג</h3>
             <p data-i18n="services.mix.desc">לסינגלים ואלבומים, כל ז׳אנר כל מוד</p>
@@ -59,16 +53,27 @@
             <p data-i18n="services.master.desc">פינש עם צבע אקרילי, סטרילי ורועש בקטע מכבד</p>
           </article>
         </div>
-    </section>
+      </div>
     </div>
+
+    <!-- CURRENT PROJECT -->
+    <section id="current-project" class="current-project">
+      <div class="container">
+        <span class="badge" data-i18n="currentProject.badge">בתהליך</span>
+        <h2 data-i18n="currentProject.heading">בעבודה כרגע</h2>
+        <p data-i18n="currentProject.text">
+          אני מפיק ומקסס אלבום מלא לאומן, כפרויקט הגמר שלי במכללה. עדכונים והאזנות יתווספו כאן בקרוב.
+        </p>
+      </div>
+    </section>
 
     <!-- PORTFOLIO -->
     <section id="portfolio" class="portfolio">
       <div class="container">
+      <div class="portfolio-inner">
         <div class="portfolio-filters" role="group" aria-label="סינון תיק עבודות">
           <button class="filter-btn is-active" data-filter="music" data-i18n="portfolio.filters.music">מוזיקה</button>
           <button class="filter-btn" data-filter="video" data-i18n="portfolio.filters.video">וידאו</button>
-          <button class="filter-btn" data-filter="photos" data-i18n="portfolio.filters.photos">תמונות</button>
         </div>
 
         <!-- MUSIC -->
@@ -155,39 +160,29 @@
             </div>
             <p data-i18n="portfolio.video.final2">עבודת סוף קורס</p>
           </div>
-          <a class="btn btn-secondary" href="https://www.youtube.com/@Harel_Lesnick/videos" target="_blank" rel="noopener"
-            data-i18n="portfolio.video.more">עוד בערוץ היוטיוב</a>
+
         </div>
 
-        <!-- PHOTOS -->
-        <div class="portfolio-grid" data-category="photos">
-          <article class="photo-card">
-            <img src="assets/images/01.jpg" alt="צילום עבודתי 01" />
-          </article>
-          <article class="photo-card">
-            <img src="assets/images/02.jpg" alt="צילום עבודתי 02" />
-          </article>
-          <article class="photo-card">
-            <img src="assets/images/03.jpg" alt="צילום עבודתי 03" />
-          </article>
-          <article class="photo-card">
-            <img src="assets/images/04.jpg" alt="צילום עבודתי 04" />
-          </article>
-          <article class="photo-card">
-            <img src="assets/images/05.jpg" alt="צילום עבודתי 05" />
-          </article>
-        </div>
+      </div>
       </div>
     </section>
 
-    <!-- CURRENT PROJECT -->
-    <section id="current-project" class="current-project">
-      <div class="container">
-        <span class="badge" data-i18n="currentProject.badge">בתהליך</span>
-        <h2 data-i18n="currentProject.heading">בעבודה כרגע</h2>
-        <p data-i18n="currentProject.text">
-          אני מפיק ומקסס אלבום מלא לאומן, כפרויקט הגמר שלי במכללה. עדכונים והאזנות יתווספו כאן בקרוב.
-        </p>
+    <!-- PHOTO GALLERY -->
+    <section id="gallery" class="gallery-section">
+      <div class="gallery-track-wrapper">
+        <div class="gallery-track">
+          <img src="assets/images/01.jpg" alt="צילום עבודתי 01" />
+          <img src="assets/images/02.jpg" alt="צילום עבודתי 02" />
+          <img src="assets/images/03.jpg" alt="צילום עבודתי 03" />
+          <img src="assets/images/04.jpg" alt="צילום עבודתי 04" />
+          <img src="assets/images/05.jpg" alt="צילום עבודתי 05" />
+          <!-- duplicated for seamless loop -->
+          <img src="assets/images/01.jpg" alt="" aria-hidden="true" />
+          <img src="assets/images/02.jpg" alt="" aria-hidden="true" />
+          <img src="assets/images/03.jpg" alt="" aria-hidden="true" />
+          <img src="assets/images/04.jpg" alt="" aria-hidden="true" />
+          <img src="assets/images/05.jpg" alt="" aria-hidden="true" />
+        </div>
       </div>
     </section>
 
@@ -211,9 +206,16 @@
     </div>
   </footer>
 
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="תמונה מוגדלת">
+    <button class="lightbox-close" id="lightbox-close" aria-label="סגור">&#x2715;</button>
+    <img id="lightbox-img" src="" alt="" />
+  </div>
+
   <script defer src="assets/js/i18n.js"></script>
   <script defer src="assets/js/nav.js"></script>
   <script defer src="assets/js/portfolio-filter.js"></script>
+  <script defer src="assets/js/lightbox.js"></script>
   <script defer src="assets/js/main.js"></script>
 </body>
 </html>

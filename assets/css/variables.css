@@ -36,5 +36,6 @@
   --container-max: 1140px;
   --radius-sm: 8px;
   --radius-md: 16px;
+  --radius-lg: 32px;
   --header-height: 72px;
 }
