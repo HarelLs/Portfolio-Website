@@ -11,9 +11,9 @@
   --color-border: #2b2b34;
   --color-text: #f5f5f7;
   --color-text-muted: #a6a6b3;
-  --color-accent: #ff5a2d;       /* primary CTA / highlight */
-  --color-accent-hover: #ff7849;
-  --color-accent-soft: rgba(255, 90, 45, 0.12);
+  --color-accent: #7eb6cf;       /* primary CTA / highlight */
+  --color-accent-hover: #62a1bf;
+  --color-accent-soft: rgba(126, 182, 207, 0.12);
 
   /* Typography */
   --font-base: "Noto Sans Hebrew", "Inter", system-ui, sans-serif;
