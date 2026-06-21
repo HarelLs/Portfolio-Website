@@ -379,7 +379,7 @@
 
 .gallery-track {
   display: flex;
-  gap: var(--space-2);
+  gap: 2px;
   width: max-content;
   will-change: transform;
 }
@@ -387,7 +387,7 @@
 .gallery-track img {
   height: 280px;
   width: auto;
-  border-radius: var(--radius-md);
+  border-radius: 0;
   object-fit: cover;
   flex-shrink: 0;
 }
