@@ -14,6 +14,18 @@
   }
 }
 
+/* Mobile: swap in 800px-wide background images — ~90% smaller than 2000px originals */
+@media (max-width: 768px) {
+  .hero-services-wrapper::before {
+    background-image: url("../images/bg_intro-mobile.jpg");
+    background-image: image-set(url("../images/bg_intro-mobile.webp") type("image/webp"), url("../images/bg_intro-mobile.jpg") type("image/jpeg"));
+  }
+  .portfolio::before {
+    background-image: url("../images/bg_port-mobile.jpg");
+    background-image: image-set(url("../images/bg_port-mobile.webp") type("image/webp"), url("../images/bg_port-mobile.jpg") type("image/jpeg"));
+  }
+}
+
 @media (max-width: 720px) {
   /* fixed 500vh — always bigger than any tab content, crop never shifts */
   .portfolio::before {

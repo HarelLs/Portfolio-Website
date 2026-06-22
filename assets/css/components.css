@@ -37,6 +37,7 @@
   position: absolute;
   inset: 0;
   background-image: url("../images/bg_intro.jpg");
+  background-image: image-set(url("../images/bg_intro.webp") type("image/webp"), url("../images/bg_intro.jpg") type("image/jpeg"));
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -136,6 +137,7 @@
   position: absolute;
   inset: 0;
   background-image: url("../images/bg_port.jpg");
+  background-image: image-set(url("../images/bg_port.webp") type("image/webp"), url("../images/bg_port.jpg") type("image/jpeg"));
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -275,6 +277,9 @@
     0 12px 32px rgba(0,0,0,0.28);
   z-index: 5;
 }
+
+/* picture wrapper inside cards — block so it doesn't add inline baseline gap */
+.portfolio-card picture { display: block; }
 
 .portfolio-card img {
   transition: transform 0.2s ease, opacity 0.2s ease;
@@ -530,6 +535,9 @@
   width: max-content;
   will-change: transform;
 }
+
+/* picture is a wrapper — make it transparent to flex layout */
+.gallery-track picture { display: contents; }
 
 .gallery-track img {
   height: 420px;
