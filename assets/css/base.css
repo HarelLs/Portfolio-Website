@@ -12,6 +12,7 @@ html {
 body {
   margin: 0;
   overflow-x: hidden;
+  position: relative; /* anchor for absolute-placed sticky notes */
   background-color: var(--color-bg);
   background-attachment: fixed;
   background-blend-mode: soft-light;

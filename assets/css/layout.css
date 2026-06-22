@@ -53,6 +53,7 @@
 .lang-switch {
   font-weight: 800;
   font-size: var(--fs-md);
+  font-family: var(--font-base);
   border: none;
   padding: 0.6rem 1.25rem;
   color: var(--color-text);
