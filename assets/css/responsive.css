@@ -152,7 +152,8 @@
     width: calc(100vw - 16px) !important;
     height: auto !important;
     max-height: 60vh !important;
-    top: auto !important;
+    left: 8px !important;
+    top: 60px !important;
   }
 }
 
