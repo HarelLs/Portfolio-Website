@@ -122,6 +122,28 @@
 .service-card {
   padding: var(--space-3);
   text-align: center;
+  cursor: default;
+}
+
+body[dir="ltr"] .service-card h3::before {
+  content: "> ";
+  color: transparent;
+  font-family: var(--font-base);
+  vertical-align: middle;
+  transition: color 0.15s ease;
+}
+
+body[dir="rtl"] .service-card h3::after {
+  content: " <";
+  color: transparent;
+  font-family: var(--font-base);
+  vertical-align: middle;
+  transition: color 0.15s ease;
+}
+
+body[dir="ltr"] .service-card:hover h3::before,
+body[dir="rtl"] .service-card:hover h3::after {
+  color: var(--color-accent);
 }
 
 

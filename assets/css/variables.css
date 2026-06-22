@@ -5,10 +5,11 @@
 
 /* ---------- Font faces ---------- */
 @font-face {
-  font-family: "Basis33";
+  font-family: "UpheavalPro";
   src: url("../fonts/UpheavalPro.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
+  size-adjust: 120%;
 }
 
 @font-face {
@@ -31,7 +32,7 @@
   --color-accent-soft: rgba(126, 182, 207, 0.12);
 
   /* Typography */
-  --font-base: "Basis33", "Inter", system-ui, sans-serif;
+  --font-base: "UpheavalPro", "Inter", system-ui, sans-serif;
   --font-en: "Pixeloid Sans Bold", "Inter", system-ui, sans-serif;
   --fs-xs: 0.85rem;
   --fs-sm: 1rem;
