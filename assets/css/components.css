@@ -554,7 +554,11 @@
   font-size: var(--fs-xs);
   padding: 0.3rem 0.9rem;
   border-radius: 999px;
-  margin-bottom: var(--space-2);
+  margin-top: var(--space-2);
+}
+
+.tenor-gif-embed {
+  margin-bottom: var(--space-3);
 }
 
 /* ---------- Contact ---------- */
