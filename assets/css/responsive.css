@@ -125,6 +125,8 @@
 
   h1 { font-size: clamp(2rem, 9vw, 3rem); }
 
+  .music-link .music-logo { height: 1.1rem; width: 1.1rem; }
+
   /* shrink lang button so it doesn't crowd small-screen content */
   .lang-switch { font-size: var(--fs-sm); padding: 0.4rem 0.9rem; }
   /* push hero down enough to clear the fixed button */
