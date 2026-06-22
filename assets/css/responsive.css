@@ -14,6 +14,11 @@
   }
 }
 
+@media (max-width: 720px) {
+  /* background image shifts as folder height changes between tabs — hide it on mobile */
+  .portfolio::before { display: none; }
+}
+
 @media (max-width: 900px) {
   .services-grid { grid-template-columns: repeat(2, 1fr); }
   .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
