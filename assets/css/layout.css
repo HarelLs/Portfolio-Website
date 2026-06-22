@@ -64,16 +64,29 @@
 
 .lang-switch:hover { border-color: var(--color-accent); }
 
-/* Hamburger (mobile only — see responsive.css for display rules) */
+/* Hamburger (mobile only — show via responsive.css) */
 .hamburger {
   display: none;
   flex-direction: column;
+  justify-content: center;
   gap: 5px;
-  width: 28px;
+  position: fixed;
+  top: var(--space-3);
+  right: var(--space-3);
+  z-index: 1001;
+  width: auto;
+  padding: 0.6rem 0.8rem;
+  background: rgba(10, 10, 12, 0.72);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
 }
 
 .hamburger span {
   display: block;
+  width: 22px;
   height: 2px;
   background: var(--color-text);
   border-radius: 2px;
