@@ -120,20 +120,22 @@ section {
   bottom: 2rem;
   right: 1rem;
   width: 140px;
+  height: 140px;
   z-index: 900;
 }
 
 .clippy-idle,
-.clippy-hover-a,
-.clippy-hover-b {
+.clippy-hover-a {
   display: block;
   width: 140px;
+  height: 140px;
+  object-fit: contain;
+  object-position: bottom center;
   transition: opacity 0.15s ease;
 }
 
 .clippy-idle    { opacity: 1; }
-.clippy-hover-a { position: absolute; bottom: 0; left: 0; opacity: 0; }
-.clippy-hover-b { position: absolute; bottom: 0; left: 0; opacity: 0; }
+.clippy-hover-a { position: absolute; inset: 0; opacity: 0; }
 
 .clippy-float.show-a .clippy-idle    { opacity: 0; }
 .clippy-float.show-a .clippy-hover-a { opacity: 1; }
