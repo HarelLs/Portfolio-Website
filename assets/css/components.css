@@ -571,30 +571,19 @@
   position: absolute;
   width: 300px;
   height: auto;
-  animation: switcher-gif 4s infinite;
+  opacity: 1;
+  transition: opacity 0.3s ease;
 }
 
 .badge-gif-switcher .badge {
   position: absolute;
   margin: 0;
-  animation: switcher-badge 4s infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
-@keyframes switcher-gif {
-  0%   { opacity: 1; }
-  40%  { opacity: 1; }
-  50%  { opacity: 0; }
-  90%  { opacity: 0; }
-  100% { opacity: 1; }
-}
-
-@keyframes switcher-badge {
-  0%   { opacity: 0; }
-  40%  { opacity: 0; }
-  50%  { opacity: 1; }
-  90%  { opacity: 1; }
-  100% { opacity: 0; }
-}
+.badge-gif-switcher:hover .xp-loading-gif { opacity: 0; }
+.badge-gif-switcher:hover .badge          { opacity: 1; }
 
 /* ---------- Contact ---------- */
 #contact {
