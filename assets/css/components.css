@@ -604,6 +604,7 @@ body[dir="rtl"] .service-card:hover h3::after {
   border-radius: 2px;
   object-fit: fill;
   display: block;
+  transform: scale(0.98);
 }
 
 .xp-title {

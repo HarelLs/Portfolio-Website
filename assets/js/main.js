@@ -153,7 +153,7 @@ document.addEventListener("DOMContentLoaded", function () {
     win.style.top    = pos.top  + "px";
     win.innerHTML =
       '<div class="xp-titlebar">' +
-        '<img class="xp-title-icon" src="assets/images/ui/gallery-icon.png" alt="" aria-hidden="true" style="width:22px;min-width:22px;object-fit:contain;position:relative;top:-2px;" />' +
+        '<img class="xp-title-icon" src="assets/images/ui/gallery-icon.png" alt="" aria-hidden="true" style="width:22px;min-width:22px;object-fit:contain;position:relative;top:-1px;" />' +
         '<span class="xp-title" data-i18n="gallery.winTitle">' + ((window.App.i18n && window.App.i18n.current === "he") ? "גלריה" : "Gallery") + '</span>' +
         '<div class="xp-title-btns">' +
           '<button class="xp-btn-help xp-prop-btn" aria-label="Properties">?</button>' +
@@ -299,7 +299,7 @@ document.addEventListener("DOMContentLoaded", function () {
     win.style.top    = pos.top  + "px";
     win.innerHTML =
       '<div class="xp-titlebar">' +
-        '<img class="xp-title-icon" src="assets/images/ui/gallery-icon.png" alt="" aria-hidden="true" style="width:22px;min-width:22px;object-fit:contain;position:relative;top:-2px;" />' +
+        '<img class="xp-title-icon" src="assets/images/ui/gallery-icon.png" alt="" aria-hidden="true" style="width:22px;min-width:22px;object-fit:contain;position:relative;top:-1px;" />' +
         '<span class="xp-title">' + (imgEl.alt || "Cover") + '</span>' +
         '<div class="xp-title-btns">' +
           '<button class="xp-music-help-btn xp-btn-help-inline" aria-label="Help">?</button>' +
