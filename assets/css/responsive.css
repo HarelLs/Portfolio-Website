@@ -140,19 +140,15 @@
 }
 
 @media (max-width: 600px) {
-  /* XP windows: keep them small and reachable on mobile */
+  /* XP windows: keep them small on mobile; position is owned by JS */
   .xp-window {
     max-width: calc(100vw - 16px) !important;
     max-height: 52vh !important;
-    left: 8px !important;
-    top: 60px !important;
   }
   .xp-dialog {
     width: min(300px, calc(100vw - 32px)) !important;
     height: auto !important;
     max-height: 48vh !important;
-    left: 8px !important;
-    top: 60px !important;
   }
 }
 
