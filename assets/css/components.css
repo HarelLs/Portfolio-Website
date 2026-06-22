@@ -222,19 +222,20 @@
 }
 
 .portfolio-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 300px));
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
+  align-items: flex-start;
   gap: var(--space-4);
   margin-bottom: var(--space-4);
   direction: ltr;
-  align-items: start;
   padding: var(--space-3) 0;
 }
 
 .portfolio-grid[hidden] { display: none !important; }
 
 .portfolio-card {
+  flex: 0 1 300px;
   display: block;
   border-radius: var(--radius-sm);
   padding: var(--space-4);
@@ -371,6 +372,7 @@
 }
 
 .video-card {
+  flex: 0 1 440px;
   background: #8ab0c8;
   border: none;
   border-radius: var(--radius-sm);
