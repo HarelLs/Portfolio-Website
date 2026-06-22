@@ -557,11 +557,43 @@
   margin-top: var(--space-2);
 }
 
+.badge-gif-switcher {
+  position: relative;
+  width: 300px;
+  height: 40px;
+  margin: 0 auto var(--space-3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .xp-loading-gif {
-  display: block;
+  position: absolute;
   width: 300px;
   height: auto;
-  margin: 0 auto var(--space-3);
+  animation: switcher-gif 4s infinite;
+}
+
+.badge-gif-switcher .badge {
+  position: absolute;
+  margin: 0;
+  animation: switcher-badge 4s infinite;
+}
+
+@keyframes switcher-gif {
+  0%   { opacity: 1; }
+  40%  { opacity: 1; }
+  50%  { opacity: 0; }
+  90%  { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+@keyframes switcher-badge {
+  0%   { opacity: 0; }
+  40%  { opacity: 0; }
+  50%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { opacity: 0; }
 }
 
 /* ---------- Contact ---------- */
