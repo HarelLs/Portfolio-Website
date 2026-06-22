@@ -130,27 +130,6 @@
     });
 
     if (dict["meta.title"]) document.title = dict["meta.title"];
-    // Reorder music icons so English shows: Apple, Spotify, YouTube
-    reorderMusicLinks(lang);
-  }
-
-  function reorderMusicLinks(lang) {
-    var containers = document.querySelectorAll('.music-links');
-    containers.forEach(function (container) {
-      var apple = container.querySelector('[aria-label="Apple Music"]');
-      var spotify = container.querySelector('[aria-label="Spotify"]');
-      var yt = container.querySelector('[aria-label="YouTube"]');
-
-      if (lang === 'en') {
-        if (apple) container.appendChild(apple);
-        if (spotify) container.appendChild(spotify);
-        if (yt) container.appendChild(yt);
-      } else {
-        if (yt) container.appendChild(yt);
-        if (spotify) container.appendChild(spotify);
-        if (apple) container.appendChild(apple);
-      }
-    });
   }
 
   window.App = window.App || {};
