@@ -115,8 +115,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // calculate window size from photo's natural aspect ratio
     var TITLEBAR_H = 34;
-    var maxW = Math.min(700, window.innerWidth  - 40);
-    var maxH = Math.min(560, window.innerHeight - 80) - TITLEBAR_H;
+    var isMobile = window.innerWidth <= 600;
+    var maxW = Math.min(isMobile ? window.innerWidth - 16 : 700, window.innerWidth - 40);
+    var maxH = Math.min(isMobile ? Math.round(window.innerHeight * 0.45) : 560, window.innerHeight - 80) - TITLEBAR_H;
     var nw = imgEl.naturalWidth  || 0;
     var nh = imgEl.naturalHeight || 0;
     var winW, winH;
@@ -166,14 +167,13 @@ document.addEventListener("DOMContentLoaded", function () {
       e.stopPropagation();
       updatePropsPanel(key);
       if (exifPropsWin.hidden) {
+        var wr = win.getBoundingClientRect();
+        var pw = exifPropsWin.offsetWidth || 340;
+        var prLeft = wr.right + 8;
+        if (prLeft + pw > window.innerWidth) prLeft = Math.max(0, wr.left - pw - 8);
+        exifPropsWin.style.left = Math.max(0, prLeft) + "px";
+        exifPropsWin.style.top  = Math.max(0, wr.top) + "px";
         exifPropsWin.hidden = false;
-        var pr = loadPos("props");
-        if (!pr) {
-          var wr = win.getBoundingClientRect();
-          pr = { left: Math.min(wr.right + 8, window.innerWidth - 350), top: wr.top };
-        }
-        exifPropsWin.style.left = pr.left + "px";
-        exifPropsWin.style.top  = pr.top  + "px";
       }
       bringToFront(exifPropsWin);
     });
@@ -222,8 +222,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   makeWinDraggable(helpMsg, helpMsg.querySelector(".xp-titlebar"), "help");
 
-  document.querySelector(".xp-btn-help").addEventListener("click", function(e) {
-    e.stopPropagation();
+  function showHelpMessage(anchorEl) {
     if (!helpPressed) {
       helpPressed = true;
       helpMsgIcon.innerHTML = "\u2139";
@@ -237,21 +236,90 @@ document.addEventListener("DOMContentLoaded", function () {
       helpMsgText.textContent = "\u201c" + p.q + "\u201d - P. Griffin " + p.d;
       helpMsgIcon.innerHTML = '<img src="assets/images/ui/peter-griffin.jpg" alt="Peter Griffin" style="width:60px;height:60px;object-fit:cover;border-radius:4px;" />';
     }
-    var r = e.currentTarget.getBoundingClientRect();
+    var r = anchorEl.getBoundingClientRect();
     helpMsg.hidden = false;
     helpMsg.style.left = Math.min(r.left, window.innerWidth  - 310) + "px";
     helpMsg.style.top  = Math.min(r.bottom + 4, window.innerHeight - 160) + "px";
     bringToFront(helpMsg);
+  }
+
+  document.querySelector(".xp-btn-help").addEventListener("click", function(e) {
+    e.stopPropagation();
+    showHelpMessage(e.currentTarget);
   });
   ["xp-help-close", "xp-help-ok"].forEach(function(id) {
     document.getElementById(id).addEventListener("click", function() { helpMsg.hidden = true; });
   });
+
+  // \u2500\u2500 music cover XP windows \u2500\u2500
+  var musicCascade = 0;
+
+  function openMusicWindow(imgEl) {
+    var posKey = "music-" + imgEl.src.replace(/.*\//, "").replace(/\.[^.]+$/, "");
+
+    if (openWins[posKey]) { bringToFront(openWins[posKey]); return; }
+
+    var TITLEBAR_H = 34;
+    var isMobile = window.innerWidth <= 600;
+    var maxW = Math.min(isMobile ? window.innerWidth - 16 : 600, window.innerWidth - 40);
+    var maxH = Math.min(isMobile ? Math.round(window.innerHeight * 0.45) : 500, window.innerHeight - 80) - TITLEBAR_H;
+    var nw = imgEl.naturalWidth || 0, nh = imgEl.naturalHeight || 0;
+    var winW, winH;
+    if (nw && nh) {
+      var ratio = nw / nh;
+      if (ratio > maxW / maxH) { winW = maxW; winH = Math.round(maxW / ratio); }
+      else                      { winH = maxH; winW = Math.round(maxH * ratio); }
+    } else { winW = 400; winH = 400; }
+
+    var offset = (musicCascade % 8) * 28; musicCascade++;
+    var cx = window.innerWidth / 2, cy = window.innerHeight / 2;
+    var defPos = { left: Math.max(0, cx - winW / 2 + offset), top: Math.max(0, cy - (winH + TITLEBAR_H) / 2 + offset) };
+    var pos = loadPos(posKey) || defPos;
+
+    var win = document.createElement("div");
+    win.className = "xp-window";
+    win.style.width  = winW + "px";
+    win.style.height = (winH + TITLEBAR_H) + "px";
+    win.style.left   = pos.left + "px";
+    win.style.top    = pos.top  + "px";
+    win.innerHTML =
+      '<div class="xp-titlebar">' +
+        '<img class="xp-title-icon" src="assets/images/ui/gallery-icon.png" alt="" aria-hidden="true" style="width:18px;height:18px;min-width:18px;" />' +
+        '<span class="xp-title">' + (imgEl.alt || "Cover") + '</span>' +
+        '<div class="xp-title-btns">' +
+          '<button class="xp-music-help-btn xp-btn-help-inline" aria-label="Help">?</button>' +
+          '<button class="xp-title-close" aria-label="Close">&#x2715;</button>' +
+        '</div>' +
+      '</div>' +
+      '<div class="exif-photo-body">' +
+        '<img src="' + imgEl.src + '" alt="' + (imgEl.alt || "") + '" />' +
+      '</div>';
+
+    document.body.appendChild(win);
+    openWins[posKey] = win;
+    bringToFront(win);
+    makeWinDraggable(win, win.querySelector(".xp-titlebar"), posKey);
+
+    win.querySelector(".xp-title-close").addEventListener("click", function() {
+      savePos(posKey, win); win.remove(); delete openWins[posKey];
+    });
+    win.querySelector(".xp-music-help-btn").addEventListener("click", function(e) {
+      e.stopPropagation(); showHelpMessage(e.currentTarget);
+    });
+    win.addEventListener("mousedown", function() { bringToFront(win); });
+  }
 
   // wire up gallery photo clicks
   document.querySelectorAll('.portfolio-grid[data-category="photos"] .gallery-track picture').forEach(function(pic) {
     if (pic.querySelector("img[aria-hidden]")) return;
     pic.style.cursor = "pointer";
     pic.addEventListener("click", function() { openPhotoWindow(pic.querySelector("img")); });
+  });
+
+  // wire up music cover clicks
+  document.querySelectorAll('.portfolio-grid[data-category="music"] .portfolio-card picture').forEach(function(pic) {
+    pic.style.cursor = "pointer";
+    pic.addEventListener("click", function(e) { e.stopPropagation(); openMusicWindow(pic.querySelector("img")); });
   });
 
   // Cards lift on press, return on release (music sticky notes + video cards)

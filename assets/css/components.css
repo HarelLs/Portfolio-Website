@@ -601,7 +601,8 @@
   box-shadow: 0 1px 0 rgba(255,255,255,0.3) inset;
 }
 
-.xp-btn-help {
+.xp-btn-help,
+.xp-music-help-btn {
   background: linear-gradient(180deg, #6ca4e0 0%, #4080cc 45%, #3070bc 100%);
   color: #fff;
 }
