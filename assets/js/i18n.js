@@ -53,7 +53,7 @@
       "currentProject.heading": "בעבודה כרגע",
       "currentProject.text": "אני מפיק ומקסס אלבום מלא לאומן, כפרויקט הגמר שלי במכללה. עדכונים והאזנות יתווספו כאן בקרוב.",
       "contact.heading": "יצירת קשר",
-      "contact.text": "יש לכם פרויקט בראש? בואו נדבר.",
+      "contact.text": "יש לכם רעיון או משהו מגניב?",
       "contact.whatsapp": "וואטסאפ",
       "contact.email": "דברו איתי",
       "footer.rights": "© 2026 הראל לסניק. כל הזכויות שמורות."
@@ -104,7 +104,7 @@
       "currentProject.heading": "Currently working on",
       "currentProject.text": "I'm producing and mixing a full album for an artist, as my final college project. Updates and previews will be added here soon.",
       "contact.heading": "Contact",
-      "contact.text": "Have a project in mind? Let's talk.",
+      "contact.text": "You've got a fresh Idea?",
       "contact.whatsapp": "WhatsApp",
       "contact.email": "Email is still a thing",
       "footer.rights": "© 2026 Harel Lesnick. All rights reserved."
