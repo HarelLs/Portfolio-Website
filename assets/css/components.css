@@ -932,8 +932,8 @@
   background: var(--color-accent-soft);
   color: var(--color-accent);
   font-weight: 800;
-  font-size: var(--fs-xs);
-  padding: 0.3rem 0.9rem;
+  font-size: var(--fs-md);
+  padding: 0.45rem 1.2rem;
   border-radius: 999px;
   margin-top: var(--space-2);
 }

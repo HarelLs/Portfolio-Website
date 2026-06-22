@@ -105,6 +105,26 @@ section {
   text-align: center;
 }
 
+.current-project {
+  position: relative;
+  overflow: hidden;
+}
+
+.current-project::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("../images/backgrounds/current-project-bg.gif") center / cover no-repeat;
+  opacity: 0.18;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.current-project > * {
+  position: relative;
+  z-index: 1;
+}
+
 /* ---------- Footer ---------- */
 .site-footer {
   border-top: 1px solid var(--color-border);
