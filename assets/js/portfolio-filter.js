@@ -13,26 +13,28 @@
     if (!buttons.length || !groups.length) return;
 
     var currentFilter = "music";
+    var initialized   = false;
 
     function applyFilter(filter) {
       currentFilter = filter;
-      buttons.forEach(function (b) { b.classList.remove("is-active"); });
-      document.querySelector('[data-filter="' + filter + '"]').classList.add("is-active");
+
+      var btnArray  = Array.from(buttons);
+      var activeIdx = btnArray.findIndex(function (b) { return b.getAttribute("data-filter") === filter; });
+
+      buttons.forEach(function (b, i) {
+        var isActive = i === activeIdx;
+        b.classList.toggle("is-active", isActive);
+        // active = 4; inactive: closer to active tab = higher z (natural depth stacking)
+        b.style.zIndex = isActive ? 4 : 3 - Math.abs(i - activeIdx);
+      });
+
       groups.forEach(function (group) {
         group.hidden = group.getAttribute("data-category") !== filter;
       });
-      // flip toward the clicked tab's visual position
-      if (folder) {
-        folder.classList.remove("is-switching-left", "is-switching-right");
+      if (folder && initialized) {
+        folder.classList.remove("is-switching");
         void folder.offsetWidth;
-        var idx = Array.from(buttons).findIndex(function (b) {
-          return b.getAttribute("data-filter") === filter;
-        });
-        var isRTL = document.body.dir === "rtl";
-        // LTR: tab 0 is left → flip left, tab 1 is right → flip right
-        // RTL: mirrored — tab 0 is right → flip right, tab 1 is left → flip left
-        var flipRight = isRTL ? idx === 0 : idx === 1;
-        folder.classList.add(flipRight ? "is-switching-right" : "is-switching-left");
+        folder.classList.add("is-switching");
       }
     }
 
@@ -42,6 +44,7 @@
       var max = 0;
       inner.style.minHeight = "";
       buttons.forEach(function (btn) {
+        if (btn.getAttribute("data-filter") === "photos") return; // absolute-positioned, skip
         groups.forEach(function (g) {
           g.hidden = g.getAttribute("data-category") !== btn.getAttribute("data-filter");
         });
@@ -53,6 +56,7 @@
 
     var defaultBtn = document.querySelector(".filter-btn.is-active");
     applyFilter(defaultBtn ? defaultBtn.getAttribute("data-filter") : "music");
+    initialized = true;
 
     buttons.forEach(function (btn) {
       btn.addEventListener("click", function () {
