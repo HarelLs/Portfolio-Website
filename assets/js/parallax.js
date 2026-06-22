@@ -13,21 +13,32 @@
     return { el: document.querySelector(s.selector), prop: s.prop };
   });
 
+  var ticking = false;
+
   function update() {
-    var sy  = window.scrollY;
-    var vh  = window.innerHeight;
+    var vh = window.innerHeight;
     els.forEach(function (s) {
       if (!s.el) return;
-      var top    = s.el.offsetTop;
-      var height = s.el.offsetHeight;
+      var rect     = s.el.getBoundingClientRect();
+      var height   = s.el.offsetHeight;
       // progress: 0 when element enters viewport bottom → 1 when it leaves viewport top
-      var progress = (sy - top + vh) / (height + vh);
+      var progress = (vh - rect.top) / (height + vh);
       progress = Math.max(0, Math.min(1, progress));
       root.style.setProperty(s.prop, (progress * 100) + "%");
     });
+    ticking = false;
   }
 
-  window.addEventListener("scroll", update, { passive: true });
-  window.addEventListener("resize", update,  { passive: true });
+  function onScroll() {
+    if (!ticking) {
+      requestAnimationFrame(update);
+      ticking = true;
+    }
+  }
+
+  // touchmove fires continuously on iOS during momentum scroll; scroll alone is throttled
+  window.addEventListener("scroll",     onScroll, { passive: true });
+  window.addEventListener("touchmove",  onScroll, { passive: true });
+  window.addEventListener("resize",     update,   { passive: true });
   update();
 })();
