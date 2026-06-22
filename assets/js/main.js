@@ -16,6 +16,21 @@ var PHOTO_EXIF = {
 document.addEventListener("DOMContentLoaded", function () {
   window.App.nav.init();
   window.App.portfolioFilter.init();
+
+  // attach mail icon sound effect
+  var contactMailAudio = new Audio("assets/sound/YOUVE GOT MAIL.mp3");
+  contactMailAudio.preload = "auto";
+  contactMailAudio.volume = 0.03;
+  var mailBtn = document.getElementById("contact-mail-btn");
+  if (mailBtn) {
+    mailBtn.addEventListener("click", function () {
+      contactMailAudio.currentTime = 0;
+      contactMailAudio.play().catch(function () {
+        // autoplay-blocking not expected on direct click, but ignore if it happens.
+      });
+    });
+  }
+
   // Hebrew is the default language already rendered in the HTML,
   // so we don't re-apply translations on load — only on toggle.
 
