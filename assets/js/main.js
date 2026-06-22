@@ -117,8 +117,9 @@ document.addEventListener("DOMContentLoaded", function () {
     win.innerHTML =
       '<div class="xp-titlebar">' +
         '<div class="xp-title-icon"></div>' +
-        '<span class="xp-title">' + (imgEl.alt || "Photo " + key) + '</span>' +
+        '<span class="xp-title" data-i18n="gallery.winTitle">' + ((window.App.i18n && window.App.i18n.current === "he") ? "גלריה" : "Gallery") + '</span>' +
         '<div class="xp-title-btns">' +
+          '<button class="xp-btn-help xp-prop-btn" aria-label="Properties">?</button>' +
           '<button class="xp-title-close" aria-label="Close">&#x2715;</button>' +
         '</div>' +
       '</div>' +
@@ -136,10 +137,12 @@ document.addEventListener("DOMContentLoaded", function () {
       savePos(key, win);
       win.remove();
       delete openWins[key];
+      savePos("props", exifPropsWin);
+      exifPropsWin.hidden = true;
     });
 
-    win.addEventListener("mousedown", function() {
-      bringToFront(win);
+    win.querySelector(".xp-prop-btn").addEventListener("click", function(e) {
+      e.stopPropagation();
       updatePropsPanel(key);
       if (exifPropsWin.hidden) {
         exifPropsWin.hidden = false;
@@ -154,19 +157,7 @@ document.addEventListener("DOMContentLoaded", function () {
       bringToFront(exifPropsWin);
     });
 
-    updatePropsPanel(key);
-
-    // show props panel on first open
-    if (exifPropsWin.hidden) {
-      exifPropsWin.hidden = false;
-      var pr2 = loadPos("props");
-      if (!pr2) {
-        var wr2 = win.getBoundingClientRect();
-        pr2 = { left: Math.min(wr2.right + 8, window.innerWidth - 350), top: wr2.top };
-      }
-      exifPropsWin.style.left = pr2.left + "px";
-      exifPropsWin.style.top  = pr2.top  + "px";
-    }
+    win.addEventListener("mousedown", function() { bringToFront(win); });
   }
 
   // props window drag + close
@@ -181,11 +172,42 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // ── ? help message box ──
-  var helpMsg = document.getElementById("xp-help-msg");
+  var helpMsg     = document.getElementById("xp-help-msg");
+  var helpMsgText = helpMsg.querySelector(".xp-msgbox-text p");
+  var helpPressed = false;
+
+  var PETER_QUOTES = [
+    "You know what really grinds my gears?",
+    "Shut up, Meg.",
+    "Holy crap!",
+    "Roadhouse.",
+    "It insists upon itself.",
+    "Oh my God, who the hell cares?",
+    "I'm not drunk, I'm just exhausted from being this awesome.",
+    "Giggity giggity goo!",
+    "This is worse than that time I met the ghost of Christmas future.",
+    "I have an idea so smart my head would explode if I even began to know what I'm talking about.",
+    "Cool Whip.",
+    "Why you little—",
+    "Lois, this is the worst thing that's ever happened to our family.",
+    "Hehehehehe.",
+    "If I'm not back in ten minutes... wait longer."
+  ];
+  var lastPeterIdx = -1;
+
   makeWinDraggable(helpMsg, helpMsg.querySelector(".xp-titlebar"), "help");
 
   document.querySelector(".xp-btn-help").addEventListener("click", function(e) {
     e.stopPropagation();
+    if (!helpPressed) {
+      helpPressed = true;
+      helpMsgText.textContent = "What did you expect to happen?";
+    } else {
+      var idx;
+      do { idx = Math.floor(Math.random() * PETER_QUOTES.length); } while (idx === lastPeterIdx);
+      lastPeterIdx = idx;
+      helpMsgText.textContent = "“" + PETER_QUOTES[idx] + "” — P.griffin";
+    }
     var r = e.currentTarget.getBoundingClientRect();
     helpMsg.hidden = false;
     helpMsg.style.left = Math.min(r.left, window.innerWidth  - 310) + "px";

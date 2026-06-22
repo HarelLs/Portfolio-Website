@@ -139,6 +139,18 @@
   .portfolio-grid[data-category="video"] { grid-template-columns: 1fr; }
 }
 
+@media (max-width: 600px) {
+  /* XP windows: clamp to screen size so the close button stays reachable */
+  .xp-window {
+    max-width: calc(100vw - 16px) !important;
+    max-height: 70vh !important;
+    left: 8px !important;
+  }
+  .xp-dialog {
+    max-width: calc(100vw - 16px) !important;
+  }
+}
+
 @media (max-width: 480px) {
   /* folder: minimal tabs for small phones */
   .portfolio-filters { width: 230px; height: 44px; }
