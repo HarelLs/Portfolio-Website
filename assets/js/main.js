@@ -113,16 +113,31 @@ document.addEventListener("DOMContentLoaded", function () {
     var defPos = { left: Math.max(0, cx - 280 + offset), top: Math.max(0, cy - 210 + offset) };
     var pos = loadPos(key) || defPos;
 
+    // calculate window size from photo's natural aspect ratio
+    var TITLEBAR_H = 34;
+    var maxW = Math.min(700, window.innerWidth  - 40);
+    var maxH = Math.min(560, window.innerHeight - 80) - TITLEBAR_H;
+    var nw = imgEl.naturalWidth  || 0;
+    var nh = imgEl.naturalHeight || 0;
+    var winW, winH;
+    if (nw && nh) {
+      var ratio = nw / nh;
+      if (ratio > maxW / maxH) { winW = maxW; winH = Math.round(maxW / ratio); }
+      else                      { winH = maxH; winW = Math.round(maxH * ratio); }
+    } else {
+      winW = 500; winH = 400;
+    }
+
     // build window element
     var win = document.createElement("div");
     win.className = "xp-window";
-    win.style.width = "500px";
-    win.style.height = "400px";
+    win.style.width  = winW + "px";
+    win.style.height = (winH + TITLEBAR_H) + "px";
     win.style.left   = pos.left + "px";
     win.style.top    = pos.top  + "px";
     win.innerHTML =
       '<div class="xp-titlebar">' +
-        '<img class="xp-title-icon" src="assets/images/ui/gallery-icon.png" alt="" aria-hidden="true" />' +
+        '<img class="xp-title-icon" src="assets/images/ui/gallery-icon.png" alt="" aria-hidden="true" style="width:18px;height:18px;min-width:18px;" />' +
         '<span class="xp-title" data-i18n="gallery.winTitle">' + ((window.App.i18n && window.App.i18n.current === "he") ? "גלריה" : "Gallery") + '</span>' +
         '<div class="xp-title-btns">' +
           '<button class="xp-btn-help xp-prop-btn" aria-label="Properties">?</button>' +
@@ -183,6 +198,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // ── ? help message box ──
   var helpMsg     = document.getElementById("xp-help-msg");
   var helpMsgText = helpMsg.querySelector(".xp-msgbox-text p");
+  var helpMsgIcon = helpMsg.querySelector(".xp-msgbox-icon");
   var helpPressed = false;
 
   var PETER_QUOTES = [
@@ -210,6 +226,8 @@ document.addEventListener("DOMContentLoaded", function () {
     e.stopPropagation();
     if (!helpPressed) {
       helpPressed = true;
+      helpMsgIcon.innerHTML = "\u2139";
+      helpMsgIcon.style.cssText = "";
       helpMsgText.textContent = "What did you expect to happen?";
     } else {
       var idx;
@@ -217,6 +235,7 @@ document.addEventListener("DOMContentLoaded", function () {
       lastPeterIdx = idx;
       var p = PETER_QUOTES[idx];
       helpMsgText.textContent = "\u201c" + p.q + "\u201d - P. Griffin " + p.d;
+      helpMsgIcon.innerHTML = '<img src="assets/images/ui/peter-griffin.jpg" alt="Peter Griffin" style="width:60px;height:60px;object-fit:cover;border-radius:4px;" />';
     }
     var r = e.currentTarget.getBoundingClientRect();
     helpMsg.hidden = false;
