@@ -29,10 +29,15 @@
 }
 
 @media (max-width: 720px) {
-  /* photos tab: switch from scrolling strip to static grid */
+  /* photos tab: full-bleed collage */
   .portfolio-grid[data-category="photos"] {
     position: static;
-    padding: var(--space-3);
+    padding: 0;
+  }
+
+  /* strip folder padding when photos is active so collage goes edge-to-edge */
+  .portfolio-inner:has(.portfolio-grid[data-category="photos"]:not([hidden])) {
+    padding: 0;
   }
 
   .portfolio-grid[data-category="photos"] .gallery-track-wrapper {
@@ -46,14 +51,21 @@
     grid-template-columns: repeat(2, 1fr);
     width: auto;
     height: auto;
-    gap: var(--space-2);
+    gap: 2px;
   }
 
   .portfolio-grid[data-category="photos"] .gallery-track img {
     height: 160px;
     width: 100%;
     object-fit: cover;
-    border-radius: var(--radius-sm);
+    border-radius: 0;
+    display: block;
+  }
+
+  /* last real photo spans full width for collage asymmetry */
+  .portfolio-grid[data-category="photos"] .gallery-track img:nth-child(5) {
+    grid-column: span 2;
+    height: 120px;
   }
 
   /* hide the duplicates used only for the seamless scroll loop */
@@ -107,5 +119,6 @@
   .filter-btn:nth-child(2) { inset-inline-start: 60px; }
   .filter-btn:nth-child(3) { inset-inline-start: 120px; }
   .portfolio-inner { padding: var(--space-3) var(--space-3); }
-  .portfolio-grid[data-category="photos"] .gallery-track img { height: 120px; }
+  .portfolio-grid[data-category="photos"] .gallery-track img { height: 110px; }
+  .portfolio-grid[data-category="photos"] .gallery-track img:nth-child(5) { height: 90px; }
 }
