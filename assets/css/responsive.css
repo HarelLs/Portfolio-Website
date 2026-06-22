@@ -66,37 +66,20 @@
     margin-bottom: 0;
   }
 
-  .portfolio-grid[data-category="photos"] .gallery-track-wrapper {
-    height: auto;
-    overflow: visible;
-    cursor: default;
-  }
-
   .portfolio-grid[data-category="photos"] .gallery-track {
-    display: grid;
     grid-template-columns: repeat(2, 1fr);
-    width: auto;
-    height: auto;
-    gap: 2px;
   }
 
   .portfolio-grid[data-category="photos"] .gallery-track img {
-    height: 160px;
-    width: 100%;
-    object-fit: cover;
-    border-radius: 0;
-    display: block;
+    height: 140px;
   }
 
-  /* last real photo spans full width for collage asymmetry */
-  .portfolio-grid[data-category="photos"] .gallery-track picture:nth-child(5) img {
+  .portfolio-grid[data-category="photos"] .gallery-track picture:nth-child(5) {
     grid-column: span 2;
-    height: 120px;
   }
 
-  /* hide the duplicates used only for the seamless scroll loop */
-  .portfolio-grid[data-category="photos"] .gallery-track img[aria-hidden="true"] {
-    display: none;
+  .portfolio-grid[data-category="photos"] .gallery-track picture:nth-child(5) img {
+    height: 110px;
   }
 
   .hamburger { display: flex; }

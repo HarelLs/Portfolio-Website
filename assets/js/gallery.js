@@ -103,5 +103,9 @@
     requestAnimationFrame(tick);
   }
 
-  document.querySelectorAll(".gallery-track-wrapper").forEach(initGallery);
+  document.querySelectorAll(".gallery-track-wrapper").forEach(function (wrapper) {
+    // skip the portfolio photos grid — it uses a static collage, not a scroll track
+    if (wrapper.closest('.portfolio-grid[data-category="photos"]')) return;
+    initGallery(wrapper);
+  });
 })();

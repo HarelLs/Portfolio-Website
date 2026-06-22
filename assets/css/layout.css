@@ -129,7 +129,10 @@ section {
   right: 1rem;
   width: 140px;
   z-index: 900;
-  cursor: pointer;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  direction: ltr;
   animation: clippy-idle 4s ease-in-out infinite;
 }
 
@@ -143,11 +146,11 @@ section {
 
 .clippy-hover-a {
   display: block;
-  width: 600px;
+  width: 650px;
   height: auto;
   position: absolute;
   bottom: -27px;
-  right: -21px;
+  right: 21px;
   opacity: 0;
   transition: opacity 0.15s ease;
 }

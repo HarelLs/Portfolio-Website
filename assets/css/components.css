@@ -436,11 +436,40 @@
 
 .portfolio-grid[data-category="photos"] .gallery-track-wrapper {
   width: 100%;
+  overflow: visible;
+  cursor: default;
+}
+
+.portfolio-grid[data-category="photos"] .gallery-track {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  width: 100%;
+  height: auto;
+  will-change: unset;
+}
+
+.portfolio-grid[data-category="photos"] .gallery-track picture {
+  display: block;
 }
 
 .portfolio-grid[data-category="photos"] .gallery-track img {
-  height: 280px;
-  width: auto;
+  height: 220px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 0;
+  display: block;
+  flex-shrink: unset;
+}
+
+/* 5th photo spans the last 2 columns */
+.portfolio-grid[data-category="photos"] .gallery-track picture:nth-child(5) {
+  grid-column: span 2;
+}
+
+/* hide scroll duplicates */
+.portfolio-grid[data-category="photos"] .gallery-track picture:nth-child(n+6) {
+  display: none;
 }
 
 .photo-placeholder {
