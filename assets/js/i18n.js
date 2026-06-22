@@ -55,7 +55,7 @@
       "contact.heading": "יצירת קשר",
       "contact.text": "יש לכם פרויקט בראש? בואו נדבר.",
       "contact.whatsapp": "וואטסאפ",
-      "contact.email": "דוא\"ל",
+      "contact.email": "דברו איתי",
       "footer.rights": "© 2026 הראל לסניק. כל הזכויות שמורות."
     },
     en: {
@@ -106,7 +106,7 @@
       "contact.heading": "Contact",
       "contact.text": "Have a project in mind? Let's talk.",
       "contact.whatsapp": "WhatsApp",
-      "contact.email": "Email",
+      "contact.email": "Email is still a thing",
       "footer.rights": "© 2026 Harel Lesnick. All rights reserved."
     }
   };
