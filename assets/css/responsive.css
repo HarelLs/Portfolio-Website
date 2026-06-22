@@ -90,7 +90,7 @@
   }
 
   /* last real photo spans full width for collage asymmetry */
-  .portfolio-grid[data-category="photos"] .gallery-track img:nth-child(5) {
+  .portfolio-grid[data-category="photos"] .gallery-track picture:nth-child(5) img {
     grid-column: span 2;
     height: 120px;
   }
@@ -163,5 +163,5 @@
   .filter-btn:nth-child(3) { inset-inline-start: 120px; }
   .portfolio-inner { padding: var(--space-3) var(--space-3); }
   .portfolio-grid[data-category="photos"] .gallery-track img { height: 110px; }
-  .portfolio-grid[data-category="photos"] .gallery-track img:nth-child(5) { height: 90px; }
+  .portfolio-grid[data-category="photos"] .gallery-track picture:nth-child(5) img { height: 90px; }
 }
