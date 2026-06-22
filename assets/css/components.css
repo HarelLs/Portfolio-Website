@@ -221,7 +221,7 @@
 
 .portfolio-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: var(--space-4);
   margin-bottom: var(--space-4);
   direction: ltr;
@@ -234,7 +234,7 @@
 .portfolio-card {
   display: block;
   border-radius: var(--radius-sm);
-  padding: var(--space-3);
+  padding: var(--space-4);
   background: #dcc85a;
   box-shadow:
     0 2px 3px rgba(0,0,0,0.14),
@@ -287,7 +287,7 @@
 
 .portfolio-card-tag {
   display: inline-block;
-  font-size: var(--fs-xs);
+  font-size: var(--fs-sm);
   font-weight: 800;
   color: rgba(0,0,0,0.45);
   text-transform: uppercase;
