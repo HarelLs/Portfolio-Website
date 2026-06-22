@@ -41,10 +41,16 @@
     // Lock min-height to the tallest tab so the background never resizes
     function lockHeight() {
       if (!inner) return;
+      // On mobile the photos grid is static, so don't lock — let each tab size naturally
+      if (window.innerWidth <= 720) {
+        inner.style.minHeight = "";
+        applyFilter(currentFilter);
+        return;
+      }
       var max = 0;
       inner.style.minHeight = "";
       buttons.forEach(function (btn) {
-        if (btn.getAttribute("data-filter") === "photos") return; // absolute-positioned, skip
+        if (btn.getAttribute("data-filter") === "photos") return; // absolute-positioned on desktop, skip
         groups.forEach(function (g) {
           g.hidden = g.getAttribute("data-category") !== btn.getAttribute("data-filter");
         });
