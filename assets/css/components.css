@@ -577,17 +577,17 @@
   gap: 0.6rem;
   text-decoration: none;
   color: var(--color-text);
-  transition: transform 0.2s ease, opacity 0.2s ease;
-}
-
-.contact-icon-btn:hover {
-  transform: translateY(-4px);
-  opacity: 0.8;
 }
 
 .contact-icon-img {
   width: 90px;
   height: auto;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.contact-icon-btn:hover .contact-icon-img {
+  transform: translateY(-4px);
+  opacity: 0.8;
 }
 
 .contact-icon-label {
