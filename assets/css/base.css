@@ -22,6 +22,20 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Language-specific fonts */
+html[lang="en"] body {
+  font-family: var(--font-en);
+}
+
+html[lang="he"] body {
+  font-family: var(--font-base);
+}
+
+/* Hero text keeps the original Noto Sans font */
+.hero-text {
+  font-family: "Noto Sans Hebrew", "Inter", system-ui, sans-serif;
+}
+
 img { max-width: 100%; display: block; }
 
 h1, h2, h3 {
