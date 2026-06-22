@@ -18,6 +18,14 @@
   .services-grid { grid-template-columns: repeat(2, 1fr); }
   .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
   .hero-media-placeholder { width: 260px; height: 260px; inset-inline-end: -15%; opacity: 0.6; }
+
+  /* folder: scale tabs down for tablet */
+  .portfolio-filters { width: 340px; height: 54px; }
+  .filter-btn { width: 160px; height: 54px; font-size: var(--fs-md); }
+  .filter-btn:nth-child(2) { inset-inline-start: 90px; }
+  .filter-btn:nth-child(3) { inset-inline-start: 180px; }
+  .portfolio-inner { padding: var(--space-5) var(--space-5); }
+  .portfolio-grid[data-category="video"] { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
 }
 
 @media (max-width: 720px) {
@@ -50,4 +58,22 @@
   .hero-media-placeholder { display: none; }
 
   h1 { font-size: clamp(2rem, 9vw, 3rem); }
+
+  /* folder: compact tabs for mobile */
+  .portfolio-filters { width: 270px; height: 48px; }
+  .filter-btn { width: 130px; height: 48px; font-size: var(--fs-sm); }
+  .filter-btn:nth-child(2) { inset-inline-start: 70px; }
+  .filter-btn:nth-child(3) { inset-inline-start: 140px; }
+  .portfolio-inner { padding: var(--space-4) var(--space-4); }
+  .portfolio-grid[data-category="video"] { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  /* folder: minimal tabs for small phones */
+  .portfolio-filters { width: 230px; height: 44px; }
+  .filter-btn { width: 110px; height: 44px; font-size: var(--fs-xs); }
+  .filter-btn:nth-child(2) { inset-inline-start: 60px; }
+  .filter-btn:nth-child(3) { inset-inline-start: 120px; }
+  .portfolio-inner { padding: var(--space-3) var(--space-3); }
+  .gallery-track img { height: 240px; }
 }
