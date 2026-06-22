@@ -120,22 +120,29 @@ section {
   bottom: 2rem;
   right: 1rem;
   width: 140px;
-  height: 140px;
   z-index: 900;
 }
 
-.clippy-idle,
-.clippy-hover-a {
+.clippy-idle {
   display: block;
   width: 140px;
-  height: 140px;
-  object-fit: contain;
-  object-position: bottom center;
+  height: auto;
   transition: opacity 0.15s ease;
+  opacity: 1;
 }
 
-.clippy-idle    { opacity: 1; }
-.clippy-hover-a { position: absolute; inset: 0; opacity: 0; }
+/* dig GIF canvas has speech bubble above — Clippy himself is ~60% of the frame,
+   so display at 200px to match the apparent character size of the 140px idle */
+.clippy-hover-a {
+  display: block;
+  width: 200px;
+  height: auto;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
 
 .clippy-float.show-a .clippy-idle    { opacity: 0; }
 .clippy-float.show-a .clippy-hover-a { opacity: 1; }
