@@ -125,6 +125,53 @@ section {
   z-index: 1;
 }
 
+.current-project-win {
+  display: block;
+  margin: 0 auto 1rem;
+  max-width: 480px;
+  width: 100%;
+  border: 1px solid #717171;
+  border-radius: 6px 6px 4px 4px;
+  box-shadow:
+    1px 1px 0 #e0e0e0 inset,
+    -1px 0 0 #e0e0e0 inset,
+    0 -1px 0 #e0e0e0 inset,
+    0 4px 18px rgba(0,0,0,0.28);
+  overflow: hidden;
+  direction: ltr;
+}
+
+.current-project-win .xp-titlebar {
+  background:
+    linear-gradient(180deg,
+      #dcdcdc 0%, #c8c8c8 8%,
+      #b8b8b8 40%, #acacac 60%,
+      #acacac 70%, #c4c4c4 90%,
+      #b4b4b4 100%);
+  border-radius: 5px 5px 0 0;
+}
+
+.current-project-win .xp-title {
+  color: #1a1a1a;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.6);
+}
+
+.current-project-win .xp-title-icon {
+  filter: none;
+}
+
+.current-project-win .exif-photo-body {
+  height: auto;
+}
+
+.current-project-win .exif-photo-body img {
+  width: 100%;
+  height: auto;
+  object-fit: unset;
+  display: block;
+  filter: grayscale(100%);
+}
+
 /* ---------- Footer ---------- */
 .site-footer {
   border-top: 1px solid var(--color-border);
