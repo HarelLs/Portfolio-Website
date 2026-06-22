@@ -53,6 +53,7 @@
 @media (max-width: 720px) {
   /* photos tab: full-bleed collage */
   .portfolio-grid[data-category="photos"] {
+    display: block;
     position: static;
     padding: 0;
   }
