@@ -150,6 +150,7 @@ section {
       #acacac 70%, #c4c4c4 90%,
       #b4b4b4 100%);
   border-radius: 5px 5px 0 0;
+  cursor: default;
 }
 
 .current-project-win .xp-title {
