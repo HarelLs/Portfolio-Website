@@ -165,7 +165,7 @@
 
 .portfolio-filters {
   position: relative;
-  width: 460px;
+  width: 540px;
   height: 62px;
   /* flex-start = left in LTR, right in RTL — tabs always hug the correct edge */
   align-self: flex-start;
@@ -192,8 +192,8 @@
 
 /* tabs fixed positions + graduated depth shading: front = lightest, back = darkest */
 .filter-btn:nth-child(1) { inset-inline-start: 0;     background: #3c3c58; }
-.filter-btn:nth-child(2) { inset-inline-start: 120px; background: #2a2a40; }
-.filter-btn:nth-child(3) { inset-inline-start: 240px; background: #1e1e30; }
+.filter-btn:nth-child(2) { inset-inline-start: 160px; background: #2a2a40; }
+.filter-btn:nth-child(3) { inset-inline-start: 320px; background: #1e1e30; }
 
 .filter-btn.is-active {
   background: var(--color-surface);
