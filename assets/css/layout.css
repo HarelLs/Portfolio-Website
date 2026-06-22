@@ -27,6 +27,10 @@
   letter-spacing: 0.02em;
 }
 
+.main-nav {
+  display: none; /* shown only on mobile via responsive.css */
+}
+
 .main-nav ul {
   display: flex;
   gap: var(--space-3);

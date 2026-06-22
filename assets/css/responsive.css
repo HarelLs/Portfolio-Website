@@ -86,6 +86,7 @@
   .hamburger { display: flex; }
 
   .main-nav {
+    display: block;
     position: fixed;
     right: 0;
     top: 0;
