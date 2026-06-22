@@ -45,12 +45,12 @@
   z-index: 0;
 }
 
-/* Dark overlay */
+/* Dark overlay so text stays readable */
 .hero-services-wrapper::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(10, 10, 12, 0.45);
+  background: rgba(10, 10, 12, 0.22);
   z-index: 1;
 }
 
@@ -62,8 +62,8 @@
 .hero-services-inner {
   padding-block: var(--space-5) var(--space-4);
   background: rgba(200, 200, 210, 0.08);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
   text-align: center;
 }
 
@@ -161,6 +161,7 @@
   100% { transform: scale(1);    }
 }
 
+
 .portfolio-folder.is-switching { animation: folderPress 0.3s ease-out; }
 
 .portfolio-filters {
@@ -237,46 +238,54 @@
 .portfolio-card {
   flex: 0 1 300px;
   display: block;
-  border-radius: var(--radius-sm);
+  border-radius: 2px;
   padding: var(--space-4);
-  background: #f2d84e;
+  background: transparent;
+  direction: ltr;
   box-shadow:
-    0 2px 3px rgba(0,0,0,0.14),
-    0 6px 18px rgba(0,0,0,0.22);
-  transform: rotate(-1.5deg);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+    0 2px 4px rgba(0,0,0,0.22),
+    0 8px 20px rgba(0,0,0,0.18),
+    0 22px 44px rgba(0,0,0,0.12);
+  transform: rotate(-3deg);
+  transition: transform 0.25s ease, translate 0.2s ease, box-shadow 0.25s ease;
   position: relative;
   overflow: hidden;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
 }
+
+.portfolio-card:hover:not(.is-lifted) { translate: 0 -6px; }
+
+.portfolio-card:active { cursor: grabbing; }
+
+/* cover photo and links keep their own affordance */
+.portfolio-card picture,
+.portfolio-card .music-link { cursor: pointer; }
+
+.portfolio-card-tag { touch-action: none; }
 
 .portfolio-card::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: url("../images/ui/note-texture.png") center / cover no-repeat;
-  mix-blend-mode: multiply;
-  opacity: 0.22;
+  background: url("../images/ui/note-paper.png") center / cover no-repeat;
   pointer-events: none;
   z-index: 0;
+  filter: hue-rotate(var(--note-hue, 0deg)) saturate(var(--note-sat, 1));
 }
 
 .portfolio-card > * { position: relative; z-index: 1; }
 
-.portfolio-card:nth-child(2) {
-  background: #7edfa0;
-  transform: rotate(1.2deg) translateY(6px);
-}
-
-.portfolio-card:nth-child(3) {
-  background: #f7a85c;
-  transform: rotate(-0.8deg) translateY(3px);
-}
+.portfolio-card:nth-child(2) { transform: rotate(4deg) translateY(6px); }
+.portfolio-card:nth-child(3) { transform: rotate(-6deg) translateY(4px); }
 
 .portfolio-card.is-lifted {
-  transform: rotate(0deg) translateY(-6px) !important;
+  transform: rotate(0deg) translateY(-10px) !important;
   box-shadow:
-    0 4px 6px rgba(0,0,0,0.14),
-    0 12px 32px rgba(0,0,0,0.28);
+    0 4px 8px rgba(0,0,0,0.20),
+    0 16px 36px rgba(0,0,0,0.22),
+    0 32px 60px rgba(0,0,0,0.14);
   z-index: 5;
 }
 
@@ -296,13 +305,13 @@
   display: inline-block;
   font-size: var(--fs-sm);
   font-weight: 800;
-  color: rgba(0,0,0,0.45);
+  color: rgba(0,0,0,0.60);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin-bottom: var(--space-1);
 }
 
-.portfolio-card p { margin: 0; font-size: var(--fs-xs); text-align: center; color: rgba(0,0,0,0.6); }
+.portfolio-card p { margin: 0; font-size: var(--fs-xs); text-align: center; color: rgba(0,0,0,0.75); }
 
 .portfolio-card .music-link {
   background: rgba(0,0,0,0.15);
@@ -373,39 +382,48 @@
 
 .video-card {
   flex: 0 1 440px;
-  background: #78b8e8;
+  background: transparent;
   border: none;
-  border-radius: var(--radius-sm);
+  border-radius: 2px;
   overflow: hidden;
   text-align: center;
-  transform: rotate(-1.2deg);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transform: rotate(-2deg);
+  transition: transform 0.25s ease, translate 0.2s ease, box-shadow 0.25s ease;
   position: relative;
+  box-shadow:
+    0 2px 4px rgba(0,0,0,0.22),
+    0 8px 20px rgba(0,0,0,0.18),
+    0 22px 44px rgba(0,0,0,0.12);
+  cursor: grab;
+  direction: ltr;
+  user-select: none;
+  -webkit-user-select: none;
 }
 
-.video-card::after {
+.video-card:active { cursor: grabbing; }
+.video-card:hover:not(.is-lifted) { translate: 0 -6px; }
+
+.video-card::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: url("../images/ui/note-texture.png") center / cover no-repeat;
-  mix-blend-mode: multiply;
-  opacity: 0.22;
+  background: url("../images/ui/note-paper.png") center / cover no-repeat;
   pointer-events: none;
-  z-index: 2;
+  z-index: 0;
+  filter: hue-rotate(var(--note-hue, 0deg)) saturate(var(--note-sat, 1));
 }
 
-.video-card:nth-child(2) {
-  background: #c47ee0;
-  transform: rotate(1deg) translateY(5px);
-}
+.video-card > * { position: relative; z-index: 1; }
 
-.video-card:nth-child(3) {
-  background: #f07898;
-  transform: rotate(-0.6deg) translateY(2px);
-}
+.video-card:nth-child(2) { transform: rotate(1.5deg) translateY(5px); }
+.video-card:nth-child(3) { transform: rotate(-3deg) translateY(2px); }
 
 .video-card.is-lifted {
-  transform: rotate(0deg) translateY(-6px) !important;
+  transform: rotate(0deg) translateY(-10px) !important;
+  box-shadow:
+    0 4px 8px rgba(0,0,0,0.20),
+    0 16px 36px rgba(0,0,0,0.22),
+    0 32px 60px rgba(0,0,0,0.14);
   z-index: 5;
 }
 
@@ -419,7 +437,7 @@
   border: 0;
 }
 
-.video-card p { padding: var(--space-1) var(--space-2); margin: 0; font-size: 0.7rem; color: rgba(0,0,0,0.55); font-weight: 600; }
+.video-card p { position: relative; z-index: 1; padding: var(--space-1) var(--space-2); margin: 0; font-size: 0.7rem; color: rgba(0,0,0,0.72); font-weight: 600; }
 
 .portfolio-inner:has(.portfolio-grid[data-category="photos"]:not([hidden])) {
   padding: 0;

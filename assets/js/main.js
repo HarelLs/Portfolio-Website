@@ -337,6 +337,96 @@ document.addEventListener("DOMContentLoaded", function () {
     pic.addEventListener("click", function(e) { e.stopPropagation(); openMusicWindow(pic.querySelector("img")); });
   });
 
+  // ── music sticky notes: pick up & place anywhere on the page ──
+  // Notes start in the folder grid; dragging lifts them to position:absolute on the body.
+  // Positions are session-only — cleared on every load so notes always start in the folder.
+
+  // Clear any stale note positions saved in localStorage from previous sessions
+  try {
+    Object.keys(localStorage).filter(function(k){ return k.startsWith("xp-pos-note-"); }).forEach(function(k){ localStorage.removeItem(k); });
+  } catch(e) {}
+
+  var NOTE_COLORS = [
+    { hue: "0deg",   sat: 1    },
+    { hue: "80deg",  sat: 0.9  },
+    { hue: "290deg", sat: 0.85 }
+  ];
+
+  document.querySelectorAll('.portfolio-grid[data-category="music"] .portfolio-card').forEach(function (card, idx) {
+    var c = NOTE_COLORS[idx] || NOTE_COLORS[0];
+    card.style.setProperty("--note-hue", c.hue);
+    card.style.setProperty("--note-sat", c.sat);
+
+    function placeOnPage(pageLeft, pageTop, w) {
+      if (card.dataset.placed === "1") return;
+      card.dataset.placed = "1";
+      card.style.width    = (w || card.offsetWidth) + "px";
+      card.style.margin   = "0";
+      card.style.position = "absolute";
+      card.style.left     = pageLeft + "px";
+      card.style.top      = pageTop  + "px";
+      document.body.appendChild(card);
+      bringToFront(card);
+    }
+
+
+    var dragging = false, started = false, sx = 0, sy = 0, ox = 0, oy = 0;
+
+    function start(cx, cy) {
+      dragging = true; started = false;
+      sx = cx; sy = cy;
+      var r = card.getBoundingClientRect();
+      ox = cx - r.left; oy = cy - r.top;
+    }
+
+    function move(cx, cy) {
+      if (!dragging) return;
+      if (!started) {
+        if (Math.abs(cx - sx) < 4 && Math.abs(cy - sy) < 4) return;
+        // first real movement — lift out of grid into absolute page position
+        started = true;
+        var r = card.getBoundingClientRect();
+        var pageL = r.left + window.scrollX;
+        var pageT = r.top  + window.scrollY;
+        placeOnPage(pageL, pageT, r.width);
+        ox = cx - r.left; oy = cy - r.top;
+        bringToFront(card);
+        document.body.style.cursor = "grabbing";
+      }
+      var pageX = cx + window.scrollX - ox;
+      var pageY = cy + window.scrollY - oy;
+      card.style.left = Math.max(0, pageX) + "px";
+      card.style.top  = Math.max(0, pageY) + "px";
+    }
+
+    function end() {
+      if (!dragging) return;
+      dragging = false;
+      document.body.style.cursor = "";
+    }
+
+    // grab anywhere on the note except cover photo / links / buttons
+    card.addEventListener("mousedown", function (e) {
+      if (e.target.closest("a, button, picture, img")) return;
+      start(e.clientX, e.clientY);
+    });
+    // touch: only from the tag label to avoid killing page scroll
+    var tag = card.querySelector(".portfolio-card-tag");
+    if (tag) {
+      tag.addEventListener("touchstart", function (e) {
+        start(e.touches[0].clientX, e.touches[0].clientY);
+      }, { passive: true });
+    }
+    window.addEventListener("mousemove", function (e) { move(e.clientX, e.clientY); });
+    window.addEventListener("touchmove", function (e) {
+      if (!dragging) return;
+      if (started) e.preventDefault();
+      move(e.touches[0].clientX, e.touches[0].clientY);
+    }, { passive: false });
+    window.addEventListener("mouseup",  end);
+    window.addEventListener("touchend", end, { passive: true });
+  });
+
   // Cards lift on press, return on release (music sticky notes + video cards)
   document.querySelectorAll(".portfolio-card, .video-card").forEach(function (card) {
     function lift()   { card.classList.add("is-lifted"); }
@@ -347,6 +437,84 @@ document.addEventListener("DOMContentLoaded", function () {
     card.addEventListener("mouseleave",  drop);
     card.addEventListener("touchend",    drop);
     card.addEventListener("touchcancel", drop);
+  });
+
+  // ── video cards: same drag-to-anywhere behaviour as music cards ──
+  var VIDEO_COLORS = [
+    { hue: "0deg",   sat: 1    },
+    { hue: "155deg", sat: 0.75 },
+    { hue: "310deg", sat: 0.8  }
+  ];
+
+  document.querySelectorAll('.portfolio-grid[data-category="video"] .video-card').forEach(function (card, idx) {
+    var c = VIDEO_COLORS[idx] || VIDEO_COLORS[0];
+    card.style.setProperty("--note-hue", c.hue);
+    card.style.setProperty("--note-sat", c.sat);
+
+    function placeOnPage(pageLeft, pageTop, w) {
+      if (card.dataset.placed === "1") return;
+      card.dataset.placed = "1";
+      card.style.width    = (w || card.offsetWidth) + "px";
+      card.style.margin   = "0";
+      card.style.position = "absolute";
+      card.style.left     = pageLeft + "px";
+      card.style.top      = pageTop  + "px";
+      document.body.appendChild(card);
+      bringToFront(card);
+    }
+
+    var dragging = false, started = false, sx = 0, sy = 0, ox = 0, oy = 0;
+
+    function start(cx, cy) {
+      dragging = true; started = false;
+      sx = cx; sy = cy;
+      var r = card.getBoundingClientRect();
+      ox = cx - r.left; oy = cy - r.top;
+    }
+
+    function move(cx, cy) {
+      if (!dragging) return;
+      if (!started) {
+        if (Math.abs(cx - sx) < 4 && Math.abs(cy - sy) < 4) return;
+        started = true;
+        var r = card.getBoundingClientRect();
+        var pageL = r.left + window.scrollX;
+        var pageT = r.top  + window.scrollY;
+        placeOnPage(pageL, pageT, r.width);
+        ox = cx - r.left; oy = cy - r.top;
+        bringToFront(card);
+        document.body.style.cursor = "grabbing";
+      }
+      var pageX = cx + window.scrollX - ox;
+      var pageY = cy + window.scrollY - oy;
+      card.style.left = Math.max(0, pageX) + "px";
+      card.style.top  = Math.max(0, pageY) + "px";
+    }
+
+    function end() {
+      if (!dragging) return;
+      dragging = false;
+      document.body.style.cursor = "";
+    }
+
+    card.addEventListener("mousedown", function (e) {
+      if (e.target.closest("iframe, a, button")) return;
+      start(e.clientX, e.clientY);
+    });
+    var label = card.querySelector("p");
+    if (label) {
+      label.addEventListener("touchstart", function (e) {
+        start(e.touches[0].clientX, e.touches[0].clientY);
+      }, { passive: true });
+    }
+    window.addEventListener("mousemove", function (e) { move(e.clientX, e.clientY); });
+    window.addEventListener("touchmove", function (e) {
+      if (!dragging) return;
+      if (started) e.preventDefault();
+      move(e.touches[0].clientX, e.touches[0].clientY);
+    }, { passive: false });
+    window.addEventListener("mouseup",  end);
+    window.addEventListener("touchend", end, { passive: true });
   });
 
   // Clippy: hover GIF + dismiss + drag + click-to-contact
