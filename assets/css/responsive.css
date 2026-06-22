@@ -50,6 +50,11 @@
     padding: 0;
   }
 
+  /* also remove the negative margin so tabs don't overlap the top of the collage */
+  .portfolio-folder:has(.portfolio-grid[data-category="photos"]:not([hidden])) .portfolio-filters {
+    margin-bottom: 0;
+  }
+
   .portfolio-grid[data-category="photos"] .gallery-track-wrapper {
     height: auto;
     overflow: visible;
