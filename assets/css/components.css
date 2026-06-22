@@ -424,17 +424,23 @@
 .portfolio-inner:has(.portfolio-grid[data-category="photos"]:not([hidden])) {
   padding: 0;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .portfolio-grid[data-category="photos"] {
+  flex: 1;
+  min-height: 0;
   display: flex;
-  align-items: center;
+  flex-direction: column;
   margin: 0;
   padding: 0;
   width: 100%;
 }
 
 .portfolio-grid[data-category="photos"] .gallery-track-wrapper {
+  flex: 1;
+  min-height: 0;
   width: 100%;
   overflow: visible;
   cursor: default;
@@ -443,24 +449,360 @@
 .portfolio-grid[data-category="photos"] .gallery-track {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
   gap: 4px;
   width: 100%;
-  height: auto;
+  height: 100%;
   will-change: unset;
 }
 
 .portfolio-grid[data-category="photos"] .gallery-track picture {
   display: block;
+  min-height: 0;
+}
+
+.portfolio-grid[data-category="photos"] .gallery-track picture {
+  overflow: hidden;
 }
 
 .portfolio-grid[data-category="photos"] .gallery-track img {
-  height: 220px;
   width: 100%;
+  height: 100%;
   object-fit: cover;
   border-radius: 0;
   display: block;
-  flex-shrink: unset;
+  transition: transform 0.35s ease;
 }
+
+.portfolio-grid[data-category="photos"] .gallery-track picture:hover img {
+  transform: scale(1.06) translateY(-4px);
+}
+
+/* ---------- EXIF Windows (XP Luna style) ---------- */
+.exif-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: rgba(0,0,0,0.25);
+  direction: ltr;
+}
+.exif-backdrop[hidden] { display: none; }
+
+/* Shared XP window shell */
+.xp-window {
+  position: fixed;
+  z-index: 2001;
+  display: flex;
+  flex-direction: column;
+  min-width: 200px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+  direction: ltr;
+}
+.xp-window[hidden] { display: none; }
+
+
+.exif-photo-body {
+  flex: 1;
+  overflow: hidden;
+  background: #000;
+  min-height: 0;
+  display: flex;
+}
+.exif-photo-body img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── XP Luna window ── */
+.xp-dialog {
+  flex: 0 0 340px;
+  display: flex;
+  flex-direction: column;
+  font-family: "Tahoma", "MS Sans Serif", sans-serif;
+  font-size: 11px;
+  color: #000;
+  /* outer chrome */
+  border: 1px solid #0a246a;
+  border-radius: 6px 6px 4px 4px;
+  box-shadow:
+    1px 1px 0 #6ca0dc inset,
+    -1px 0 0 #6ca0dc inset,
+    0 -1px 0 #6ca0dc inset,
+    0 4px 16px rgba(0,0,0,0.5);
+  overflow: hidden;
+}
+
+/* Title bar */
+.xp-titlebar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 5px 4px 7px;
+  flex-shrink: 0;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  background:
+    linear-gradient(180deg,
+      #4d90e0 0%, #2160c4 8%,
+      #1852b8 40%, #1248a8 60%,
+      #1248a8 70%, #3a78d8 90%,
+      #2060c8 100%);
+  border-radius: 5px 5px 0 0;
+}
+
+.xp-title-icon {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  background: #fff3;
+  border-radius: 2px;
+}
+
+.xp-title {
+  flex: 1;
+  color: #fff;
+  font-weight: 700;
+  font-size: 11px;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.xp-title-btns {
+  display: flex;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+/* XP chrome buttons — same gradient style as the reference screenshot */
+.xp-title-btns button {
+  width: 21px;
+  height: 21px;
+  border-radius: 3px;
+  border: 1px solid rgba(0,0,0,0.4);
+  font-size: 10px;
+  font-weight: 700;
+  font-family: "Marlett", "Tahoma", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.3) inset;
+}
+
+.xp-btn-help {
+  background: linear-gradient(180deg, #6ca4e0 0%, #4080cc 45%, #3070bc 100%);
+  color: #fff;
+}
+
+.xp-title-close {
+  background: linear-gradient(180deg, #e06050 0%, #c02810 45%, #a81800 100%);
+  color: #fff;
+  letter-spacing: -1px;
+}
+
+.xp-title-close:hover { background: linear-gradient(180deg,#f07060 0%,#d83820 45%,#c02010 100%); }
+
+/* Tab row */
+.xp-tabs {
+  display: flex;
+  padding: 4px 6px 0;
+  background: #d4d0c8;
+  border-bottom: 1px solid #808080;
+  flex-shrink: 0;
+  gap: 2px;
+}
+
+.xp-tab {
+  background: #ece9d8;
+  border: 1px solid #808080;
+  border-bottom: 1px solid #ece9d8;
+  margin-bottom: -1px;
+  padding: 3px 12px 4px;
+  font-size: 11px;
+  font-family: inherit;
+  cursor: default;
+  position: relative;
+  z-index: 1;
+  border-radius: 3px 3px 0 0;
+  box-shadow: 1px 0 0 #fff inset, 0 1px 0 #fff inset;
+}
+
+/* Content area */
+.xp-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 10px;
+  background: #ece9d8;
+  min-height: 0;
+}
+
+/* Group box — XP fieldset style */
+.xp-group {
+  border: 1px solid #919b9c;
+  border-top: none;
+  padding: 14px 8px 8px;
+  position: relative;
+  margin-top: 10px;
+  background: #ece9d8;
+}
+
+.xp-group-label {
+  position: absolute;
+  top: -8px;
+  left: 8px;
+  background: #ece9d8;
+  padding: 0 4px;
+  font-size: 11px;
+  font-weight: 700;
+  color: #000;
+}
+
+/* Two-col headers */
+.xp-cols-header {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 2px;
+  font-size: 11px;
+}
+.xp-cols-header span:first-child { flex: 0 0 110px; }
+.xp-cols-header span:last-child  { flex: 1; }
+
+/* List + value side by side */
+.xp-list-row {
+  display: flex;
+  gap: 4px;
+  height: 180px;
+}
+
+.xp-list {
+  flex: 0 0 110px;
+  background: #fff;
+  border: 2px solid;
+  border-color: #808080 #fff #fff #808080;
+  box-shadow: 1px 1px 0 #dfdfdf inset, -1px -1px 0 #404040 inset;
+  overflow-y: auto;
+  list-style: none;
+  margin: 0;
+  padding: 1px 0;
+}
+
+.xp-list li {
+  padding: 1px 6px;
+  cursor: pointer;
+  white-space: nowrap;
+  font-size: 11px;
+  color: #000;
+  user-select: none;
+}
+.xp-list li:hover:not(.is-selected) { background: #e8e4d8; }
+.xp-list li.is-selected {
+  background: #316ac5;
+  color: #fff;
+}
+
+.xp-value {
+  flex: 1;
+  background: #fff;
+  border: 2px solid;
+  border-color: #808080 #fff #fff #808080;
+  box-shadow: 1px 1px 0 #dfdfdf inset, -1px -1px 0 #404040 inset;
+  padding: 3px 6px;
+  overflow-y: auto;
+  font-size: 11px;
+  color: #000;
+  word-break: break-word;
+}
+
+/* Divider + footer */
+.xp-divider {
+  height: 1px;
+  background: #919b9c;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.xp-footer {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px;
+  background: #ece9d8;
+  flex-shrink: 0;
+}
+
+.xp-btn {
+  background: linear-gradient(180deg, #fff 0%, #ece9d8 50%, #d8d4c4 100%);
+  border: 1px solid #707070;
+  border-radius: 3px;
+  padding: 3px 0;
+  font-family: inherit;
+  font-size: 11px;
+  cursor: pointer;
+  min-width: 72px;
+  box-shadow: 0 1px 0 #fff inset;
+}
+.xp-btn:hover  { background: linear-gradient(180deg,#fff 0%,#f0ede0 50%,#e0dcd0 100%); border-color: #316ac5; }
+.xp-btn:active { background: #d8d4c4; box-shadow: none; }
+
+.exif-no-data { font-size: 11px; color: #666; padding: 4px; }
+
+/* XP message box */
+.xp-msgbox {
+  position: fixed;
+  z-index: 2100;
+  width: 300px;
+  direction: ltr;
+  font-family: "Tahoma", "MS Sans Serif", sans-serif;
+  font-size: 11px;
+  border: 1px solid #0a246a;
+  border-radius: 6px 6px 4px 4px;
+  box-shadow:
+    1px 1px 0 #6ca0dc inset,
+    -1px 0 0 #6ca0dc inset,
+    0 -1px 0 #6ca0dc inset,
+    0 6px 24px rgba(0,0,0,0.5);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.xp-msgbox[hidden] { display: none; }
+
+.xp-msgbox-body {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px 14px 12px;
+  background: #ece9d8;
+}
+
+.xp-msgbox-icon {
+  font-size: 28px;
+  line-height: 1;
+  color: #316ac5;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.xp-msgbox-text {
+  flex: 1;
+  color: #000;
+}
+
+.xp-msgbox-text p {
+  margin: 0 0 6px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #1a1a1a;
+}
+.xp-msgbox-text p:last-child { margin-bottom: 0; }
 
 /* 5th photo spans the last 2 columns */
 .portfolio-grid[data-category="photos"] .gallery-track picture:nth-child(5) {

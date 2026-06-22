@@ -238,6 +238,56 @@
     </section>
   </main>
 
+  <!-- XP help message box -->
+  <div class="xp-msgbox" id="xp-help-msg" hidden>
+    <div class="xp-titlebar">
+      <div class="xp-title-icon"></div>
+      <span class="xp-title">Help</span>
+      <div class="xp-title-btns">
+        <button class="xp-title-close" id="xp-help-close" aria-label="Close">&#x2715;</button>
+      </div>
+    </div>
+    <div class="xp-msgbox-body">
+      <div class="xp-msgbox-icon">&#x2139;</div>
+      <div class="xp-msgbox-text">
+        <p>What did you expect to happen?</p>
+      </div>
+    </div>
+    <div class="xp-divider"></div>
+    <div class="xp-footer">
+      <button class="xp-btn" id="xp-help-ok">OK</button>
+    </div>
+  </div>
+
+  <!-- Properties window -->
+  <div class="xp-window xp-dialog" id="exif-props-window" hidden>
+    <div class="xp-titlebar" id="exif-props-handle">
+      <div class="xp-title-icon"></div>
+      <span class="xp-title">Photo Properties</span>
+      <div class="xp-title-btns">
+        <button class="xp-btn-help" aria-label="Help">?</button>
+        <button class="xp-title-close" id="exif-close" aria-label="Close">&#x2715;</button>
+      </div>
+    </div>
+    <div class="xp-tabs"><span class="xp-tab">Settings</span></div>
+    <div class="xp-body">
+      <div class="xp-group">
+        <span class="xp-group-label">Camera information</span>
+        <div class="xp-cols-header">
+          <span>Item name:</span><span>Value:</span>
+        </div>
+        <div class="xp-list-row">
+          <ul class="xp-list" id="exif-list"></ul>
+          <div class="xp-value" id="exif-value"></div>
+        </div>
+      </div>
+    </div>
+    <div class="xp-divider"></div>
+    <div class="xp-footer">
+      <button class="xp-btn" id="exif-ok">OK</button>
+    </div>
+  </div>
+
   <footer class="site-footer">
     <div class="container">
       <p data-i18n="footer.rights">© 2026 הראל לסניק. כל הזכויות שמורות.</p>

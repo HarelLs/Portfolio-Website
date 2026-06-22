@@ -19,6 +19,8 @@
   }
 
   document.querySelectorAll(".gallery-track img:not([aria-hidden]), .portfolio-card img:not(.music-logo)").forEach(function (img) {
+    // photos-grid images are handled by the EXIF panel — skip lightbox for those
+    if (img.closest('.portfolio-grid[data-category="photos"]')) return;
     img.style.cursor = "pointer";
     img.addEventListener("click", function () { open(img.src, img.alt); });
   });
