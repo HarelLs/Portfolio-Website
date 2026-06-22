@@ -410,13 +410,10 @@ document.addEventListener("DOMContentLoaded", function () {
       if (e.target.closest("a, button, picture, img")) return;
       start(e.clientX, e.clientY);
     });
-    // touch: only from the tag label to avoid killing page scroll
-    var tag = card.querySelector(".portfolio-card-tag");
-    if (tag) {
-      tag.addEventListener("touchstart", function (e) {
-        start(e.touches[0].clientX, e.touches[0].clientY);
-      }, { passive: true });
-    }
+    card.addEventListener("touchstart", function (e) {
+      if (e.target.closest("a, button, picture, img")) return;
+      start(e.touches[0].clientX, e.touches[0].clientY);
+    }, { passive: true });
     window.addEventListener("mousemove", function (e) { move(e.clientX, e.clientY); });
     window.addEventListener("touchmove", function (e) {
       if (!dragging) return;
