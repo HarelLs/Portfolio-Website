@@ -15,8 +15,13 @@
 }
 
 @media (max-width: 720px) {
-  /* background image shifts as folder height changes between tabs — hide it on mobile */
-  .portfolio::before { display: none; }
+  /* pin the background to a fixed height so the image crop never changes when the folder resizes */
+  .portfolio::before {
+    bottom: auto;
+    height: 100vh;
+    background-attachment: scroll;
+    background-position: center center;
+  }
 }
 
 @media (max-width: 900px) {
