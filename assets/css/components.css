@@ -572,14 +572,14 @@
   width: 300px;
   height: auto;
   opacity: 1;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.12s ease;
 }
 
 .badge-gif-switcher .badge {
   position: absolute;
   margin: 0;
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.12s ease;
 }
 
 .badge-gif-switcher:hover .xp-loading-gif { opacity: 0; }
