@@ -20,7 +20,7 @@
     bottom: auto;
     height: 500vh;
     background-attachment: scroll;
-    background-position: center top;
+    background-position: center var(--port-bg-y, 30%);
   }
 }
 
