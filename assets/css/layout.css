@@ -121,5 +121,21 @@ section {
   right: 1rem;
   width: 140px;
   z-index: 900;
-  pointer-events: none;
 }
+
+.clippy-idle,
+.clippy-hover-a,
+.clippy-hover-b {
+  display: block;
+  width: 140px;
+  transition: opacity 0.15s ease;
+}
+
+.clippy-idle    { opacity: 1; }
+.clippy-hover-a { position: absolute; bottom: 0; left: 0; opacity: 0; }
+.clippy-hover-b { position: absolute; bottom: 0; left: 0; opacity: 0; }
+
+.clippy-float.show-a .clippy-idle    { opacity: 0; }
+.clippy-float.show-a .clippy-hover-a { opacity: 1; }
+.clippy-float.show-b .clippy-idle    { opacity: 0; }
+.clippy-float.show-b .clippy-hover-b { opacity: 1; }

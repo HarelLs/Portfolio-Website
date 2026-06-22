@@ -19,4 +19,17 @@ document.addEventListener("DOMContentLoaded", function () {
     card.addEventListener("touchend",    drop);
     card.addEventListener("touchcancel", drop);
   });
+
+  // Clippy: random hover GIF each time
+  var clippy = document.getElementById("clippy");
+  if (clippy) {
+    clippy.addEventListener("mouseenter", function () {
+      var cls = Math.random() < 0.5 ? "show-a" : "show-b";
+      clippy.classList.remove("show-a", "show-b");
+      clippy.classList.add(cls);
+    });
+    clippy.addEventListener("mouseleave", function () {
+      clippy.classList.remove("show-a", "show-b");
+    });
+  }
 });
