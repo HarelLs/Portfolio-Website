@@ -114,7 +114,7 @@
   }
 
   .services-grid { grid-template-columns: 1fr; }
-  .portfolio-card { flex: 0 1 100%; }
+  .portfolio-grid[data-category="music"] .portfolio-card { flex: 0 0 200px; max-width: 200px; }
   .video-card { flex: 0 1 100%; }
 
   .hero-media-placeholder { display: none; }
