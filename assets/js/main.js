@@ -69,20 +69,26 @@ document.addEventListener("DOMContentLoaded", function () {
     window.addEventListener("touchend",   end, { passive: true });
   }
 
+  var lastSelectedField = EXIF_FIELDS[0][0];
+
   function updatePropsPanel(key) {
     var d = PHOTO_EXIF[key];
     exifList.innerHTML = ""; exifValue.textContent = "";
     if (d) {
-      EXIF_FIELDS.forEach(function(pair, i) {
+      EXIF_FIELDS.forEach(function(pair) {
         var li = document.createElement("li");
         li.textContent = pair[0];
         li.addEventListener("click", function() {
           exifList.querySelectorAll("li").forEach(function(el) { el.classList.remove("is-selected"); });
           li.classList.add("is-selected");
+          lastSelectedField = pair[0];
           exifValue.textContent = d[pair[1]];
         });
         exifList.appendChild(li);
-        if (i === 0) { li.classList.add("is-selected"); exifValue.textContent = d[pair[1]]; }
+        if (pair[0] === lastSelectedField) {
+          li.classList.add("is-selected");
+          exifValue.textContent = d[pair[1]] || "";
+        }
       });
     } else {
       exifList.innerHTML = '<li class="exif-no-data">No data</li>';
@@ -116,7 +122,7 @@ document.addEventListener("DOMContentLoaded", function () {
     win.style.top    = pos.top  + "px";
     win.innerHTML =
       '<div class="xp-titlebar">' +
-        '<div class="xp-title-icon"></div>' +
+        '<img class="xp-title-icon" src="assets/images/ui/gallery-icon.png" alt="" aria-hidden="true" />' +
         '<span class="xp-title" data-i18n="gallery.winTitle">' + ((window.App.i18n && window.App.i18n.current === "he") ? "גלריה" : "Gallery") + '</span>' +
         '<div class="xp-title-btns">' +
           '<button class="xp-btn-help xp-prop-btn" aria-label="Properties">?</button>' +
@@ -157,7 +163,10 @@ document.addEventListener("DOMContentLoaded", function () {
       bringToFront(exifPropsWin);
     });
 
-    win.addEventListener("mousedown", function() { bringToFront(win); });
+    win.addEventListener("mousedown", function() {
+      bringToFront(win);
+      updatePropsPanel(key);
+    });
   }
 
   // props window drag + close
@@ -177,21 +186,21 @@ document.addEventListener("DOMContentLoaded", function () {
   var helpPressed = false;
 
   var PETER_QUOTES = [
-    "You know what really grinds my gears?",
-    "Shut up, Meg.",
-    "Holy crap!",
-    "Roadhouse.",
-    "It insists upon itself.",
-    "Oh my God, who the hell cares?",
-    "I'm not drunk, I'm just exhausted from being this awesome.",
-    "Giggity giggity goo!",
-    "This is worse than that time I met the ghost of Christmas future.",
-    "I have an idea so smart my head would explode if I even began to know what I'm talking about.",
-    "Cool Whip.",
-    "Why you little—",
-    "Lois, this is the worst thing that's ever happened to our family.",
-    "Hehehehehe.",
-    "If I'm not back in ten minutes... wait longer."
+    { q: "You know what really grinds my gears?",                                                       d: "Jan 8, 2006"  },
+    { q: "Shut up, Meg.",                                                                                d: "Jan 31, 1999" },
+    { q: "Holy crap!",                                                                                   d: "Jan 31, 1999" },
+    { q: "Roadhouse.",                                                                                   d: "May 16, 1999" },
+    { q: "It insists upon itself.",                                                                      d: "Nov 6, 2005"  },
+    { q: "Oh my God, who the hell cares?",                                                              d: "Mar 28, 2004" },
+    { q: "I'm not drunk, I'm just exhausted from being this awesome.",                                  d: "Oct 3, 2010"  },
+    { q: "Freakin' sweet!",                                                                              d: "Sep 23, 2000" },
+    { q: "This is worse than that time I met the ghost of Christmas future.",                            d: "Dec 21, 2003" },
+    { q: "I have an idea so smart my head would explode if I even began to know what I'm talking about.", d: "Apr 11, 1999" },
+    { q: "Cool Whip.",                                                                                   d: "Nov 27, 2005" },
+    { q: "What the deuce?",                                                                              d: "Feb 7, 1999"  },
+    { q: "Lois, this is the worst thing that's ever happened to our family.",                           d: "Jan 31, 1999" },
+    { q: "Hehehehehe.",                                                                                  d: "Jan 31, 1999" },
+    { q: "If I'm not back in ten minutes... wait longer.",                                               d: "May 2, 1999"  }
   ];
   var lastPeterIdx = -1;
 
@@ -206,7 +215,8 @@ document.addEventListener("DOMContentLoaded", function () {
       var idx;
       do { idx = Math.floor(Math.random() * PETER_QUOTES.length); } while (idx === lastPeterIdx);
       lastPeterIdx = idx;
-      helpMsgText.textContent = "“" + PETER_QUOTES[idx] + "” — P.griffin";
+      var p = PETER_QUOTES[idx];
+      helpMsgText.textContent = "\u201c" + p.q + "\u201d - P. Griffin " + p.d;
     }
     var r = e.currentTarget.getBoundingClientRect();
     helpMsg.hidden = false;
