@@ -569,3 +569,30 @@
   margin-top: var(--space-3);
   flex-wrap: wrap;
 }
+
+.contact-icon-btn {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  color: var(--color-text);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.contact-icon-btn:hover {
+  transform: translateY(-4px);
+  opacity: 0.8;
+}
+
+.contact-icon-img {
+  width: 90px;
+  height: auto;
+}
+
+.contact-icon-label {
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+  text-align: center;
+  line-height: 1.4;
+}
