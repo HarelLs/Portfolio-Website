@@ -371,44 +371,6 @@
   border: 0;
 }
 
-.video-card {
-  flex: 0 1 440px;
-  background: #8ab0c8;
-  border: none;
-  border-radius: var(--radius-sm);
-  overflow: hidden;
-  text-align: center;
-  transform: rotate(-1.2deg);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  position: relative;
-}
-
-/* paper grain texture */
-.video-card::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E");
-  mix-blend-mode: multiply;
-  pointer-events: none;
-  z-index: 2;
-}
-
-.video-card:nth-child(2) {
-  background: #a8c890;
-  transform: rotate(1deg) translateY(5px);
-}
-
-.video-card:nth-child(3) {
-  background: #c8a8b8;
-  transform: rotate(-0.6deg) translateY(2px);
-}
-
-.video-card.is-lifted {
-  transform: rotate(0deg) translateY(-6px) !important;
-  z-index: 5;
-}
-
 .video-embed { position: relative; aspect-ratio: 16 / 9; }
 
 .video-embed iframe {
@@ -419,10 +381,9 @@
   border: 0;
 }
 
-.video-card p { padding: var(--space-1) var(--space-2); margin: 0; font-size: 0.7rem; color: rgba(0,0,0,0.55); font-weight: 600; }
-
-.portfolio-grid[data-category="video"] {
-  grid-template-columns: repeat(auto-fill, minmax(340px, 480px));
+/* video cards are wider than music cards */
+.portfolio-grid[data-category="video"] .portfolio-card {
+  flex: 0 1 420px;
 }
 
 .portfolio-grid[data-category="photos"] {
