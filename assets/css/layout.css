@@ -137,5 +137,3 @@ section {
 
 .clippy-float.show-a .clippy-idle    { opacity: 0; }
 .clippy-float.show-a .clippy-hover-a { opacity: 1; }
-.clippy-float.show-b .clippy-idle    { opacity: 0; }
-.clippy-float.show-b .clippy-hover-b { opacity: 1; }

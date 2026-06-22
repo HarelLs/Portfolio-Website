@@ -24,12 +24,10 @@ document.addEventListener("DOMContentLoaded", function () {
   var clippy = document.getElementById("clippy");
   if (clippy) {
     clippy.addEventListener("mouseenter", function () {
-      var cls = Math.random() < 0.5 ? "show-a" : "show-b";
-      clippy.classList.remove("show-a", "show-b");
-      clippy.classList.add(cls);
+      clippy.classList.add("show-a");
     });
     clippy.addEventListener("mouseleave", function () {
-      clippy.classList.remove("show-a", "show-b");
+      clippy.classList.remove("show-a");
     });
   }
 });
