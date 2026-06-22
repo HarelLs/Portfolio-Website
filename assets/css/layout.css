@@ -131,11 +131,9 @@ section {
   opacity: 1;
 }
 
-/* dig GIF: character fills 153/237 = 64.6% of canvas — display at 217px
-   so the character itself appears the same 140px as the idle GIF */
 .clippy-hover-a {
   display: block;
-  width: 217px;
+  width: 200px;
   height: auto;
   position: absolute;
   bottom: 0;

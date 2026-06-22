@@ -421,13 +421,17 @@
 
 .video-card p { padding: var(--space-1) var(--space-2); margin: 0; font-size: 0.7rem; color: rgba(0,0,0,0.55); font-weight: 600; }
 
+.portfolio-inner:has(.portfolio-grid[data-category="photos"]:not([hidden])) {
+  padding: 0;
+  overflow: hidden;
+}
+
 .portfolio-grid[data-category="photos"] {
   display: flex;
   align-items: center;
-  position: absolute;
-  inset: 0;
   margin: 0;
   padding: 0;
+  width: 100%;
 }
 
 .portfolio-grid[data-category="photos"] .gallery-track-wrapper {
