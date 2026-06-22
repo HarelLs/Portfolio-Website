@@ -15,12 +15,13 @@
 }
 
 @media (max-width: 720px) {
-  /* pin the background to a fixed height so the image crop never changes when the folder resizes */
+  /* always at least 200vh so the image crop is constant regardless of which tab is active */
   .portfolio::before {
     bottom: auto;
-    height: 100vh;
+    min-height: max(100%, 200vh);
+    height: auto;
     background-attachment: scroll;
-    background-position: center center;
+    background-position: center top;
   }
 }
 
