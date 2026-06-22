@@ -36,8 +36,8 @@
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("../images/bg_intro.jpg");
-  background-image: image-set(url("../images/bg_intro.webp") type("image/webp"), url("../images/bg_intro.jpg") type("image/jpeg"));
+  background-image: url("../images/backgrounds/bg_intro.jpg");
+  background-image: image-set(url("../images/backgrounds/bg_intro.webp") type("image/webp"), url("../images/backgrounds/bg_intro.jpg") type("image/jpeg"));
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -136,8 +136,8 @@
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("../images/bg_port.jpg");
-  background-image: image-set(url("../images/bg_port.webp") type("image/webp"), url("../images/bg_port.jpg") type("image/jpeg"));
+  background-image: url("../images/backgrounds/bg_port.jpg");
+  background-image: image-set(url("../images/backgrounds/bg_port.webp") type("image/webp"), url("../images/backgrounds/bg_port.jpg") type("image/jpeg"));
   background-position: center center;
   background-size: cover;
   background-repeat: no-repeat;

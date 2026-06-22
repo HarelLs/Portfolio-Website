@@ -13,10 +13,6 @@ body {
   margin: 0;
   overflow-x: hidden;
   background-color: var(--color-bg);
-  background-image: url("../images/bg.jpg");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
   background-attachment: fixed;
   background-blend-mode: soft-light;
   color: var(--color-text);
