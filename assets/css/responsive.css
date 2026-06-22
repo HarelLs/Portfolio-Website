@@ -15,11 +15,10 @@
 }
 
 @media (max-width: 720px) {
-  /* always at least 200vh so the image crop is constant regardless of which tab is active */
+  /* fixed 500vh — always bigger than any tab content, crop never shifts */
   .portfolio::before {
     bottom: auto;
-    min-height: max(100%, 200vh);
-    height: auto;
+    height: 500vh;
     background-attachment: scroll;
     background-position: center top;
   }
