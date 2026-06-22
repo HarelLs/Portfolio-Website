@@ -115,12 +115,22 @@ section {
 .site-footer p { margin: 0; color: var(--color-text-muted); font-size: var(--fs-xs); }
 
 /* ---------- Clippy ---------- */
+@keyframes clippy-idle {
+  0%   { transform: translate(  0px,  0px); }
+  25%  { transform: translate(  2px, -3px); }
+  50%  { transform: translate(  0px, -5px); }
+  75%  { transform: translate( -2px, -2px); }
+  100% { transform: translate(  0px,  0px); }
+}
+
 .clippy-float {
   position: fixed;
   bottom: 2rem;
   right: 1rem;
   width: 140px;
   z-index: 900;
+  cursor: pointer;
+  animation: clippy-idle 4s ease-in-out infinite;
 }
 
 .clippy-idle {
@@ -144,3 +154,42 @@ section {
 
 .clippy-float.show-a .clippy-idle    { opacity: 0; }
 .clippy-float.show-a .clippy-hover-a { opacity: 1; }
+
+.clippy-close {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  width: 26px;
+  height: 26px;
+  padding: 0;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.45) 0%, transparent 50%, rgba(0,0,0,0.08) 100%),
+    linear-gradient(180deg, #e8541e 0%, #c42800 100%);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.5);
+}
+.clippy-close::before,
+.clippy-close::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 17px;
+  height: 3px;
+  background: #fff;
+  border-radius: 2px;
+  filter: drop-shadow(0 1px 1px rgba(0,0,0,0.4));
+}
+.clippy-close::before { transform: translate(-50%, -50%) rotate(45deg); }
+.clippy-close::after  { transform: translate(-50%, -50%) rotate(-45deg); }
+.clippy-close:hover {
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.5) 0%, transparent 50%, rgba(0,0,0,0.08) 100%),
+    linear-gradient(180deg, #ff6830 0%, #dc3010 100%);
+}
+.clippy-close:active {
+  background: linear-gradient(180deg, #c42800 0%, #e8541e 100%);
+  box-shadow: inset 0 2px 3px rgba(0,0,0,0.3);
+}

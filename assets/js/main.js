@@ -2,6 +2,9 @@
    main.js — App bootstrap (runs after i18n/nav/filter are loaded)
    ========================================================= */
 
+if (history.scrollRestoration) { history.scrollRestoration = "manual"; }
+window.scrollTo(0, 0);
+
 document.addEventListener("DOMContentLoaded", function () {
   window.App.nav.init();
   window.App.portfolioFilter.init();
@@ -20,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
     card.addEventListener("touchcancel", drop);
   });
 
-  // Clippy: random hover GIF each time
+  // Clippy: hover GIF + dismiss button
   var clippy = document.getElementById("clippy");
   if (clippy) {
     clippy.addEventListener("mouseenter", function () {
@@ -28,6 +31,31 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     clippy.addEventListener("mouseleave", function () {
       clippy.classList.remove("show-a");
+    });
+    document.getElementById("clippy-close").addEventListener("click", function (e) {
+      e.stopPropagation();
+      clippy.style.display = "none";
+    });
+    clippy.addEventListener("click", function () {
+      var contact = document.getElementById("contact");
+      var mailBtn = document.getElementById("contact-mail-btn");
+      contact.scrollIntoView({ behavior: "smooth" });
+      if (mailBtn) {
+        var observer = new IntersectionObserver(function (entries, obs) {
+          if (entries[0].isIntersecting) {
+            obs.disconnect();
+            setTimeout(function () {
+              mailBtn.classList.remove("shine-active");
+              void mailBtn.offsetWidth;
+              mailBtn.classList.add("shine-active");
+              mailBtn.addEventListener("animationend", function () {
+                mailBtn.classList.remove("shine-active");
+              }, { once: true });
+            }, 150);
+          }
+        }, { threshold: 0.6 });
+        observer.observe(contact);
+      }
     });
   }
 });

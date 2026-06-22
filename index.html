@@ -29,6 +29,7 @@
 </head>
 <body dir="rtl">
 <div class="clippy-float" id="clippy">
+  <button class="clippy-close" id="clippy-close" aria-label="סגור"></button>
   <img src="assets/images/ui/clippy.gif"     alt="" class="clippy-idle"    aria-hidden="true" />
   <img src="assets/images/ui/clippy-dig.gif" alt="" class="clippy-hover-a" aria-hidden="true" />
 </div>
@@ -199,8 +200,6 @@
           </div>
           </div>
 
-        </div>
-
         <!-- PHOTOS -->
         <div class="portfolio-grid" data-category="photos">
           <div class="gallery-track-wrapper">
@@ -230,8 +229,8 @@
         <h2 data-i18n="contact.heading">יצירת קשר</h2>
         <p data-i18n="contact.text">יש לכם רעיון או משהו מגניב?</p>
         <div class="contact-actions">
-          <a class="contact-icon-btn" href="mailto:harellesnick194@icloud.com">
-            <img src="assets/images/ui/mail_button.png" alt="Email" class="contact-icon-img" />
+          <a class="contact-icon-btn" id="contact-mail-btn" href="mailto:harellesnick194@icloud.com">
+            <span class="mail-icon-wrap"><img src="assets/images/ui/mail_button.png" alt="Email" class="contact-icon-img" /></span>
             <span class="contact-icon-label" data-i18n="contact.email">דברו איתי</span>
           </a>
         </div>

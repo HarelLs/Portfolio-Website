@@ -600,6 +600,13 @@
   flex-wrap: wrap;
 }
 
+@keyframes mail-shine {
+  0%   { top: -120%; opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { top: 120%; opacity: 0; }
+}
+
 .contact-icon-btn {
   display: inline-flex;
   flex-direction: column;
@@ -607,11 +614,39 @@
   gap: 0.6rem;
   text-decoration: none;
   color: var(--color-text);
+  position: relative;
+}
+
+.mail-icon-wrap {
+  position: relative;
+  display: inline-block;
+  width: 90px;
+  height: 90px;
+  -webkit-mask-image: url('../images/ui/mail_button.png');
+  mask-image: url('../images/ui/mail_button.png');
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+.contact-icon-btn.shine-active .mail-icon-wrap::after {
+  content: "";
+  position: absolute;
+  left: -40%;
+  top: -120%;
+  width: 180%;
+  height: 40%;
+  background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.75) 50%, transparent 100%);
+  animation: mail-shine 0.7s ease-in-out forwards;
+  pointer-events: none;
 }
 
 .contact-icon-img {
   width: 90px;
-  height: auto;
+  height: 90px;
+  object-fit: contain;
+  display: block;
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
