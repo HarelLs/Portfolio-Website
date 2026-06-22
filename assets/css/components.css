@@ -557,19 +557,11 @@
   margin-top: var(--space-2);
 }
 
-.tenor-gif-embed {
-  max-width: 360px;
-  margin: 0 auto var(--space-3);
-  background: transparent !important;
-  border: none !important;
-  overflow: hidden;
-  border-radius: 4px;
-}
-
-.tenor-gif-embed iframe {
+.xp-loading-gif {
   display: block;
-  border: none !important;
-  background: transparent !important;
+  width: 300px;
+  height: auto;
+  margin: 0 auto var(--space-3);
 }
 
 /* ---------- Contact ---------- */
