@@ -683,7 +683,7 @@ body[dir="rtl"] .service-card:hover h3::after {
 /* Content area */
 .xp-body {
   flex: 1;
-  overflow-y: auto;
+  overflow: hidden;
   padding: 10px;
   background: #ece9d8;
   min-height: 0;
