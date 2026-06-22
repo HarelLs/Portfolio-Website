@@ -558,7 +558,18 @@
 }
 
 .tenor-gif-embed {
-  margin-bottom: var(--space-3);
+  max-width: 360px;
+  margin: 0 auto var(--space-3);
+  background: transparent !important;
+  border: none !important;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.tenor-gif-embed iframe {
+  display: block;
+  border: none !important;
+  background: transparent !important;
 }
 
 /* ---------- Contact ---------- */
