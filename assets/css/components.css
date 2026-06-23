@@ -125,6 +125,13 @@
   cursor: pointer;
 }
 
+@keyframes service-streak-text {
+  0%  { background-position: 0% 120%; animation-timing-function: step-start; }
+  60% { background-position: 0% 120%; animation-timing-function: steps(8, end); }
+  80% { background-position: 0% -10%; animation-timing-function: step-start; }
+  100%{ background-position: 0% -10%; }
+}
+
 @keyframes service-text-out {
   from { opacity: 1; }
   to   { opacity: 0; }
@@ -137,6 +144,40 @@
 .service-card h3 {
   position: relative;
   overflow: hidden;
+  background-color: var(--color-text);
+  background-image: linear-gradient(
+    180deg,
+    transparent            0%,
+    transparent            48%,
+    #909090                50%,   /* scan line 1 */
+    #909090                52%,
+    transparent            52%,
+    transparent            54%,
+    #909090                54%,   /* scan line 2 */
+    #909090                56%,
+    transparent            56%,
+    transparent            58%,
+    #909090                58%,   /* scan line 3 */
+    #909090                60%,
+    transparent            62%,
+    transparent            100%
+  );
+  background-size: 100% 200%;
+  background-position: 0% 120%;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: service-streak-text 8s linear infinite;
+}
+
+.services-grid .service-card:nth-child(2) h3 { animation-delay: -2.7s; }
+.services-grid .service-card:nth-child(3) h3 { animation-delay: -5.4s; }
+
+.service-card:hover h3,
+.service-card.arrow-swipe h3 {
+  animation-name: none;
+  background-position: 0% 120%;
 }
 
 /* Static arrow — inline, sits next to the text on hover */
