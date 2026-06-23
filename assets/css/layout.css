@@ -207,7 +207,7 @@ section {
 
 .clippy-idle {
   display: block;
-  width: 100px;
+  width: 135px;
   height: auto;
   transition: opacity 0.15s ease;
   opacity: 1;
@@ -219,18 +219,18 @@ section {
   height: auto;
   position: absolute;
   bottom: -27px;
-  right: 21px;
+  right: -2px;
   opacity: 0;
   transition: opacity 0.15s ease;
 }
 
 .clippy-hover-zh {
   display: block;
-  width: 140px;
+  width: 117px;
   height: auto;
   position: absolute;
-  bottom: 0;
-  right: 0;
+  bottom: -9px;
+  right: 10px;
   opacity: 0;
   transition: opacity 0.15s ease;
 }
