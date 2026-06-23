@@ -914,4 +914,26 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   });
+
+  // Bing Easter egg: random placement in zh mode
+  (function () {
+    var bing = document.getElementById("bing-float");
+    if (!bing) return;
+    function placeBing() {
+      var w = 130;
+      var h = Math.round(w * 640 / 348);
+      var maxX = Math.max(10, window.innerWidth  - w  - 20);
+      var maxY = Math.max(10, window.innerHeight - h  - 20);
+      bing.style.left = Math.floor(Math.random() * maxX) + "px";
+      bing.style.top  = Math.floor(Math.random() * maxY) + "px";
+    }
+    document.addEventListener("languagechange", function (e) {
+      if (e.detail.lang === "zh") {
+        placeBing();
+        bing.style.display = "block";
+      } else {
+        bing.style.display = "none";
+      }
+    });
+  })();
 });

@@ -307,6 +307,16 @@ html[lang="zh"] .clippy-float.show-a .clippy-hover-zh { opacity: 1; }
 }
 html[lang="zh"] .clippy-float.show-a .clippy-speech-zh { display: block; }
 
+/* ---------- Bing (zh Easter egg) ---------- */
+#bing-float {
+  display: none;
+  position: fixed;
+  width: 130px;
+  height: auto;
+  z-index: 2998;
+  pointer-events: none;
+}
+
 .notepad-float {
   position: fixed;
   bottom: 2rem;

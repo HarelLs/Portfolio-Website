@@ -285,6 +285,7 @@
     setLanguage: function (lang) {
       this.current = lang;
       applyTranslations(lang);
+      document.dispatchEvent(new CustomEvent("languagechange", { detail: { lang: lang } }));
     },
     toggle: function () {
       this.setLanguage(this.current === "he" ? "en" : "he");
