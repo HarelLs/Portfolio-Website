@@ -202,6 +202,14 @@ body[dir="rtl"] .service-card:hover h3::after {
   align-self: flex-start;
 }
 
+.win-select-box {
+  position: fixed;
+  border: 1px solid #316AC5;
+  background: rgba(49, 106, 197, 0.15);
+  pointer-events: none;
+  z-index: 9000;
+}
+
 .custom-note {
   position: absolute;
   width: 200px;

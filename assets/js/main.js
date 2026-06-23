@@ -478,14 +478,21 @@ document.addEventListener("DOMContentLoaded", function () {
   }, { passive: false });
   window.addEventListener("touchend", function () { draggingCustomNote = null; }, { passive: true });
 
-  function createNote() {
+  function createNote(opts) {
     var note = document.createElement("div");
     note.className = "custom-note";
     note.style.setProperty("--note-hue", CUSTOM_NOTE_HUES[customNoteCount % CUSTOM_NOTE_HUES.length]);
     note.style.setProperty("--note-sat", "0.85");
-    var offset = (customNoteCount % 8) * 30;
-    note.style.left = (window.scrollX + window.innerWidth  / 2 - 100 + offset) + "px";
-    note.style.top  = (window.scrollY + window.innerHeight / 2 - 80  + offset) + "px";
+    if (opts && opts.left !== undefined) {
+      note.style.left      = opts.left   + "px";
+      note.style.top       = opts.top    + "px";
+      note.style.width     = opts.width  + "px";
+      note.style.minHeight = opts.height + "px";
+    } else {
+      var offset = (customNoteCount % 8) * 30;
+      note.style.left = (window.scrollX + window.innerWidth  / 2 - 100 + offset) + "px";
+      note.style.top  = (window.scrollY + window.innerHeight / 2 - 80  + offset) + "px";
+    }
     customNoteCount++;
 
     note.innerHTML =
@@ -523,11 +530,64 @@ document.addEventListener("DOMContentLoaded", function () {
 
   var notepadFloat = document.getElementById("notepad-float");
   if (notepadFloat) {
-    notepadFloat.addEventListener("click", function () { createNote(); });
+    // Mobile: single tap creates a default note
     notepadFloat.addEventListener("touchend", function (e) {
       e.preventDefault();
       createNote();
     }, { passive: false });
+
+    // Desktop: double-click → draw a box to size/place the note
+    notepadFloat.addEventListener("dblclick", function () {
+      var overlay = document.createElement("div");
+      overlay.style.cssText = "position:fixed;inset:0;z-index:8999;cursor:crosshair;";
+      document.body.appendChild(overlay);
+
+      var selBox = document.createElement("div");
+      selBox.className = "win-select-box";
+      document.body.appendChild(selBox);
+
+      var startX = 0, startY = 0, drawing = false;
+
+      overlay.addEventListener("mousedown", function (e) {
+        drawing = true;
+        startX = e.clientX; startY = e.clientY;
+        selBox.style.left   = startX + "px";
+        selBox.style.top    = startY + "px";
+        selBox.style.width  = "0px";
+        selBox.style.height = "0px";
+      });
+
+      overlay.addEventListener("mousemove", function (e) {
+        if (!drawing) return;
+        var x = Math.min(e.clientX, startX);
+        var y = Math.min(e.clientY, startY);
+        selBox.style.left   = x + "px";
+        selBox.style.top    = y + "px";
+        selBox.style.width  = Math.abs(e.clientX - startX) + "px";
+        selBox.style.height = Math.abs(e.clientY - startY) + "px";
+      });
+
+      overlay.addEventListener("mouseup", function () {
+        var r = selBox.getBoundingClientRect();
+        selBox.remove();
+        overlay.remove();
+        document.removeEventListener("keydown", escOut);
+        createNote(r.width > 30 && r.height > 30 ? {
+          left:   r.left   + window.scrollX,
+          top:    r.top    + window.scrollY,
+          width:  r.width,
+          height: r.height
+        } : null);
+      });
+
+      function escOut(e) {
+        if (e.key !== "Escape") return;
+        selBox.remove();
+        overlay.remove();
+        document.removeEventListener("keydown", escOut);
+      }
+      document.addEventListener("keydown", escOut);
+    });
   }
 
   // Cards lift on press, return on release (music sticky notes + video cards)
