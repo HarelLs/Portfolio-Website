@@ -171,7 +171,8 @@ section {
   height: auto;
   object-fit: unset;
   display: block;
-  filter: grayscale(100%);
+  filter: grayscale(100%) blur(20px);
+
 }
 
 /* ---------- Footer ---------- */
