@@ -557,7 +557,7 @@ document.addEventListener("DOMContentLoaded", function () {
         selBox.style.height = "0px";
       });
 
-      overlay.addEventListener("mousemove", function (e) {
+      function onMove(e) {
         if (!drawing) return;
         var x = Math.min(e.clientX, startX);
         var y = Math.min(e.clientY, startY);
@@ -565,12 +565,16 @@ document.addEventListener("DOMContentLoaded", function () {
         selBox.style.top    = y + "px";
         selBox.style.width  = Math.abs(e.clientX - startX) + "px";
         selBox.style.height = Math.abs(e.clientY - startY) + "px";
-      });
+      }
 
-      overlay.addEventListener("mouseup", function () {
+      function onUp() {
+        if (!drawing) return;
+        drawing = false;
         var r = selBox.getBoundingClientRect();
         selBox.remove();
         overlay.remove();
+        window.removeEventListener("mousemove", onMove);
+        window.removeEventListener("mouseup",   onUp);
         document.removeEventListener("keydown", escOut);
         createNote(r.width > 30 && r.height > 30 ? {
           left:   r.left   + window.scrollX,
@@ -578,7 +582,10 @@ document.addEventListener("DOMContentLoaded", function () {
           width:  r.width,
           height: r.height
         } : null);
-      });
+      }
+
+      window.addEventListener("mousemove", onMove);
+      window.addEventListener("mouseup",   onUp);
 
       function escOut(e) {
         if (e.key !== "Escape") return;
