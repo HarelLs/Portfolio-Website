@@ -399,8 +399,10 @@ document.addEventListener("DOMContentLoaded", function () {
       }
       var pageX = cx + window.scrollX - ox;
       var pageY = cy + window.scrollY - oy;
-      card.style.left = Math.max(0, pageX) + "px";
-      card.style.top  = Math.max(0, pageY) + "px";
+      var maxX = window.scrollX + window.innerWidth  - card.offsetWidth;
+      var maxY = window.scrollY + window.innerHeight - card.offsetHeight;
+      card.style.left = Math.max(0, Math.min(pageX, maxX)) + "px";
+      card.style.top  = Math.max(0, Math.min(pageY, maxY)) + "px";
     }
 
     function end() {
@@ -592,8 +594,10 @@ document.addEventListener("DOMContentLoaded", function () {
       }
       var pageX = cx + window.scrollX - ox;
       var pageY = cy + window.scrollY - oy;
-      card.style.left = Math.max(0, pageX) + "px";
-      card.style.top  = Math.max(0, pageY) + "px";
+      var maxX = window.scrollX + window.innerWidth  - card.offsetWidth;
+      var maxY = window.scrollY + window.innerHeight - card.offsetHeight;
+      card.style.left = Math.max(0, Math.min(pageX, maxX)) + "px";
+      card.style.top  = Math.max(0, Math.min(pageY, maxY)) + "px";
     }
 
     function end() {

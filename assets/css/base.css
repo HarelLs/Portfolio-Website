@@ -7,6 +7,8 @@
 html {
   scroll-behavior: smooth;
   direction: ltr; /* keep scrollbar on the right in both languages */
+  overflow-x: hidden; /* prevent dragged notes from expanding the page width */
+  max-width: 100vw;
 }
 
 body {
