@@ -202,6 +202,106 @@ body[dir="rtl"] .service-card:hover h3::after {
   align-self: flex-start;
 }
 
+.portfolio-folder-actions {
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+.add-note-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.3rem 0.55rem;
+  background: #2a2a40;
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  border-bottom: none;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  cursor: pointer;
+  transition: background 0.2s;
+  align-self: flex-end;
+}
+
+.add-note-btn:hover { background: #3a3a58; }
+
+.add-note-icon {
+  width: 28px;
+  height: 28px;
+  image-rendering: pixelated;
+  display: block;
+}
+
+.custom-note {
+  position: absolute;
+  width: 200px;
+  min-height: 160px;
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow:
+    0 2px 4px rgba(0,0,0,0.22),
+    0 8px 20px rgba(0,0,0,0.18),
+    0 22px 44px rgba(0,0,0,0.12);
+}
+
+.custom-note::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("../images/ui/note-paper.png") center / cover no-repeat;
+  pointer-events: none;
+  z-index: 0;
+  filter: hue-rotate(var(--note-hue, 55deg)) saturate(var(--note-sat, 0.9));
+}
+
+.custom-note-header {
+  position: relative;
+  z-index: 1;
+  height: 26px;
+  cursor: grab;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 6px;
+  flex-shrink: 0;
+}
+
+.custom-note-header:active { cursor: grabbing; }
+
+.custom-note-close {
+  background: none;
+  border: none;
+  color: rgba(0,0,0,0.45);
+  font-size: 1rem;
+  line-height: 1;
+  padding: 2px 5px;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: background 0.15s, color 0.15s;
+}
+
+.custom-note-close:hover {
+  background: rgba(0,0,0,0.12);
+  color: rgba(0,0,0,0.8);
+}
+
+.custom-note-body {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  resize: none;
+  padding: 2px 12px 12px;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: rgba(0,0,0,0.75);
+  cursor: text;
+  min-height: 130px;
+}
+
 .reorder-btn {
   display: none;
   align-items: center;

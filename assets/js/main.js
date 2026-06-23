@@ -451,8 +451,79 @@ document.addEventListener("DOMContentLoaded", function () {
       }
       resetCards('.portfolio-card[data-note-index]',  '.portfolio-grid[data-category="music"]', "noteIndex");
       resetCards('.video-card[data-video-index]',     '.portfolio-grid[data-category="video"]',  "videoIndex");
+      document.querySelectorAll(".custom-note").forEach(function (n) { n.remove(); });
       reorderBtn.classList.remove("is-visible");
     });
+  }
+
+  // ── custom sticky notes (add-note button) ──
+  var customNoteCount = 0;
+  var CUSTOM_NOTE_HUES = ["55deg", "180deg", "290deg", "20deg", "140deg", "250deg", "320deg"];
+  var draggingCustomNote = null, dnOX = 0, dnOY = 0;
+
+  window.addEventListener("mousemove", function (e) {
+    if (!draggingCustomNote) return;
+    draggingCustomNote.style.left = Math.max(0, e.clientX + window.scrollX - dnOX) + "px";
+    draggingCustomNote.style.top  = Math.max(0, e.clientY + window.scrollY - dnOY) + "px";
+  });
+  window.addEventListener("mouseup", function () {
+    if (draggingCustomNote) { draggingCustomNote = null; document.body.style.cursor = ""; }
+  });
+  window.addEventListener("touchmove", function (e) {
+    if (!draggingCustomNote) return;
+    e.preventDefault();
+    var t = e.touches[0];
+    draggingCustomNote.style.left = Math.max(0, t.clientX + window.scrollX - dnOX) + "px";
+    draggingCustomNote.style.top  = Math.max(0, t.clientY + window.scrollY - dnOY) + "px";
+  }, { passive: false });
+  window.addEventListener("touchend", function () { draggingCustomNote = null; }, { passive: true });
+
+  function createNote() {
+    var note = document.createElement("div");
+    note.className = "custom-note";
+    note.style.setProperty("--note-hue", CUSTOM_NOTE_HUES[customNoteCount % CUSTOM_NOTE_HUES.length]);
+    note.style.setProperty("--note-sat", "0.85");
+    var offset = (customNoteCount % 8) * 30;
+    note.style.left = (window.scrollX + window.innerWidth  / 2 - 100 + offset) + "px";
+    note.style.top  = (window.scrollY + window.innerHeight / 2 - 80  + offset) + "px";
+    customNoteCount++;
+
+    note.innerHTML =
+      '<div class="custom-note-header">' +
+        '<button class="custom-note-close" aria-label="מחק פתק">×</button>' +
+      '</div>' +
+      '<textarea class="custom-note-body" placeholder="…"></textarea>';
+
+    document.body.appendChild(note);
+    bringToFront(note);
+
+    note.querySelector(".custom-note-close").addEventListener("click", function () { note.remove(); });
+
+    note.addEventListener("mousedown", function () { bringToFront(note); });
+
+    note.querySelector(".custom-note-header").addEventListener("mousedown", function (e) {
+      if (e.target.closest("button")) return;
+      var r = note.getBoundingClientRect();
+      dnOX = e.clientX - r.left;
+      dnOY = e.clientY - r.top;
+      draggingCustomNote = note;
+      bringToFront(note);
+      document.body.style.cursor = "grabbing";
+    });
+
+    note.querySelector(".custom-note-header").addEventListener("touchstart", function (e) {
+      if (e.target.closest("button")) return;
+      var t = e.touches[0], r = note.getBoundingClientRect();
+      dnOX = t.clientX - r.left;
+      dnOY = t.clientY - r.top;
+      draggingCustomNote = note;
+      bringToFront(note);
+    }, { passive: true });
+  }
+
+  var addNoteBtn = document.getElementById("add-note-btn");
+  if (addNoteBtn) {
+    addNoteBtn.addEventListener("click", function () { createNote(); });
   }
 
   // Cards lift on press, return on release (music sticky notes + video cards)
