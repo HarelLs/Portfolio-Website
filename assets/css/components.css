@@ -144,20 +144,23 @@
 .service-card h3 {
   position: relative;
   overflow: hidden;
+}
+
+.service-card h3 span {
   background-color: var(--color-text);
   background-image: linear-gradient(
     180deg,
     transparent            0%,
     transparent            48%,
-    #909090                50%,   /* scan line 1 */
+    #909090                50%,
     #909090                52%,
     transparent            52%,
     transparent            54%,
-    #909090                54%,   /* scan line 2 */
+    #909090                54%,
     #909090                56%,
     transparent            56%,
     transparent            58%,
-    #909090                58%,   /* scan line 3 */
+    #909090                58%,
     #909090                60%,
     transparent            62%,
     transparent            100%
@@ -171,11 +174,11 @@
   animation: service-streak-text 8s linear infinite;
 }
 
-.services-grid .service-card:nth-child(2) h3 { animation-delay: -2.7s; }
-.services-grid .service-card:nth-child(3) h3 { animation-delay: -5.4s; }
+.services-grid .service-card:nth-child(2) h3 span { animation-delay: -2.7s; }
+.services-grid .service-card:nth-child(3) h3 span { animation-delay: -5.4s; }
 
-.service-card:hover h3,
-.service-card.arrow-swipe h3 {
+.service-card:hover h3 span,
+.service-card.arrow-swipe h3 span {
   animation-name: none;
   background-position: 0% 120%;
 }
@@ -461,6 +464,7 @@ body[dir="rtl"] .service-card.arrow-swipe h3::before {
 .portfolio-grid[hidden] { display: none !important; }
 
 .portfolio-card {
+  font-family: var(--font-base);
   flex: 0 1 300px;
   display: block;
   border-radius: 2px;
@@ -625,6 +629,7 @@ body[dir="rtl"] .service-card.arrow-swipe h3::before {
 }
 
 .video-card {
+  font-family: var(--font-base);
   flex: 0 1 440px;
   background: transparent;
   border: none;

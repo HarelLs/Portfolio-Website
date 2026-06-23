@@ -892,8 +892,9 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   document.querySelectorAll(".service-card").forEach(function(card) {
-    var h3  = card.querySelector("h3");
-    var key = h3 ? h3.getAttribute("data-i18n") : "";
+    var h3     = card.querySelector("h3");
+    var keyEl  = h3 && (h3.querySelector("[data-i18n]") || h3);
+    var key    = keyEl ? keyEl.getAttribute("data-i18n") : "";
     card.addEventListener("click", function() {
       card.classList.remove("arrow-swipe");
       void card.offsetWidth;
