@@ -445,8 +445,8 @@ document.addEventListener("DOMContentLoaded", function () {
             card.style.left     = "";
             card.style.top      = "";
             card.style.zIndex   = "";
-            grid.appendChild(card);
           }
+          grid.appendChild(card);
         });
       }
       resetCards('.portfolio-card[data-note-index]',  '.portfolio-grid[data-category="music"]', "noteIndex");
