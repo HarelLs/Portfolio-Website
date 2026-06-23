@@ -431,22 +431,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
   if (reorderBtn) {
     reorderBtn.addEventListener("click", function () {
-      var musicGrid = document.querySelector('.portfolio-grid[data-category="music"]');
-      if (!musicGrid) return;
-      var cards = Array.from(document.querySelectorAll('.portfolio-card[data-note-index]'));
-      cards.sort(function (a, b) { return parseInt(a.dataset.noteIndex) - parseInt(b.dataset.noteIndex); });
-      cards.forEach(function (card) {
-        if (card.dataset.placed === "1") {
-          card.dataset.placed = "0";
-          card.style.width    = "";
-          card.style.margin   = "";
-          card.style.position = "";
-          card.style.left     = "";
-          card.style.top      = "";
-          card.style.zIndex   = "";
-          musicGrid.appendChild(card);
-        }
-      });
+      function resetCards(selector, gridSelector, indexAttr) {
+        var grid = document.querySelector(gridSelector);
+        if (!grid) return;
+        var cards = Array.from(document.querySelectorAll(selector));
+        cards.sort(function (a, b) { return parseInt(a.dataset[indexAttr]) - parseInt(b.dataset[indexAttr]); });
+        cards.forEach(function (card) {
+          if (card.dataset.placed === "1") {
+            card.dataset.placed = "0";
+            card.style.width    = "";
+            card.style.margin   = "";
+            card.style.position = "";
+            card.style.left     = "";
+            card.style.top      = "";
+            card.style.zIndex   = "";
+            grid.appendChild(card);
+          }
+        });
+      }
+      resetCards('.portfolio-card[data-note-index]',  '.portfolio-grid[data-category="music"]', "noteIndex");
+      resetCards('.video-card[data-video-index]',     '.portfolio-grid[data-category="video"]',  "videoIndex");
       reorderBtn.classList.remove("is-visible");
     });
   }
@@ -474,6 +478,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var c = VIDEO_COLORS[idx] || VIDEO_COLORS[0];
     card.style.setProperty("--note-hue", c.hue);
     card.style.setProperty("--note-sat", c.sat);
+    card.dataset.videoIndex = idx;
 
     function placeOnPage(pageLeft, pageTop, w) {
       if (card.dataset.placed === "1") return;
@@ -485,6 +490,7 @@ document.addEventListener("DOMContentLoaded", function () {
       card.style.top      = pageTop  + "px";
       document.body.appendChild(card);
       bringToFront(card);
+      if (reorderBtn) reorderBtn.classList.add("is-visible");
     }
 
     var dragging = false, started = false, sx = 0, sy = 0, ox = 0, oy = 0;
