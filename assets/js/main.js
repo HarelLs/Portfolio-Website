@@ -420,8 +420,9 @@ document.addEventListener("DOMContentLoaded", function () {
       if (started) e.preventDefault();
       move(e.touches[0].clientX, e.touches[0].clientY);
     }, { passive: false });
-    window.addEventListener("mouseup",  end);
-    window.addEventListener("touchend", end, { passive: true });
+    window.addEventListener("mouseup",    end);
+    window.addEventListener("touchend",   end, { passive: true });
+    window.addEventListener("touchcancel", end, { passive: true });
   });
 
   // Cards lift on press, return on release (music sticky notes + video cards)
@@ -510,8 +511,9 @@ document.addEventListener("DOMContentLoaded", function () {
       if (started) e.preventDefault();
       move(e.touches[0].clientX, e.touches[0].clientY);
     }, { passive: false });
-    window.addEventListener("mouseup",  end);
-    window.addEventListener("touchend", end, { passive: true });
+    window.addEventListener("mouseup",    end);
+    window.addEventListener("touchend",   end, { passive: true });
+    window.addEventListener("touchcancel", end, { passive: true });
   });
 
   // Clippy: hover GIF + dismiss + drag + click-to-contact
@@ -581,7 +583,8 @@ document.addEventListener("DOMContentLoaded", function () {
       e.preventDefault();
       dragMove(e.touches[0].clientX, e.touches[0].clientY);
     }, { passive: false });
-    window.addEventListener("touchend", dragEnd, { passive: true });
+    window.addEventListener("touchend",    dragEnd, { passive: true });
+    window.addEventListener("touchcancel", dragEnd, { passive: true });
 
     // hover GIF
     clippy.addEventListener("mouseenter", function () { clippy.classList.add("show-a"); });
