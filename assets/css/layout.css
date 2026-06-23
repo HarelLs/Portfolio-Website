@@ -256,15 +256,11 @@ section {
   bottom: 2rem;
   left: 1.5rem;
   z-index: 3000;
-  cursor: grab;
+  cursor: pointer;
   user-select: none;
   -webkit-user-select: none;
   direction: ltr;
-  animation: clippy-idle 4s ease-in-out infinite;
-  animation-delay: -2s;
 }
-
-.notepad-float:active { cursor: grabbing; }
 
 .notepad-float-img {
   display: block;

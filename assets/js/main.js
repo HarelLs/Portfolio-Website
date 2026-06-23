@@ -523,64 +523,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   var notepadFloat = document.getElementById("notepad-float");
   if (notepadFloat) {
-    (function () {
-      var rect = notepadFloat.getBoundingClientRect();
-      notepadFloat.style.left   = rect.left + "px";
-      notepadFloat.style.top    = rect.top  + "px";
-      notepadFloat.style.bottom = "auto";
-      notepadFloat.style.right  = "auto";
-    })();
-
-    var npDragging = false, npMoved = false, npOX = 0, npOY = 0;
-
-    function npDragStart(cx, cy) {
-      var r = notepadFloat.getBoundingClientRect();
-      notepadFloat.style.bottom = "auto";
-      notepadFloat.style.left   = r.left + "px";
-      notepadFloat.style.top    = r.top  + "px";
-      notepadFloat.style.animationPlayState = "paused";
-      npOX = cx - r.left; npOY = cy - r.top;
-      npDragging = true; npMoved = false;
-      document.body.style.cursor = "grabbing";
-    }
-
-    function npDragMove(cx, cy) {
-      if (!npDragging) return;
-      npMoved = true;
-      notepadFloat.style.left = Math.max(0, Math.min(cx - npOX, window.innerWidth  - notepadFloat.offsetWidth))  + "px";
-      notepadFloat.style.top  = Math.max(0, Math.min(cy - npOY, window.innerHeight - notepadFloat.offsetHeight)) + "px";
-    }
-
-    function npDragEnd() {
-      if (!npDragging) return;
-      npDragging = false;
-      notepadFloat.style.animationPlayState = "";
-      document.body.style.cursor = "";
-    }
-
-    notepadFloat.addEventListener("mousedown", function (e) {
+    notepadFloat.addEventListener("click", function () { createNote(); });
+    notepadFloat.addEventListener("touchend", function (e) {
       e.preventDefault();
-      npDragStart(e.clientX, e.clientY);
-    });
-    window.addEventListener("mousemove", function (e) { npDragMove(e.clientX, e.clientY); });
-    window.addEventListener("mouseup", function () {
-      if (npDragging && !npMoved) createNote();
-      npDragEnd();
-    });
-
-    notepadFloat.addEventListener("touchstart", function (e) {
-      npDragStart(e.touches[0].clientX, e.touches[0].clientY);
-    }, { passive: true });
-    window.addEventListener("touchmove", function (e) {
-      if (!npDragging) return;
-      e.preventDefault();
-      npDragMove(e.touches[0].clientX, e.touches[0].clientY);
+      createNote();
     }, { passive: false });
-    window.addEventListener("touchend", function () {
-      if (npDragging && !npMoved) createNote();
-      npDragEnd();
-    }, { passive: true });
-    window.addEventListener("touchcancel", npDragEnd, { passive: true });
   }
 
   // Cards lift on press, return on release (music sticky notes + video cards)
