@@ -202,35 +202,6 @@ body[dir="rtl"] .service-card:hover h3::after {
   align-self: flex-start;
 }
 
-.portfolio-folder-actions {
-  display: flex;
-  align-items: flex-end;
-  gap: 0.5rem;
-}
-
-.add-note-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.3rem 0.55rem;
-  background: #2a2a40;
-  border: 2px solid rgba(255, 255, 255, 0.12);
-  border-bottom: none;
-  border-radius: var(--radius-md) var(--radius-md) 0 0;
-  cursor: pointer;
-  transition: background 0.2s;
-  align-self: flex-end;
-}
-
-.add-note-btn:hover { background: #3a3a58; }
-
-.add-note-icon {
-  width: 28px;
-  height: 28px;
-  image-rendering: pixelated;
-  display: block;
-}
-
 .custom-note {
   position: absolute;
   width: 200px;

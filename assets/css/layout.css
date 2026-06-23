@@ -250,3 +250,31 @@ section {
 }
 .clippy-close:hover { background: linear-gradient(180deg,#f07060 0%,#d83820 45%,#c02010 100%); }
 .clippy-close:active { background: linear-gradient(180deg,#a81800 0%,#c02810 100%); box-shadow: none; }
+
+.notepad-float {
+  position: fixed;
+  bottom: 2rem;
+  left: 1.5rem;
+  z-index: 3000;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  direction: ltr;
+  animation: clippy-idle 4s ease-in-out infinite;
+  animation-delay: -2s;
+}
+
+.notepad-float:active { cursor: grabbing; }
+
+.notepad-float-img {
+  display: block;
+  width: 72px;
+  height: auto;
+  image-rendering: pixelated;
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+
+.notepad-float:hover .notepad-float-img {
+  transform: scale(1.12) translateY(-3px);
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
+}
