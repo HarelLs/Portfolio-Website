@@ -1,1 +1,32 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 512 360.726"><path fill="#fff" d="M456.035 10.769c22.031 5.926 39.377 23.386 45.265 45.56C512 96.516 512 180.363 512 180.363s0 83.846-10.7 124.037c-5.888 22.17-23.234 39.631-45.265 45.559-39.928 10.767-200.034 10.767-200.034 10.767s-160.107 0-200.035-10.767C33.937 344.031 16.587 326.57 10.7 304.4 0 264.209 0 180.363 0 180.363S0 96.516 10.7 56.329c5.887-22.174 23.237-39.634 45.266-45.56C95.894 0 256.001 0 256.001 0s160.106 0 200.034 10.769zm-252.398 245.72l133.818-76.122-133.818-76.131v152.253z"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" shape-rendering="crispEdges">
+  <!-- rounded rect top edge -->
+  <rect fill="#fff" x="2" y="2" width="12" height="1"/>
+  <!-- full-width solid rows (above triangle) -->
+  <rect fill="#fff" x="0" y="3" width="16" height="1"/>
+  <!-- triangle cutout rows — left solid + right solid, gap = transparent play triangle -->
+  <!-- row 4: tip (gap at col 4 only) -->
+  <rect fill="#fff" x="0" y="4" width="4" height="1"/>
+  <rect fill="#fff" x="5" y="4" width="11" height="1"/>
+  <!-- row 5: gap cols 4–6 -->
+  <rect fill="#fff" x="0" y="5" width="4" height="1"/>
+  <rect fill="#fff" x="7" y="5" width="9" height="1"/>
+  <!-- row 6: gap cols 4–9 -->
+  <rect fill="#fff" x="0" y="6" width="4" height="1"/>
+  <rect fill="#fff" x="10" y="6" width="6" height="1"/>
+  <!-- rows 7–8: widest gap (cols 4–12), right tip of triangle -->
+  <rect fill="#fff" x="0" y="7" width="4" height="2"/>
+  <rect fill="#fff" x="13" y="7" width="3" height="2"/>
+  <!-- row 9: gap cols 4–9 (mirror of row 6) -->
+  <rect fill="#fff" x="0" y="9" width="4" height="1"/>
+  <rect fill="#fff" x="10" y="9" width="6" height="1"/>
+  <!-- row 10: gap cols 4–6 (mirror of row 5) -->
+  <rect fill="#fff" x="0" y="10" width="4" height="1"/>
+  <rect fill="#fff" x="7" y="10" width="9" height="1"/>
+  <!-- row 11: tip (gap at col 4 only, mirror of row 4) -->
+  <rect fill="#fff" x="0" y="11" width="4" height="1"/>
+  <rect fill="#fff" x="5" y="11" width="11" height="1"/>
+  <!-- full-width solid rows (below triangle) -->
+  <rect fill="#fff" x="0" y="12" width="16" height="1"/>
+  <!-- rounded rect bottom edge -->
+  <rect fill="#fff" x="2" y="13" width="12" height="1"/>
+</svg>

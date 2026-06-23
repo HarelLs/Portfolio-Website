@@ -731,4 +731,107 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
+
+  // ── Service card credits windows ──
+  var MIXING_CREDITS = [
+    { project: "אני לא נושם (אלבום)", details: "Mixer & Engineer — Harel Lesnick, 2024 — אינטרו, אני לא נושם, דפוק, חד וחלק, ״אני חושב שהצלחתי לברוח״, משבר כתיבה, אף אחד, מתי כבר יגיע תורי, הגענו עד לכאן, סיכום" },
+    { project: "IZ 514 (ARL51)",      details: "Mixer & Producer — ARL51, 2025 — 2Fr33, RUN1TUP, EARS, NO TIME"                                                                                              },
+    { project: "ק'מ 300",             details: "Mixer & Engineer — Harel Lesnick, 2024"                                                                                                                       },
+    { project: "עוד רגע עוד",         details: "Mixer & Engineer — feat. Where's The Plot, 2024"                                                                                                              },
+    { project: "ביצוע / קצת אחר",     details: "Mixer & Engineer — Harel Lesnick, 2024"                                                                                                                       },
+    { project: "I'M BACK (ARL51)",    details: "Mixer & Producer — ARL51, 2024"                                                                                                                               },
+    { project: "Froth",               details: "Mixer & Engineer — Harel Lesnick, 2025"                                                                                                                       },
+    { project: "Pondering",           details: "Mixer & Engineer — Harel Lesnick, 2025"                                                                                                                       },
+    { project: "אף אחד דמו 6.7.23", details: "Mixer & Engineer — Harel Lesnick, 2025"                                                                                                                       }
+  ];
+
+  var MASTERING_CREDITS = [
+    { project: "אני לא נושם (אלבום)", details: "Mastering Engineer — Harel Lesnick, 2024 — אינטרו, אני לא נושם, דפוק, חד וחלק, ״אני חושב שהצלחתי לברוח״, משבר כתיבה, אף אחד, מתי כבר יגיע תורי, הגענו עד לכאן, סיכום" },
+    { project: "IZ 514 (ARL51)",      details: "Mastering Engineer — ARL51, 2025 — 2Fr33, RUN1TUP, EARS, NO TIME"                                                                                            },
+    { project: "ק'מ 300",             details: "Mastering Engineer — Harel Lesnick, 2024"                                                                                                                     },
+    { project: "עוד רגע עוד",         details: "Mastering Engineer — feat. Where's The Plot, 2024"                                                                                                            },
+    { project: "ביצוע / קצת אחר",     details: "Mastering Engineer — Harel Lesnick, 2024"                                                                                                                     },
+    { project: "I'M BACK (ARL51)",    details: "Mastering Engineer — ARL51, 2024"                                                                                                                             },
+    { project: "Froth",               details: "Mastering Engineer — Harel Lesnick, 2025"                                                                                                                     },
+    { project: "Pondering",           details: "Mastering Engineer — Harel Lesnick, 2025"                                                                                                                     },
+    { project: "אף אחד דמו 6.7.23", details: "Mastering Engineer — Harel Lesnick, 2025"                                                                                                                     }
+  ];
+
+  var mixingWin    = document.getElementById("mixing-credits-window");
+  var masteringWin = document.getElementById("mastering-credits-window");
+
+  function populateCreditsList(listEl, valueEl, credits) {
+    listEl.innerHTML = ""; valueEl.textContent = "";
+    credits.forEach(function(item, i) {
+      var li = document.createElement("li");
+      li.textContent = item.project;
+      li.addEventListener("click", function() {
+        listEl.querySelectorAll("li").forEach(function(el) { el.classList.remove("is-selected"); });
+        li.classList.add("is-selected");
+        valueEl.textContent = item.details;
+      });
+      listEl.appendChild(li);
+      if (i === 0) { li.classList.add("is-selected"); valueEl.textContent = item.details; }
+    });
+  }
+
+  function openCreditsWindow(type) {
+    var win     = type === "mixing" ? mixingWin : masteringWin;
+    var credits = type === "mixing" ? MIXING_CREDITS : MASTERING_CREDITS;
+    var listEl  = document.getElementById(type + "-list");
+    var valueEl = document.getElementById(type + "-value");
+    populateCreditsList(listEl, valueEl, credits);
+    if (win.hidden) {
+      win.style.left = Math.max(0, window.innerWidth  / 2 - 170) + "px";
+      win.style.top  = Math.max(0, window.innerHeight / 2 - 180) + "px";
+      win.hidden = false;
+    }
+    bringToFront(win);
+  }
+
+  makeWinDraggable(mixingWin,    document.getElementById("mixing-credits-handle"),    "mixing-credits");
+  makeWinDraggable(masteringWin, document.getElementById("mastering-credits-handle"), "mastering-credits");
+
+  document.getElementById("mixing-close").addEventListener("click",    function() { mixingWin.hidden    = true; });
+  document.getElementById("mixing-ok").addEventListener("click",       function() { mixingWin.hidden    = true; });
+  document.getElementById("mastering-close").addEventListener("click", function() { masteringWin.hidden = true; });
+  document.getElementById("mastering-ok").addEventListener("click",    function() { masteringWin.hidden = true; });
+
+  document.querySelectorAll(".xp-credits-help-btn").forEach(function(btn) {
+    btn.addEventListener("click", function(e) { e.stopPropagation(); showHelpMessage(e.currentTarget); });
+  });
+
+  // ── Service card click: arrow swipe + text fade then action ──
+  function actOnCard(card, action) {
+    card.classList.add("text-out");
+    setTimeout(function() {
+      action();
+      card.classList.remove("text-out");
+    }, 280);
+  }
+
+  document.querySelectorAll(".service-card").forEach(function(card) {
+    var h3  = card.querySelector("h3");
+    var key = h3 ? h3.getAttribute("data-i18n") : "";
+    card.addEventListener("pointerdown", function() {
+      card.classList.remove("arrow-swipe");
+      void card.offsetWidth;
+      card.classList.add("arrow-swipe");
+      setTimeout(function() { card.classList.remove("arrow-swipe"); }, 600);
+    });
+    card.addEventListener("click", function() {
+      if (key === "services.mix.title") {
+        actOnCard(card, function() { openCreditsWindow("mixing"); });
+      } else if (key === "services.master.title") {
+        actOnCard(card, function() { openCreditsWindow("mastering"); });
+      } else if (key === "services.sounddesign.title") {
+        actOnCard(card, function() {
+          var videoBtn = document.querySelector('.filter-btn[data-filter="video"]');
+          if (videoBtn) videoBtn.click();
+          var portfolio = document.getElementById("portfolio");
+          if (portfolio) portfolio.scrollIntoView({ behavior: "smooth" });
+        });
+      }
+    });
+  });
 });

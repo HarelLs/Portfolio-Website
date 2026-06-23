@@ -122,9 +122,24 @@
 .service-card {
   padding: var(--space-3);
   text-align: center;
-  cursor: default;
+  cursor: pointer;
 }
 
+@keyframes service-text-out {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+.service-card.text-out h3,
+.service-card.text-out p {
+  animation: service-text-out 0.25s ease forwards;
+}
+
+.service-card h3 {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Static arrow — inline, sits next to the text on hover */
 body[dir="ltr"] .service-card h3::before {
   content: "> ";
   color: transparent;
@@ -132,6 +147,7 @@ body[dir="ltr"] .service-card h3::before {
   vertical-align: middle;
   transition: color 0.15s ease;
 }
+body[dir="ltr"] .service-card:hover h3::before { color: var(--color-accent); }
 
 body[dir="rtl"] .service-card h3::after {
   content: " <";
@@ -140,10 +156,44 @@ body[dir="rtl"] .service-card h3::after {
   vertical-align: middle;
   transition: color 0.15s ease;
 }
+body[dir="rtl"] .service-card:hover h3::after { color: var(--color-accent); }
 
-body[dir="ltr"] .service-card:hover h3::before,
-body[dir="rtl"] .service-card:hover h3::after {
+/* Swipe arrow — absolute, animates on click/touch */
+body[dir="ltr"] .service-card h3::after {
+  content: ">";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%) translateX(-2em);
   color: var(--color-accent);
+  font-family: var(--font-base);
+  pointer-events: none;
+}
+body[dir="rtl"] .service-card h3::before {
+  content: "<";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%) translateX(2em);
+  color: var(--color-accent);
+  font-family: var(--font-base);
+  pointer-events: none;
+}
+
+body[dir="ltr"] .service-card.arrow-swipe h3::after {
+  animation: arrow-swipe-ltr 0.55s ease-in-out;
+}
+body[dir="rtl"] .service-card.arrow-swipe h3::before {
+  animation: arrow-swipe-rtl 0.55s ease-in-out;
+}
+
+@keyframes arrow-swipe-ltr {
+  from { transform: translateY(-50%) translateX(-2em); }
+  to   { transform: translateY(-50%) translateX(30em); }
+}
+@keyframes arrow-swipe-rtl {
+  from { transform: translateY(-50%) translateX(2em); }
+  to   { transform: translateY(-50%) translateX(-30em); }
 }
 
 
@@ -505,8 +555,8 @@ body[dir="rtl"] .service-card:hover h3::after {
 .music-logo-pixel {
   image-rendering: pixelated;
   image-rendering: crisp-edges;
-  height: 32px !important;
-  width: 32px !important;
+  height: 40px !important;
+  width: 10px ;
 }
 
 .music-link-label {
