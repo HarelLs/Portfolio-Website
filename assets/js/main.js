@@ -87,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
     window.addEventListener("touchend",   end, { passive: true });
   }
 
-  var lastSelectedField = EXIF_FIELDS[0][0];
+  var lastSelectedField = "Camera";
 
   function updatePropsPanel(key) {
     var d = PHOTO_EXIF[key];
