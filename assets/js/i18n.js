@@ -135,7 +135,7 @@
       "currentProject.winTitle": "current_project.jpg",
       "currentProject.badge": "בתהליך",
       "currentProject.heading": "בעבודה כרגע",
-      "currentProject.text": "על אלבום לאומן, כפרויקט הגמר שלי במכללה - יהיו עדכונים שיהיו.",
+      "currentProject.text": "על אלבום לאומן, כפרויקט הגמר שלי במכללה - יהיו עדכונים שיהיו ;-)",
       "contact.heading": "יצירת קשר",
       "contact.text": "יש לכם רעיון או משהו מגניב?",
       "contact.email": "דברו איתי",
