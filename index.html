@@ -30,12 +30,14 @@
 <body dir="rtl">
 <div class="clippy-float" id="clippy">
   <button class="clippy-close" id="clippy-close" aria-label="סגור">&#x2715;</button>
-  <img src="assets/images/ui/clippy.gif"     alt="" class="clippy-idle"    aria-hidden="true" />
-  <img src="assets/images/ui/clippy-dig.gif" alt="" class="clippy-hover-a" aria-hidden="true" />
+  <img src="assets/images/ui/clippy.gif"        alt="" class="clippy-idle"    aria-hidden="true" />
+  <img src="assets/images/ui/clippy-dig.gif"   alt="" class="clippy-hover-a" aria-hidden="true" />
+  <img src="assets/images/ui/clippy-hi-zh.gif" alt="" class="clippy-hover-zh" aria-hidden="true" />
+  <div class="clippy-speech-zh" aria-hidden="true">好像你想发邮件！<br>需要帮助吗？</div>
 </div>
 <div class="notepad-float" id="notepad-float" title="פתק חדש">
   <img src="assets/images/ui/notepad.png" alt="פתק חדש" class="notepad-float-img" aria-hidden="true" />
-  <span class="notepad-float-label">NOTEPAD.EXE</span>
+  <span class="notepad-float-label" data-i18n="notepad.label">NOTEPAD.EXE</span>
 </div>
 <button class="lang-switch" id="lang-switch" type="button" aria-label="החלף שפה / Switch language">
     <span data-i18n="nav.langSwitch">EN</span>
@@ -127,7 +129,7 @@
         <!-- MUSIC -->
         <div class="portfolio-grid" data-category="music">
           <article class="portfolio-card" dir="ltr">
-            <span class="portfolio-card-tag">Latest Single</span>
+            <span class="portfolio-card-tag" data-i18n="portfolio.tag.latestSingle">Latest Single</span>
             <picture>
               <source srcset="assets/images/music/singlephoto-opt.webp" type="image/webp" />
               <img src="assets/images/music/singlephoto-opt.jpg" alt="Single cover" loading="lazy" decoding="async" />
@@ -148,7 +150,7 @@
             </div>
           </article>
           <article class="portfolio-card" dir="ltr">
-            <span class="portfolio-card-tag">EP</span>
+            <span class="portfolio-card-tag" data-i18n="portfolio.tag.ep">EP</span>
             <picture>
               <source srcset="assets/images/music/epphoto-opt.webp" type="image/webp" />
               <img src="assets/images/music/epphoto-opt.jpg" alt="Electronic album cover" loading="lazy" decoding="async" />
@@ -169,7 +171,7 @@
             </div>
           </article>
           <article class="portfolio-card" dir="ltr">
-            <span class="portfolio-card-tag">LP</span>
+            <span class="portfolio-card-tag" data-i18n="portfolio.tag.lp">LP</span>
             <picture>
               <source srcset="assets/images/music/albumphoto-opt.webp" type="image/webp" />
               <img src="assets/images/music/albumphoto-opt.jpg" alt="Album cover" loading="lazy" decoding="async" />

@@ -224,8 +224,23 @@ section {
   transition: opacity 0.15s ease;
 }
 
+.clippy-hover-zh {
+  display: block;
+  width: 140px;
+  height: auto;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
 .clippy-float.show-a .clippy-idle    { opacity: 0; }
 .clippy-float.show-a .clippy-hover-a { opacity: 1; }
+
+/* zh mode: swap dig GIF for the hi-zh GIF on hover */
+html[lang="zh"] .clippy-float.show-a .clippy-hover-a  { opacity: 0; }
+html[lang="zh"] .clippy-float.show-a .clippy-hover-zh { opacity: 1; }
 
 .clippy-close {
   position: absolute;
@@ -250,6 +265,47 @@ section {
 }
 .clippy-close:hover { background: linear-gradient(180deg,#f07060 0%,#d83820 45%,#c02010 100%); }
 .clippy-close:active { background: linear-gradient(180deg,#a81800 0%,#c02810 100%); box-shadow: none; }
+
+.clippy-speech-zh {
+  display: none;
+  position: absolute;
+  bottom: calc(100% + 80px);
+  right: -8px;
+  width: 160px;
+  background: #ffffc0;
+  border: 1px solid #000;
+  border-radius: 5px;
+  padding: 8px 10px;
+  font-family: "Microsoft YaHei", "SimHei", Tahoma, "MS Sans Serif", sans-serif;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #000;
+  direction: ltr;
+  text-align: left;
+  pointer-events: none;
+  z-index: 1;
+  box-shadow: 2px 2px 0 rgba(0,0,0,0.18);
+  animation: none;
+}
+.clippy-speech-zh::before {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  right: 22px;
+  border: 9px solid transparent;
+  border-top-color: #000;
+  border-bottom: none;
+}
+.clippy-speech-zh::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  right: 23px;
+  border: 8px solid transparent;
+  border-top-color: #ffffc0;
+  border-bottom: none;
+}
+html[lang="zh"] .clippy-float.show-a .clippy-speech-zh { display: block; }
 
 .notepad-float {
   position: fixed;

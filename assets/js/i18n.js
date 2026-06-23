@@ -82,7 +82,11 @@
       "xp.exif.aperture": "光圈",
       "xp.exif.shutter": "快门速度",
       "xp.exif.iso": "感光度",
-      "xp.exif.date": "日期"
+      "xp.exif.date": "日期",
+      "portfolio.tag.latestSingle": "最新单曲",
+      "portfolio.tag.ep": "EP",
+      "portfolio.tag.lp": "LP",
+      "notepad.label": "记事本.EXE"
     },
     he: {
       "meta.title": "הראל לסניק",
@@ -159,7 +163,11 @@
       "xp.exif.aperture": "Aperture",
       "xp.exif.shutter": "Shutter Speed",
       "xp.exif.iso": "ISO",
-      "xp.exif.date": "Date"
+      "xp.exif.date": "Date",
+      "portfolio.tag.latestSingle": "Latest Single",
+      "portfolio.tag.ep": "EP",
+      "portfolio.tag.lp": "LP",
+      "notepad.label": "NOTEPAD.EXE"
     },
     en: {
       "meta.title": "Harel Lesnick",
@@ -236,7 +244,11 @@
       "xp.exif.aperture": "Aperture",
       "xp.exif.shutter": "Shutter Speed",
       "xp.exif.iso": "ISO",
-      "xp.exif.date": "Date"
+      "xp.exif.date": "Date",
+      "portfolio.tag.latestSingle": "Latest Single",
+      "portfolio.tag.ep": "EP",
+      "portfolio.tag.lp": "LP",
+      "notepad.label": "NOTEPAD.EXE"
     }
   };
 
