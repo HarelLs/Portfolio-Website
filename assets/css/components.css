@@ -247,7 +247,7 @@ body[dir="rtl"] .service-card.arrow-swipe h3::before {
 
 .portfolio-filters {
   position: relative;
-  width: 540px;
+  width: 590px;
   height: 62px;
   align-self: flex-start;
 }
@@ -377,8 +377,8 @@ body[dir="rtl"] .service-card.arrow-swipe h3::before {
 
 /* tabs fixed positions + graduated depth shading: front = lightest, back = darkest */
 .filter-btn:nth-child(1) { inset-inline-start: 0;     background: #3c3c58; }
-.filter-btn:nth-child(2) { inset-inline-start: 160px; background: #2a2a40; }
-.filter-btn:nth-child(3) { inset-inline-start: 320px; background: #1e1e30; }
+.filter-btn:nth-child(2) { inset-inline-start: 185px; background: #2a2a40; }
+.filter-btn:nth-child(3) { inset-inline-start: 370px; background: #1e1e30; }
 
 .filter-btn.is-active {
   background: var(--color-surface);
