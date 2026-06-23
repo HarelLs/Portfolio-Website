@@ -182,12 +182,18 @@ document.addEventListener("DOMContentLoaded", function () {
       e.stopPropagation();
       updatePropsPanel(key);
       if (exifPropsWin.hidden) {
-        var wr = win.getBoundingClientRect();
-        var pw = exifPropsWin.offsetWidth || 340;
-        var prLeft = wr.right + 8;
-        if (prLeft + pw > window.innerWidth) prLeft = Math.max(0, wr.left - pw - 8);
-        exifPropsWin.style.left = Math.max(0, prLeft) + "px";
-        exifPropsWin.style.top  = Math.max(0, wr.top) + "px";
+        var savedProps = loadPos("props");
+        if (savedProps) {
+          exifPropsWin.style.left = savedProps.left + "px";
+          exifPropsWin.style.top  = savedProps.top  + "px";
+        } else {
+          var wr = win.getBoundingClientRect();
+          var pw = exifPropsWin.offsetWidth || 340;
+          var prLeft = wr.right + 8;
+          if (prLeft + pw > window.innerWidth) prLeft = Math.max(0, wr.left - pw - 8);
+          exifPropsWin.style.left = Math.max(0, prLeft) + "px";
+          exifPropsWin.style.top  = Math.max(0, wr.top) + "px";
+        }
         exifPropsWin.hidden = false;
       }
       bringToFront(exifPropsWin);
@@ -258,7 +264,7 @@ document.addEventListener("DOMContentLoaded", function () {
     bringToFront(helpMsg);
   }
 
-  document.querySelector(".xp-btn-help").addEventListener("click", function(e) {
+  document.getElementById("exif-props-help-btn").addEventListener("click", function(e) {
     e.stopPropagation();
     showHelpMessage(e.currentTarget);
   });
@@ -734,44 +740,55 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // ── Service card credits windows ──
   var MIXING_CREDITS = [
-    { project: "אני לא נושם (אלבום)", details: "Mixer & Engineer — Harel Lesnick, 2024 — אינטרו, אני לא נושם, דפוק, חד וחלק, ״אני חושב שהצלחתי לברוח״, משבר כתיבה, אף אחד, מתי כבר יגיע תורי, הגענו עד לכאן, סיכום" },
-    { project: "IZ 514 (ARL51)",      details: "Mixer & Producer — ARL51, 2025 — 2Fr33, RUN1TUP, EARS, NO TIME"                                                                                              },
-    { project: "ק'מ 300",             details: "Mixer & Engineer — Harel Lesnick, 2024"                                                                                                                       },
-    { project: "עוד רגע עוד",         details: "Mixer & Engineer — feat. Where's The Plot, 2024"                                                                                                              },
-    { project: "ביצוע / קצת אחר",     details: "Mixer & Engineer — Harel Lesnick, 2024"                                                                                                                       },
-    { project: "I'M BACK (ARL51)",    details: "Mixer & Producer — ARL51, 2024"                                                                                                                               },
-    { project: "Froth",               details: "Mixer & Engineer — Harel Lesnick, 2025"                                                                                                                       },
-    { project: "Pondering",           details: "Mixer & Engineer — Harel Lesnick, 2025"                                                                                                                       },
-    { project: "אף אחד דמו 6.7.23", details: "Mixer & Engineer — Harel Lesnick, 2025"                                                                                                                       }
+    { project: "אני לא נושם (אלבום)", artist: "Harel Lesnick",                      role: "Mixer & Engineer", year: "2024", tracks: ["אינטרו", "אני לא נושם", "דפוק", "חד וחלק", "״אני חושב שהצלחתי לברוח״", "משבר כתיבה", "אף אחד", "מתי כבר יגיע תורי", "הגענו עד לכאן", "סיכום"] },
+    { project: "IZ 514",              artist: "aRL",                               role: "Mixer & Producer", year: "2025", tracks: ["2Fr33", "RUN1TUP", "EARS", "NO TIME"] },
+    { project: "300 ק״מ",             artist: "Harel Lesnick",                      role: "Mixer & Engineer", year: "2024", tracks: [] },
+    { project: "עוד רגע עוד",         artist: "Harel Lesnick feat. Where's The Plot", role: "Mixer & Engineer", year: "2024", tracks: [] },
+    { project: "לחצים / קצת אור",     artist: "Harel Lesnick",                      role: "Mixer & Engineer", year: "2024", tracks: [] },
+    { project: "I'M BACK",            artist: "aRL",                               role: "Mixer & Producer", year: "2024", tracks: [] },
+    { project: "Froth",               artist: "Harel Lesnick",                      role: "Mixer & Engineer", year: "2025", tracks: [] },
+    { project: "Pondering",           artist: "Harel Lesnick",                      role: "Mixer & Engineer", year: "2025", tracks: [] },
+    { project: "אף אחד דמו 6.7.23",  artist: "Harel Lesnick",                      role: "Mixer & Engineer", year: "2025", tracks: [] }
   ];
 
   var MASTERING_CREDITS = [
-    { project: "אני לא נושם (אלבום)", details: "Mastering Engineer — Harel Lesnick, 2024 — אינטרו, אני לא נושם, דפוק, חד וחלק, ״אני חושב שהצלחתי לברוח״, משבר כתיבה, אף אחד, מתי כבר יגיע תורי, הגענו עד לכאן, סיכום" },
-    { project: "IZ 514 (ARL51)",      details: "Mastering Engineer — ARL51, 2025 — 2Fr33, RUN1TUP, EARS, NO TIME"                                                                                            },
-    { project: "ק'מ 300",             details: "Mastering Engineer — Harel Lesnick, 2024"                                                                                                                     },
-    { project: "עוד רגע עוד",         details: "Mastering Engineer — feat. Where's The Plot, 2024"                                                                                                            },
-    { project: "ביצוע / קצת אחר",     details: "Mastering Engineer — Harel Lesnick, 2024"                                                                                                                     },
-    { project: "I'M BACK (ARL51)",    details: "Mastering Engineer — ARL51, 2024"                                                                                                                             },
-    { project: "Froth",               details: "Mastering Engineer — Harel Lesnick, 2025"                                                                                                                     },
-    { project: "Pondering",           details: "Mastering Engineer — Harel Lesnick, 2025"                                                                                                                     },
-    { project: "אף אחד דמו 6.7.23", details: "Mastering Engineer — Harel Lesnick, 2025"                                                                                                                     }
+    { project: "אני לא נושם (אלבום)", artist: "Harel Lesnick",                      role: "Mastering Engineer", year: "2024", tracks: ["אינטרו", "אני לא נושם", "דפוק", "חד וחלק", "״אני חושב שהצלחתי לברוח״", "משבר כתיבה", "אף אחד", "מתי כבר יגיע תורי", "הגענו עד לכאן", "סיכום"] },
+    { project: "IZ 514",              artist: "aRL",                               role: "Mastering Engineer", year: "2025", tracks: ["2Fr33", "RUN1TUP", "EARS", "NO TIME"] },
+    { project: "300 ק״מ",             artist: "Harel Lesnick",                      role: "Mastering Engineer", year: "2024", tracks: [] },
+    { project: "עוד רגע עוד",         artist: "Harel Lesnick feat. Where's The Plot", role: "Mastering Engineer", year: "2024", tracks: [] },
+    { project: "לחצים / קצת אור",     artist: "Harel Lesnick",                      role: "Mastering Engineer", year: "2024", tracks: [] },
+    { project: "I'M BACK",            artist: "aRL",                               role: "Mastering Engineer", year: "2024", tracks: [] },
+    { project: "Froth",               artist: "Harel Lesnick",                      role: "Mastering Engineer", year: "2025", tracks: [] },
+    { project: "Pondering",           artist: "Harel Lesnick",                      role: "Mastering Engineer", year: "2025", tracks: [] },
+    { project: "אף אחד דמו 6.7.23",  artist: "Harel Lesnick",                      role: "Mastering Engineer", year: "2025", tracks: [] }
   ];
 
   var mixingWin    = document.getElementById("mixing-credits-window");
   var masteringWin = document.getElementById("mastering-credits-window");
 
+  function renderCreditDetails(el, item) {
+    var html = '<div style="font-weight:700;margin-bottom:3px;">' + item.artist + '</div>' +
+               '<div style="margin-bottom:4px;">' + item.role + ', ' + item.year + '</div>';
+    if (item.tracks && item.tracks.length) {
+      html += '<ul style="margin:0;padding-left:14px;">';
+      item.tracks.forEach(function(t) { html += '<li>' + t + '</li>'; });
+      html += '</ul>';
+    }
+    el.innerHTML = html;
+  }
+
   function populateCreditsList(listEl, valueEl, credits) {
-    listEl.innerHTML = ""; valueEl.textContent = "";
+    listEl.innerHTML = ""; valueEl.innerHTML = "";
     credits.forEach(function(item, i) {
       var li = document.createElement("li");
       li.textContent = item.project;
       li.addEventListener("click", function() {
         listEl.querySelectorAll("li").forEach(function(el) { el.classList.remove("is-selected"); });
         li.classList.add("is-selected");
-        valueEl.textContent = item.details;
+        renderCreditDetails(valueEl, item);
       });
       listEl.appendChild(li);
-      if (i === 0) { li.classList.add("is-selected"); valueEl.textContent = item.details; }
+      if (i === 0) { li.classList.add("is-selected"); renderCreditDetails(valueEl, item); }
     });
   }
 
@@ -782,8 +799,15 @@ document.addEventListener("DOMContentLoaded", function () {
     var valueEl = document.getElementById(type + "-value");
     populateCreditsList(listEl, valueEl, credits);
     if (win.hidden) {
-      win.style.left = Math.max(0, window.innerWidth  / 2 - 170) + "px";
-      win.style.top  = Math.max(0, window.innerHeight / 2 - 180) + "px";
+      var posKey = type + "-credits";
+      var saved  = loadPos(posKey);
+      if (saved) {
+        win.style.left = saved.left + "px";
+        win.style.top  = saved.top  + "px";
+      } else {
+        win.style.left = Math.max(0, window.innerWidth  / 2 - 170) + "px";
+        win.style.top  = Math.max(0, window.innerHeight / 2 - 180) + "px";
+      }
       win.hidden = false;
     }
     bringToFront(win);
@@ -813,13 +837,11 @@ document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll(".service-card").forEach(function(card) {
     var h3  = card.querySelector("h3");
     var key = h3 ? h3.getAttribute("data-i18n") : "";
-    card.addEventListener("pointerdown", function() {
+    card.addEventListener("click", function() {
       card.classList.remove("arrow-swipe");
       void card.offsetWidth;
       card.classList.add("arrow-swipe");
       setTimeout(function() { card.classList.remove("arrow-swipe"); }, 600);
-    });
-    card.addEventListener("click", function() {
       if (key === "services.mix.title") {
         actOnCard(card, function() { openCreditsWindow("mixing"); });
       } else if (key === "services.master.title") {
