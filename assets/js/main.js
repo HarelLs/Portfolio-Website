@@ -478,21 +478,14 @@ document.addEventListener("DOMContentLoaded", function () {
   }, { passive: false });
   window.addEventListener("touchend", function () { draggingCustomNote = null; }, { passive: true });
 
-  function createNote(opts) {
+  function createNote() {
     var note = document.createElement("div");
     note.className = "custom-note";
     note.style.setProperty("--note-hue", CUSTOM_NOTE_HUES[customNoteCount % CUSTOM_NOTE_HUES.length]);
     note.style.setProperty("--note-sat", "0.85");
-    if (opts && opts.left !== undefined) {
-      note.style.left      = opts.left   + "px";
-      note.style.top       = opts.top    + "px";
-      note.style.width     = opts.width  + "px";
-      note.style.minHeight = opts.height + "px";
-    } else {
-      var offset = (customNoteCount % 8) * 30;
-      note.style.left = (window.scrollX + window.innerWidth  / 2 - 100 + offset) + "px";
-      note.style.top  = (window.scrollY + window.innerHeight / 2 - 80  + offset) + "px";
-    }
+    var offset = (customNoteCount % 8) * 30;
+    note.style.left = (window.scrollX + window.innerWidth  / 2 - 100 + offset) + "px";
+    note.style.top  = (window.scrollY + window.innerHeight / 2 - 80  + offset) + "px";
     customNoteCount++;
 
     note.innerHTML =
@@ -530,84 +523,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   var notepadFloat = document.getElementById("notepad-float");
   if (notepadFloat) {
-    // Mobile: single tap creates a default note
+    notepadFloat.addEventListener("click", function () { createNote(); });
     notepadFloat.addEventListener("touchend", function (e) {
       e.preventDefault();
       createNote();
     }, { passive: false });
-
-    // Desktop: double-click → draw a box to size/place the note
-    notepadFloat.addEventListener("dblclick", function () {
-      var overlay = document.createElement("div");
-      overlay.style.cssText = "position:fixed;inset:0;z-index:8999;cursor:crosshair;";
-      document.body.appendChild(overlay);
-
-      var selBox = document.createElement("div");
-      selBox.style.cssText = [
-        "position:fixed",
-        "display:none",
-        "z-index:9000",
-        "pointer-events:none",
-        "box-sizing:border-box",
-        "border:2px solid #fff",
-        "outline:1px solid rgba(0,0,0,0.7)",
-        "background:rgba(120,170,255,0.22)"
-      ].join(";");
-      document.body.appendChild(selBox);
-
-      var startX = 0, startY = 0, drawing = false;
-
-      overlay.addEventListener("mousedown", function (e) {
-        drawing = true;
-        startX = e.clientX; startY = e.clientY;
-        selBox.style.left    = startX + "px";
-        selBox.style.top     = startY + "px";
-        selBox.style.width   = "1px";
-        selBox.style.height  = "1px";
-        selBox.style.display = "block";
-      });
-
-      function onMove(e) {
-        if (!drawing) return;
-        var x = Math.min(e.clientX, startX);
-        var y = Math.min(e.clientY, startY);
-        selBox.style.left   = x + "px";
-        selBox.style.top    = y + "px";
-        selBox.style.width  = Math.abs(e.clientX - startX) + "px";
-        selBox.style.height = Math.abs(e.clientY - startY) + "px";
-      }
-
-      function cleanup() {
-        window.removeEventListener("mousemove", onMove);
-        window.removeEventListener("mouseup",   onUp);
-        document.removeEventListener("keydown", escOut);
-        selBox.remove();
-        overlay.remove();
-      }
-
-      function onUp() {
-        if (!drawing) return;
-        drawing = false;
-        var r = selBox.getBoundingClientRect();
-        cleanup();
-        createNote(r.width > 30 && r.height > 30 ? {
-          left:   r.left   + window.scrollX,
-          top:    r.top    + window.scrollY,
-          width:  r.width,
-          height: r.height
-        } : null);
-      }
-
-      function escOut(e) {
-        if (e.key !== "Escape") return;
-        drawing = false;
-        cleanup();
-      }
-
-      window.addEventListener("mousemove", onMove);
-      window.addEventListener("mouseup",   onUp);
-      document.addEventListener("keydown", escOut);
-    });
   }
 
   // Cards lift on press, return on release (music sticky notes + video cards)
