@@ -255,8 +255,8 @@ body[dir="rtl"] .service-card.arrow-swipe h3::before {
 
 .custom-note {
   position: absolute;
-  width: 200px;
-  min-height: 160px;
+  width: 240px;
+  min-height: 360px;
   border-radius: 2px;
   display: flex;
   flex-direction: column;
@@ -321,7 +321,7 @@ body[dir="rtl"] .service-card.arrow-swipe h3::before {
   font-size: 13px;
   color: rgba(0,0,0,0.75);
   cursor: text;
-  min-height: 130px;
+  min-height: 325px;
 }
 
 .reorder-btn {
