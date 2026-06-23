@@ -352,10 +352,13 @@ document.addEventListener("DOMContentLoaded", function () {
     { hue: "290deg", sat: 0.85 }
   ];
 
+  var reorderBtn = document.getElementById("reorder-notes-btn");
+
   document.querySelectorAll('.portfolio-grid[data-category="music"] .portfolio-card').forEach(function (card, idx) {
     var c = NOTE_COLORS[idx] || NOTE_COLORS[0];
     card.style.setProperty("--note-hue", c.hue);
     card.style.setProperty("--note-sat", c.sat);
+    card.dataset.noteIndex = idx;
 
     function placeOnPage(pageLeft, pageTop, w) {
       if (card.dataset.placed === "1") return;
@@ -367,6 +370,7 @@ document.addEventListener("DOMContentLoaded", function () {
       card.style.top      = pageTop  + "px";
       document.body.appendChild(card);
       bringToFront(card);
+      if (reorderBtn) reorderBtn.classList.add("is-visible");
     }
 
 
@@ -424,6 +428,28 @@ document.addEventListener("DOMContentLoaded", function () {
     window.addEventListener("touchend",   end, { passive: true });
     window.addEventListener("touchcancel", end, { passive: true });
   });
+
+  if (reorderBtn) {
+    reorderBtn.addEventListener("click", function () {
+      var musicGrid = document.querySelector('.portfolio-grid[data-category="music"]');
+      if (!musicGrid) return;
+      var cards = Array.from(document.querySelectorAll('.portfolio-card[data-note-index]'));
+      cards.sort(function (a, b) { return parseInt(a.dataset.noteIndex) - parseInt(b.dataset.noteIndex); });
+      cards.forEach(function (card) {
+        if (card.dataset.placed === "1") {
+          card.dataset.placed = "0";
+          card.style.width    = "";
+          card.style.margin   = "";
+          card.style.position = "";
+          card.style.left     = "";
+          card.style.top      = "";
+          card.style.zIndex   = "";
+          musicGrid.appendChild(card);
+        }
+      });
+      reorderBtn.classList.remove("is-visible");
+    });
+  }
 
   // Cards lift on press, return on release (music sticky notes + video cards)
   document.querySelectorAll(".portfolio-card, .video-card").forEach(function (card) {

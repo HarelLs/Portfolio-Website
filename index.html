@@ -107,10 +107,16 @@
     <section id="portfolio" class="portfolio">
       <div class="container">
       <div class="portfolio-folder">
-        <div class="portfolio-filters" role="group" aria-label="סינון תיק עבודות">
-          <button class="filter-btn is-active" data-filter="music" data-i18n="portfolio.filters.music">מוזיקה</button>
-          <button class="filter-btn" data-filter="video" data-i18n="portfolio.filters.video">וידאו</button>
-          <button class="filter-btn" data-filter="photos" data-i18n="portfolio.filters.photos">תמונות</button>
+        <div class="portfolio-folder-topbar">
+          <div class="portfolio-filters" role="group" aria-label="סינון תיק עבודות">
+            <button class="filter-btn is-active" data-filter="music" data-i18n="portfolio.filters.music">מוזיקה</button>
+            <button class="filter-btn" data-filter="video" data-i18n="portfolio.filters.video">וידאו</button>
+            <button class="filter-btn" data-filter="photos" data-i18n="portfolio.filters.photos">תמונות</button>
+          </div>
+          <button id="reorder-notes-btn" class="reorder-btn">
+            <img src="assets/images/ui/refresh.png" alt="" aria-hidden="true" class="reorder-icon" />
+            <span data-i18n="portfolio.reorder">חזרה למקום</span>
+          </button>
         </div>
         <div class="portfolio-inner">
 

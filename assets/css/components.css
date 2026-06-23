@@ -186,14 +186,54 @@ body[dir="rtl"] .service-card:hover h3::after {
 
 .portfolio-folder.is-switching { animation: folderPress 0.3s ease-out; }
 
+.portfolio-folder-topbar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: -4px;
+  z-index: 2;
+}
+
 .portfolio-filters {
   position: relative;
   width: 540px;
   height: 62px;
-  /* flex-start = left in LTR, right in RTL — tabs always hug the correct edge */
   align-self: flex-start;
-  margin-bottom: -4px;
-  z-index: 2;
+}
+
+.reorder-btn {
+  display: none;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.85rem 0.35rem 0.65rem;
+  background: #2a2a40;
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  border-bottom: none;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  margin-bottom: 0;
+  align-self: flex-end;
+}
+
+.reorder-btn.is-visible {
+  display: inline-flex;
+}
+
+.reorder-btn:hover {
+  background: #3a3a58;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.reorder-icon {
+  width: 16px;
+  height: 16px;
+  image-rendering: pixelated;
 }
 
 .filter-btn {
@@ -1056,8 +1096,14 @@ body[dir="rtl"] .service-card:hover h3::after {
   top: -120%;
   width: 180%;
   height: 40%;
-  background: linear-gradient(180deg, transparent 0%, rgba(255,255,255,0.75) 50%, transparent 100%);
-  animation: mail-shine 0.7s ease-in-out forwards;
+  background: repeating-linear-gradient(
+    180deg,
+    rgba(255,255,255,0.85) 0px,
+    rgba(255,255,255,0.85) 5px,
+    transparent 5px,
+    transparent 10px
+  );
+  animation: mail-shine 0.7s steps(10) forwards;
   pointer-events: none;
 }
 
