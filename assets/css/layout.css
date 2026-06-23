@@ -278,3 +278,21 @@ section {
   transform: scale(1.12) translateY(-3px);
   filter: drop-shadow(0 4px 8px rgba(0,0,0,0.5));
 }
+
+.notepad-float-label {
+  display: block;
+  text-align: center;
+  font-family: "Tahoma", "Arial", sans-serif;
+  font-size: 11px;
+  color: #fff;
+  text-shadow:
+    1px  1px 1px #000,
+   -1px -1px 1px #000,
+    1px -1px 1px #000,
+   -1px  1px 1px #000;
+  margin-top: 3px;
+  letter-spacing: 0.03em;
+  user-select: none;
+  -webkit-user-select: none;
+  pointer-events: none;
+}
