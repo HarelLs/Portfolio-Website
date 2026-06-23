@@ -543,7 +543,16 @@ document.addEventListener("DOMContentLoaded", function () {
       document.body.appendChild(overlay);
 
       var selBox = document.createElement("div");
-      selBox.className = "win-select-box";
+      selBox.style.cssText = [
+        "position:fixed",
+        "display:none",
+        "z-index:9000",
+        "pointer-events:none",
+        "box-sizing:border-box",
+        "border:2px solid #fff",
+        "outline:1px solid rgba(0,0,0,0.7)",
+        "background:rgba(120,170,255,0.22)"
+      ].join(";");
       document.body.appendChild(selBox);
 
       var startX = 0, startY = 0, drawing = false;
@@ -551,10 +560,11 @@ document.addEventListener("DOMContentLoaded", function () {
       overlay.addEventListener("mousedown", function (e) {
         drawing = true;
         startX = e.clientX; startY = e.clientY;
-        selBox.style.left   = startX + "px";
-        selBox.style.top    = startY + "px";
-        selBox.style.width  = "0px";
-        selBox.style.height = "0px";
+        selBox.style.left    = startX + "px";
+        selBox.style.top     = startY + "px";
+        selBox.style.width   = "1px";
+        selBox.style.height  = "1px";
+        selBox.style.display = "block";
       });
 
       function onMove(e) {
@@ -567,15 +577,19 @@ document.addEventListener("DOMContentLoaded", function () {
         selBox.style.height = Math.abs(e.clientY - startY) + "px";
       }
 
+      function cleanup() {
+        window.removeEventListener("mousemove", onMove);
+        window.removeEventListener("mouseup",   onUp);
+        document.removeEventListener("keydown", escOut);
+        selBox.remove();
+        overlay.remove();
+      }
+
       function onUp() {
         if (!drawing) return;
         drawing = false;
         var r = selBox.getBoundingClientRect();
-        selBox.remove();
-        overlay.remove();
-        window.removeEventListener("mousemove", onMove);
-        window.removeEventListener("mouseup",   onUp);
-        document.removeEventListener("keydown", escOut);
+        cleanup();
         createNote(r.width > 30 && r.height > 30 ? {
           left:   r.left   + window.scrollX,
           top:    r.top    + window.scrollY,
@@ -584,15 +598,14 @@ document.addEventListener("DOMContentLoaded", function () {
         } : null);
       }
 
-      window.addEventListener("mousemove", onMove);
-      window.addEventListener("mouseup",   onUp);
-
       function escOut(e) {
         if (e.key !== "Escape") return;
-        selBox.remove();
-        overlay.remove();
-        document.removeEventListener("keydown", escOut);
+        drawing = false;
+        cleanup();
       }
+
+      window.addEventListener("mousemove", onMove);
+      window.addEventListener("mouseup",   onUp);
       document.addEventListener("keydown", escOut);
     });
   }
