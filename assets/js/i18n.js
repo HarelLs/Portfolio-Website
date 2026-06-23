@@ -20,7 +20,7 @@
       "nav.langSwitch": "EN",
       "hero.title": "הראל לסניק",
       "hero.subtitle": "מהנדס סאונד, צלם ועורך וידאו",
-      "hero.tagline": "מיקס, מאסטרינג וסאונד דיזיין למשחקי מחשב — מוכן לכל סוג עבודה, בקליבר גבוה.",
+      "hero.tagline": "עושה את כל מה שפה ואפילו קצת יותר<br>אם לא תשלח, איך תקח?",
       "hero.cta": "קבעו שיחה",
       "placeholders.heroImage": "תמונת פרופיל — בקרוב",
       "placeholders.photo": "תמונה בקרוב",
@@ -73,7 +73,7 @@
       "nav.langSwitch": "עברית",
       "hero.title": "Harel Lesnick",
       "hero.subtitle": "Sound Engineer, Photographer & Video Editor",
-      "hero.tagline": "Mixing, mastering and sound design for video games — ready for any job, at a high caliber.",
+      "hero.tagline": "Doing all that is plausible and possible<br>hit clippy up",
       "hero.cta": "Book a call",
       "placeholders.heroImage": "Profile photo — coming soon",
       "placeholders.photo": "Photo coming soon",
@@ -123,7 +123,13 @@
 
     document.querySelectorAll("[data-i18n]").forEach(function (el) {
       var key = el.getAttribute("data-i18n");
-      if (dict[key]) el.textContent = dict[key];
+      if (dict[key]) {
+        if (el.hasAttribute("data-i18n-html")) {
+          el.innerHTML = dict[key];
+        } else {
+          el.textContent = dict[key];
+        }
+      }
     });
 
     document.querySelectorAll("[data-i18n-attr]").forEach(function (el) {
