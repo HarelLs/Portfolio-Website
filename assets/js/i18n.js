@@ -127,7 +127,7 @@
       "portfolio.video.final2": "עבודת סוף קורס",
       "portfolio.video.more": "עוד בערוץ היוטיוב",
       "gallery.title": "תמונות",
-      "gallery.winTitle": "Gallery",
+      "gallery.winTitle": "גלריה",
       "currentProject.winTitle": "current_project.jpg",
       "currentProject.badge": "בתהליך",
       "currentProject.heading": "בעבודה כרגע",

@@ -8,52 +8,96 @@ Final-project landing page for a college course ("מטלת סיום קורס" �
 ## Who Harel is / site content decisions
 - Sound engineer, photographer, and video editor. Site is under his own name (no business name).
 - Services offered: Mixing, Mastering, Sound design for video games.
-- Target audience: potential clients (artists, game devs, content creators) who need these services.
-- Primary CTA: book a call/meeting (WhatsApp + email).
+- Target audience: potential clients (artists, game devs, content creators).
+- Primary CTA: book a call/meeting via email (WhatsApp was removed — no phone number on site).
 - Bilingual: Hebrew (RTL, default) + English (LTR), toggle switches both language and `dir`.
-- Currently producing/mixing a full album for an artist as his college final project — this gets its own "Current Project" section.
-- Music links (DistroKid hyperfollow, auto-link to Spotify/Apple Music/YouTube):
+- Easter egg: spamming the language toggle 10+ times within 2 seconds switches the whole site to badly machine-translated Mandarin (zh mode). One click in zh mode returns to Hebrew. Commit messages hide this feature intentionally.
+- Currently producing/mixing a full album for an artist as his college final project — "Current Project" section.
+- Music links (DistroKid hyperfollow):
   - https://distrokid.com/hyperfollow/harellesnick/----2 (single)
   - https://distrokid.com/hyperfollow/harellesnick/-300 (single)
   - https://distrokid.com/hyperfollow/harellesnick/---3 (solo album)
   - https://distrokid.com/hyperfollow/arl51/iz-514 (electronic album, alias ARL51)
-- Video: YouTube channel https://www.youtube.com/@Harel_Lesnick/videos, embedded videos: i_YLgCMyeo4 (first music video), FI3RQ0E-SA8 and RDNfOr1hkk0 (course final projects).
-- Photo gallery: Harel will supply real photos later — currently placeholders.
+- Video: YouTube https://www.youtube.com/@Harel_Lesnick/videos; embedded: i_YLgCMyeo4 (first music video), FI3RQ0E-SA8 and RDNfOr1hkk0 (course final projects).
+- Photo gallery: real photos are in place (assets/images/photos/01–05.webp/jpg).
 
-## Design direction (validated against real reference sites via Exa search)
-- Dark mode, bold typography — direction from roykafri.com and metroboominshop.com.
-- Portfolio section with category filter (All / Music / Video / Photos) — direction from roykafri.com.
-- Warm, personal tone + embedded media players — direction from venustheory.com (a sound-designer-for-games portfolio, closely matches Harel's own services).
-- "Ben Jordan" reference was dropped — no relevant portfolio site found under that name.
+## Design direction
+- Dark mode, bold pixel typography — direction from roykafri.com and metroboominshop.com.
+- Windows XP aesthetic for interactive elements (property windows, sticky notes, Clippy).
+- Portfolio section with category filter (Music / Video / Photos).
+- Warm, personal tone — direction from venustheory.com.
 
-## Tech stack — and why it's plain HTML/CSS/JS, not Astro
-The original plan (validated via Exa research) was **Astro + Tailwind CSS + TypeScript** — best fit for a static, i18n/RTL, component-based, clean-code portfolio site. That recommendation still stands as the *ideal* choice.
-
-However, the build happened inside a Cowork sandbox with **no network access to the npm registry or github.com** (proxy returns 403/blocked-by-allowlist). Astro could not actually be scaffolded there. The site was built instead as clean, modular vanilla HTML/CSS/JS (no build step), which is also one of the deployment paths the assignment explicitly recommends (GitHub Pages for static HTML/CSS/JS sites).
-
-**If you're reading this in Claude Code on Harel's actual machine**, npm registry access is NOT blocked there — migrating to Astro/Tailwind is a real, viable option now if Harel wants the original ideal setup. Don't assume vanilla HTML is a hard requirement; it was a sandbox workaround, not a deliberate constraint from Harel.
+## Tech stack
+Plain vanilla HTML/CSS/JS, no build step. Originally planned as Astro + Tailwind, but built in a sandboxed environment without npm access. Now developed locally on Harel's machine where npm is reachable — migrating to Astro/Tailwind is a viable option if Harel wants it (ask before doing it, it's a meaningful rework).
 
 ## Current file structure
 ```
 .
-├── index.html                  # full semantic markup, all sections
-├── assets/css/                 # variables / base / layout / components / responsive
-├── assets/js/                  # i18n.js / nav.js / portfolio-filter.js / main.js
-├── assets/images/favicon.svg
-├── 01-site-brief.md            # full 15-point characterization/prompt doc — for assignment submission
-├── README.md                   # repo structure + remaining TODOs + deploy instructions
-└── CLAUDE.md                   # this file
+├── index.html                        # full semantic markup, all sections
+├── assets/
+│   ├── css/                          # variables / base / layout / components / responsive
+│   ├── js/
+│   │   ├── i18n.js                   # he / en / zh dicts + setLanguage / toggle / t() helper
+│   │   ├── nav.js                    # lang-switch spam detection + hamburger
+│   │   ├── main.js                   # XP windows, sticky notes, Clippy/Peter Griffin, EXIF, credits
+│   │   ├── portfolio-filter.js       # category filter tabs
+│   │   ├── gallery.js                # photo gallery drag scroll
+│   │   ├── lightbox.js               # photo lightbox
+│   │   └── parallax.js               # background parallax
+│   ├── fonts/
+│   │   ├── UpheavalPro.ttf           # --font-base (Hebrew/default)
+│   │   └── pixeloid.sans-bold.ttf    # --font-en (English + XP title bars)
+│   ├── sound/
+│   │   └── YOUVE GOT MAIL.mp3
+│   └── images/
+│       ├── backgrounds/              # bg_intro + bg_port (jpg/webp/mobile)
+│       ├── music/                    # album art (jpg + webp)
+│       ├── photos/                   # 01–05 real photos (jpg + webp)
+│       ├── logos/                    # Spotify / Apple Music / YouTube SVGs
+│       ├── folder_svg/               # portfolio folder tab SVGs
+│       └── ui/                       # XP icons, note textures, Clippy GIFs, Peter Griffin
+├── 01-site-brief.md                  # full 15-point characterization doc
+├── README.md
+└── CLAUDE.md
 ```
 
+## Key interactive features
+
+### i18n / language system (i18n.js)
+- Three dicts: `he` (default, RTL), `en` (LTR), `zh` (Easter egg — intentionally bad Mandarin).
+- `applyTranslations(lang)` walks `[data-i18n]` and `[data-i18n-attr]` DOM attributes.
+- `window.App.i18n.t(key)` — runtime key lookup for JS-generated content.
+- Spam Easter egg: 10 clicks within 2s on the lang button → zh mode; button hides for 2s.
+- XP window chrome (title bars, tabs, labels, OK buttons) stays English in he mode — only zh gets Chinese.
+- `gallery.winTitle`: "גלריה" in he, "Gallery" in en, "图库" in zh.
+
+### XP-style windows (main.js)
+- Mixing credits window, Mastering credits window, Photo Properties (EXIF) window — all draggable.
+- Credits data: `MIXING_CREDITS` and `MASTERING_CREDITS` arrays (project / track / artist / role).
+- zh parallel arrays: `ZH_MIXING_CREDITS`, `ZH_MASTERING_CREDITS` with translated names/roles.
+- EXIF field labels come from `getExifFields()` which uses `t()` so they translate in zh.
+- `ROLE_ZH` map translates role strings in zh mode.
+- Help msgbox: Peter Griffin image + random quote from `PETER_QUOTES` (or `ZH_PETER_QUOTES` in zh).
+
+### Fonts in XP windows
+- Window body content (tabs, labels, credits rows, buttons): Tahoma ("MS Sans Serif" fallback) — set on `.xp-dialog`.
+- Window title bar text (`.xp-title`): `var(--font-en)` = Pixeloid Sans Bold — explicitly overrides Tahoma inheritance.
+
+### Sticky notes (main.js)
+- Draggable sticky notes created via notepad icon; can be closed.
+- "You've Got Mail" sound plays on relevant interactions.
+
+### Portfolio filter (portfolio-filter.js)
+- Filters cards by `data-category` attribute (music / video / photos).
+- Reorder button resets note positions.
+
 ## Status
-- Site is built, content-complete, syntax-checked, and all assets verified to load (HTTP 200 via local server test).
-- Local git repo initialized with an initial commit. Harel has since pushed it to GitHub himself (push had to happen from his machine — the Cowork sandbox has no GitHub network access either).
-- No GitHub MCP connector is available/connected in this Cowork account (checked via registry search) — Claude in Cowork cannot push or open PRs on Harel's behalf. Claude Code running locally (this session) CAN, since it uses Harel's real shell, git config, and network.
+- Site is live on GitHub. Developed locally on Harel's machine.
+- All assets load (real photos, backgrounds, music art, UI images, fonts, sound).
+- All three language modes (he / en / zh) fully translated including XP window chrome.
 
 ## Outstanding TODOs
-1. Real WhatsApp number — `index.html` contact section currently links to a placeholder `https://wa.me/972000000000`.
-2. Hero profile photo — currently a placeholder circle in `.hero-media-placeholder`.
-3. Real photos for the gallery — 4 placeholder tiles in the "photos" portfolio category.
-4. Confirm the actual song/album titles in the music portfolio cards (currently generic labels like "Single", "Solo Album" since exact titles weren't provided).
-5. Optional: consider migrating to Astro/Tailwind now that npm is reachable locally (see Tech stack note above) — ask Harel before doing this, it's a meaningful rework, not a small tweak.
-6. Assignment deliverable: Harel also needs to submit the process documentation (tools used, audience, workflow, challenges) per the course's "מטלת סיום קורס" requirements — `01-site-brief.md` covers most of this but the final submission email format wasn't drafted yet.
+1. **Hero profile photo** — still a placeholder circle in `.hero-media-placeholder`.
+2. **Song/album titles** — music cards show generic "Single" / "Solo Album" labels; confirm official titles from DistroKid and update `i18n.js` (all three dicts).
+3. **Optional: Astro/Tailwind migration** — ask Harel first; npm is reachable locally now.
+4. **Assignment submission** — `01-site-brief.md` covers most of the process doc; final submission email format not drafted yet.
