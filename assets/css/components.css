@@ -266,8 +266,8 @@ body[dir="rtl"] .service-card:hover h3::after {
   outline: none;
   resize: none;
   padding: 2px 12px 12px;
-  font-family: var(--font-body);
-  font-size: 0.85rem;
+  font-family: "Lucida Console", "Courier New", monospace;
+  font-size: 13px;
   color: rgba(0,0,0,0.75);
   cursor: text;
   min-height: 130px;
