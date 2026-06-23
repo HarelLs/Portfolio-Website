@@ -786,6 +786,30 @@ document.addEventListener("DOMContentLoaded", function () {
     { project: "אף אחד דמו 6.7.23",  artist: "Harel Lesnick",                      role: "Mastering Engineer", year: "2025", tracks: [] }
   ];
 
+  var ZH_MIXING_CREDITS = [
+    { project: "我不呼吸（专辑）", artist: "哈雷尔·莱斯尼克",                         role: "Mixer & Engineer", year: "2024", tracks: ["介绍", "我不呼吸", "坏掉的", "尖锐和光滑", "\"我以为我成功逃跑了\"", "写作危机", "没有人", "我的轮到什么时候", "我们到达了这里", "总结"] },
+    { project: "IZ 514",          artist: "aRL",                                      role: "Mixer & Producer", year: "2025", tracks: ["2Fr33", "RUN1TUP", "EARS", "NO TIME"] },
+    { project: "300 公里",         artist: "哈雷尔·莱斯尼克",                         role: "Mixer & Engineer", year: "2024", tracks: [] },
+    { project: "再一刻再",         artist: "哈雷尔·莱斯尼克 feat. 情节在哪里",        role: "Mixer & Engineer", year: "2024", tracks: [] },
+    { project: "压力 / 一点光",    artist: "哈雷尔·莱斯尼克",                         role: "Mixer & Engineer", year: "2024", tracks: [] },
+    { project: "我回来了",         artist: "aRL",                                      role: "Mixer & Producer", year: "2024", tracks: [] },
+    { project: "泡沫",             artist: "哈雷尔·莱斯尼克",                         role: "Mixer & Engineer", year: "2025", tracks: [] },
+    { project: "沉思",             artist: "哈雷尔·莱斯尼克",                         role: "Mixer & Engineer", year: "2025", tracks: [] },
+    { project: "没有人 演示 6.7.23", artist: "哈雷尔·莱斯尼克",                       role: "Mixer & Engineer", year: "2025", tracks: [] }
+  ];
+
+  var ZH_MASTERING_CREDITS = [
+    { project: "我不呼吸（专辑）", artist: "哈雷尔·莱斯尼克",                         role: "Mastering Engineer", year: "2024", tracks: ["介绍", "我不呼吸", "坏掉的", "尖锐和光滑", "\"我以为我成功逃跑了\"", "写作危机", "没有人", "我的轮到什么时候", "我们到达了这里", "总结"] },
+    { project: "IZ 514",          artist: "aRL",                                      role: "Mastering Engineer", year: "2025", tracks: ["2Fr33", "RUN1TUP", "EARS", "NO TIME"] },
+    { project: "300 公里",         artist: "哈雷尔·莱斯尼克",                         role: "Mastering Engineer", year: "2024", tracks: [] },
+    { project: "再一刻再",         artist: "哈雷尔·莱斯尼克 feat. 情节在哪里",        role: "Mastering Engineer", year: "2024", tracks: [] },
+    { project: "压力 / 一点光",    artist: "哈雷尔·莱斯尼克",                         role: "Mastering Engineer", year: "2024", tracks: [] },
+    { project: "我回来了",         artist: "aRL",                                      role: "Mastering Engineer", year: "2024", tracks: [] },
+    { project: "泡沫",             artist: "哈雷尔·莱斯尼克",                         role: "Mastering Engineer", year: "2025", tracks: [] },
+    { project: "沉思",             artist: "哈雷尔·莱斯尼克",                         role: "Mastering Engineer", year: "2025", tracks: [] },
+    { project: "没有人 演示 6.7.23", artist: "哈雷尔·莱斯尼克",                       role: "Mastering Engineer", year: "2025", tracks: [] }
+  ];
+
   var mixingWin    = document.getElementById("mixing-credits-window");
   var masteringWin = document.getElementById("mastering-credits-window");
 
@@ -824,7 +848,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function openCreditsWindow(type) {
     var win     = type === "mixing" ? mixingWin : masteringWin;
-    var credits = type === "mixing" ? MIXING_CREDITS : MASTERING_CREDITS;
+    var isZh    = window.App.i18n.current === "zh";
+    var credits = type === "mixing"
+      ? (isZh ? ZH_MIXING_CREDITS : MIXING_CREDITS)
+      : (isZh ? ZH_MASTERING_CREDITS : MASTERING_CREDITS);
     var listEl  = document.getElementById(type + "-list");
     var valueEl = document.getElementById(type + "-value");
     populateCreditsList(listEl, valueEl, credits);
