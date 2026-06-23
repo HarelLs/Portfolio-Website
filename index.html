@@ -261,7 +261,7 @@
   <div class="xp-msgbox" id="xp-help-msg" hidden>
     <div class="xp-titlebar">
       <img class="xp-title-icon" src="assets/images/ui/help-icon.png" alt="" aria-hidden="true" />
-      <span class="xp-title">Help</span>
+      <span class="xp-title" data-i18n="xp.help.title">Help</span>
       <div class="xp-title-btns">
         <button class="xp-title-close" id="xp-help-close" aria-label="Close">&#x2715;</button>
       </div>
@@ -269,12 +269,12 @@
     <div class="xp-msgbox-body">
       <div class="xp-msgbox-icon">&#x2139;</div>
       <div class="xp-msgbox-text">
-        <p>What did you expect to happen?</p>
+        <p data-i18n="xp.help.firstMsg">What did you expect to happen?</p>
       </div>
     </div>
     <div class="xp-divider"></div>
     <div class="xp-footer">
-      <button class="xp-btn" id="xp-help-ok">OK</button>
+      <button class="xp-btn" id="xp-help-ok" data-i18n="xp.ok">OK</button>
     </div>
   </div>
 
@@ -282,17 +282,17 @@
   <div class="xp-window xp-dialog" id="mixing-credits-window" hidden>
     <div class="xp-titlebar" id="mixing-credits-handle">
       <img class="xp-title-icon" src="assets/images/ui/props-icon.png" alt="" aria-hidden="true" style="transform:scale(0.94);" />
-      <span class="xp-title">Mixing Properties</span>
+      <span class="xp-title" data-i18n="xp.mixing.title">Mixing Properties</span>
       <div class="xp-title-btns">
         <button class="xp-btn-help xp-credits-help-btn" aria-label="Help">?</button>
         <button class="xp-title-close" id="mixing-close" aria-label="Close">&#x2715;</button>
       </div>
     </div>
-    <div class="xp-tabs"><span class="xp-tab">Credits</span></div>
+    <div class="xp-tabs"><span class="xp-tab" data-i18n="xp.credits.tab">Credits</span></div>
     <div class="xp-body">
       <div class="xp-group">
-        <span class="xp-group-label">Mixing credits</span>
-        <div class="xp-cols-header"><span>Project:</span><span>Details:</span></div>
+        <span class="xp-group-label" data-i18n="xp.mixing.groupLabel">Mixing credits</span>
+        <div class="xp-cols-header"><span data-i18n="xp.credits.colProject">Project:</span><span data-i18n="xp.credits.colDetails">Details:</span></div>
         <div class="xp-list-row">
           <ul class="xp-list" id="mixing-list"></ul>
           <div class="xp-value" id="mixing-value"></div>
@@ -301,7 +301,7 @@
     </div>
     <div class="xp-divider"></div>
     <div class="xp-footer">
-      <button class="xp-btn" id="mixing-ok">OK</button>
+      <button class="xp-btn" id="mixing-ok" data-i18n="xp.ok">OK</button>
     </div>
   </div>
 
@@ -309,17 +309,17 @@
   <div class="xp-window xp-dialog" id="mastering-credits-window" hidden>
     <div class="xp-titlebar" id="mastering-credits-handle">
       <img class="xp-title-icon" src="assets/images/ui/props-icon.png" alt="" aria-hidden="true" style="transform:scale(0.94);" />
-      <span class="xp-title">Mastering Properties</span>
+      <span class="xp-title" data-i18n="xp.mastering.title">Mastering Properties</span>
       <div class="xp-title-btns">
         <button class="xp-btn-help xp-credits-help-btn" aria-label="Help">?</button>
         <button class="xp-title-close" id="mastering-close" aria-label="Close">&#x2715;</button>
       </div>
     </div>
-    <div class="xp-tabs"><span class="xp-tab">Credits</span></div>
+    <div class="xp-tabs"><span class="xp-tab" data-i18n="xp.credits.tab">Credits</span></div>
     <div class="xp-body">
       <div class="xp-group">
-        <span class="xp-group-label">Mastering credits</span>
-        <div class="xp-cols-header"><span>Project:</span><span>Details:</span></div>
+        <span class="xp-group-label" data-i18n="xp.mastering.groupLabel">Mastering credits</span>
+        <div class="xp-cols-header"><span data-i18n="xp.credits.colProject">Project:</span><span data-i18n="xp.credits.colDetails">Details:</span></div>
         <div class="xp-list-row">
           <ul class="xp-list" id="mastering-list"></ul>
           <div class="xp-value" id="mastering-value"></div>
@@ -328,7 +328,7 @@
     </div>
     <div class="xp-divider"></div>
     <div class="xp-footer">
-      <button class="xp-btn" id="mastering-ok">OK</button>
+      <button class="xp-btn" id="mastering-ok" data-i18n="xp.ok">OK</button>
     </div>
   </div>
 
@@ -336,18 +336,18 @@
   <div class="xp-window xp-dialog" id="exif-props-window" hidden>
     <div class="xp-titlebar" id="exif-props-handle">
       <img class="xp-title-icon" src="assets/images/ui/props-icon.png" alt="" aria-hidden="true" style="transform:scale(0.94);" />
-      <span class="xp-title">Photo Properties</span>
+      <span class="xp-title" data-i18n="xp.photo.title">Photo Properties</span>
       <div class="xp-title-btns">
         <button class="xp-btn-help" id="exif-props-help-btn" aria-label="Help">?</button>
         <button class="xp-title-close" id="exif-close" aria-label="Close">&#x2715;</button>
       </div>
     </div>
-    <div class="xp-tabs"><span class="xp-tab">Settings</span></div>
+    <div class="xp-tabs"><span class="xp-tab" data-i18n="xp.photo.tab">Settings</span></div>
     <div class="xp-body">
       <div class="xp-group">
-        <span class="xp-group-label">Camera information</span>
+        <span class="xp-group-label" data-i18n="xp.photo.groupLabel">Camera information</span>
         <div class="xp-cols-header">
-          <span>Item name:</span><span>Value:</span>
+          <span data-i18n="xp.photo.colItem">Item name:</span><span data-i18n="xp.photo.colValue">Value:</span>
         </div>
         <div class="xp-list-row">
           <ul class="xp-list" id="exif-list"></ul>
@@ -357,7 +357,7 @@
     </div>
     <div class="xp-divider"></div>
     <div class="xp-footer">
-      <button class="xp-btn" id="exif-ok">OK</button>
+      <button class="xp-btn" id="exif-ok" data-i18n="xp.ok">OK</button>
     </div>
   </div>
 

@@ -42,10 +42,13 @@ document.addEventListener("DOMContentLoaded", function () {
   var winZTop      = 2001;
   var cascadeCount = 0;
 
-  var EXIF_FIELDS = [
-    ["Camera", "camera"], ["Lens", "lens"], ["Focal Length", "focal"],
-    ["Aperture", "aperture"], ["Shutter Speed", "shutter"], ["ISO", "iso"], ["Date", "date"]
-  ];
+  function getExifFields() {
+    var t = window.App.i18n.t.bind(window.App.i18n);
+    return [
+      [t("xp.exif.camera"), "camera"], [t("xp.exif.lens"), "lens"], [t("xp.exif.focal"), "focal"],
+      [t("xp.exif.aperture"), "aperture"], [t("xp.exif.shutter"), "shutter"], [t("xp.exif.iso"), "iso"], [t("xp.exif.date"), "date"]
+    ];
+  }
 
   function loadPos(storageKey) {
     try { return JSON.parse(localStorage.getItem("xp-pos-" + storageKey)); } catch(e) { return null; }
@@ -90,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var d = PHOTO_EXIF[key];
     exifList.innerHTML = ""; exifValue.textContent = "";
     if (d) {
-      EXIF_FIELDS.forEach(function(pair) {
+      getExifFields().forEach(function(pair) {
         var li = document.createElement("li");
         li.textContent = pair[0];
         li.addEventListener("click", function() {
@@ -106,8 +109,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       });
     } else {
-      exifList.innerHTML = '<li class="exif-no-data">No data</li>';
-      exifValue.textContent = "No camera metadata available.";
+      exifList.innerHTML = '<li class="exif-no-data">' + window.App.i18n.t("xp.noData") + '</li>';
+      exifValue.textContent = window.App.i18n.t("xp.noMeta");
     }
   }
 
@@ -154,7 +157,7 @@ document.addEventListener("DOMContentLoaded", function () {
     win.innerHTML =
       '<div class="xp-titlebar">' +
         '<img class="xp-title-icon" src="assets/images/ui/gallery-icon.png" alt="" aria-hidden="true" style="width:22px;min-width:22px;object-fit:contain;position:relative;top:-1px;" />' +
-        '<span class="xp-title" data-i18n="gallery.winTitle">' + ((window.App.i18n && window.App.i18n.current === "he") ? "גלריה" : "Gallery") + '</span>' +
+        '<span class="xp-title" data-i18n="gallery.winTitle">' + (window.App.i18n ? window.App.i18n.t("gallery.winTitle") : "Gallery") + '</span>' +
         '<div class="xp-title-btns">' +
           '<button class="xp-btn-help xp-prop-btn" aria-label="Properties">?</button>' +
           '<button class="xp-title-close" aria-label="Close">&#x2715;</button>' +
@@ -239,21 +242,41 @@ document.addEventListener("DOMContentLoaded", function () {
     { q: "Hehehehehe.",                                                                                  d: "Jan 31, 1999" },
     { q: "If I'm not back in ten minutes... wait longer.",                                               d: "May 2, 1999"  }
   ];
+
+  var ZH_PETER_QUOTES = [
+    { q: "你知道什么让我的齿轮磨碎？",                                   d: "2006年1月8日"  },
+    { q: "闭嘴，梅格。",                                                   d: "1999年1月31日" },
+    { q: "神圣的大便！",                                                   d: "1999年1月31日" },
+    { q: "路边的房子。",                                                   d: "1999年5月16日" },
+    { q: "它坚持它自己。",                                                 d: "2005年11月6日" },
+    { q: "哦我的上帝，谁他妈在乎？",                                       d: "2004年3月28日" },
+    { q: "我没有喝醉，我只是因为这么厉害而累了。",                         d: "2010年10月3日" },
+    { q: "他妈的甜！",                                                     d: "2000年9月23日" },
+    { q: "这比我遇到圣诞节未来的鬼那次更糟糕。",                           d: "2003年12月21日" },
+    { q: "我的头会爆炸如果我甚至开始知道我在说什么的话的一个很聪明的主意。", d: "1999年4月11日" },
+    { q: "冷的鞭子。",                                                     d: "2005年11月27日" },
+    { q: "什么两个？",                                                     d: "1999年2月7日"  },
+    { q: "洛伊斯，这是发生在我们家的最糟糕的事情了。",                     d: "1999年1月31日" },
+    { q: "呵呵呵呵呵。",                                                   d: "1999年1月31日" },
+    { q: "如果我十分钟后没回来……再等久一点。",                             d: "1999年5月2日"  }
+  ];
   var lastPeterIdx = -1;
 
   makeWinDraggable(helpMsg, helpMsg.querySelector(".xp-titlebar"), "help");
 
   function showHelpMessage(anchorEl) {
+    var isZh = window.App.i18n.current === "zh";
     if (!helpPressed) {
       helpPressed = true;
       helpMsgIcon.innerHTML = "\u2139";
       helpMsgIcon.style.cssText = "";
-      helpMsgText.textContent = "What did you expect to happen?";
+      helpMsgText.textContent = window.App.i18n.t("xp.help.firstMsg");
     } else {
+      var pool = isZh ? ZH_PETER_QUOTES : PETER_QUOTES;
       var idx;
-      do { idx = Math.floor(Math.random() * PETER_QUOTES.length); } while (idx === lastPeterIdx);
+      do { idx = Math.floor(Math.random() * pool.length); } while (idx === lastPeterIdx);
       lastPeterIdx = idx;
-      var p = PETER_QUOTES[idx];
+      var p = pool[idx];
       helpMsgText.textContent = "\u201c" + p.q + "\u201d - P. Griffin " + p.d;
       helpMsgIcon.innerHTML = '<img src="assets/images/ui/peter-griffin.jpg" alt="Peter Griffin" style="width:60px;height:60px;object-fit:cover;border-radius:4px;" />';
     }
@@ -766,9 +789,16 @@ document.addEventListener("DOMContentLoaded", function () {
   var mixingWin    = document.getElementById("mixing-credits-window");
   var masteringWin = document.getElementById("mastering-credits-window");
 
+  var ROLE_ZH = {
+    "Mixer & Engineer":    "混音师兼工程师",
+    "Mastering Engineer":  "母带工程师",
+    "Mixer & Producer":    "混音师兼制作人"
+  };
+
   function renderCreditDetails(el, item) {
+    var role = (window.App.i18n.current === "zh" && ROLE_ZH[item.role]) ? ROLE_ZH[item.role] : item.role;
     var html = '<div style="font-weight:700;margin-bottom:3px;">' + item.artist + '</div>' +
-               '<div style="margin-bottom:4px;">' + item.role + ', ' + item.year + '</div>';
+               '<div style="margin-bottom:4px;">' + role + ', ' + item.year + '</div>';
     if (item.tracks && item.tracks.length) {
       html += '<ul style="margin:0;padding-left:14px;">';
       item.tracks.forEach(function(t) { html += '<li>' + t + '</li>'; });
