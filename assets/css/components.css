@@ -466,7 +466,7 @@ body[dir="rtl"] .service-card.arrow-swipe h3::before {
 
 .portfolio-card {
   font-family: var(--font-base);
-  flex: 0 1 300px;
+  flex: 0 1 240px;
   display: block;
   border-radius: 2px;
   padding: var(--space-4);
@@ -633,7 +633,7 @@ body[dir="rtl"] .service-card.arrow-swipe h3::before {
 
 .video-card {
   font-family: var(--font-base);
-  flex: 0 1 440px;
+  flex: 0 1 240px;
   background: transparent;
   border: none;
   border-radius: 2px;
@@ -722,7 +722,7 @@ body[dir="rtl"] .service-card.arrow-swipe h3::before {
 
 .portfolio-grid[data-category="photos"] .gallery-track {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
   gap: 4px;
   width: 100%;
