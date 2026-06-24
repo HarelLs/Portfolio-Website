@@ -156,12 +156,11 @@
 }
 
 @media (max-width: 768px) {
-  /* Clippy: center at bottom instead of the desktop right:26rem which is off-screen on mobile */
   .clippy-float {
-    right: auto;
-    top: auto;
-    bottom: 5rem;
-    left: calc(50% - 70px); /* 70px = half of 140px clippy width — avoids transform conflict */
+    right: 0;
+    left: auto;
+    top: 20%;
+    bottom: auto;
   }
 }
 
