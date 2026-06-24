@@ -166,8 +166,9 @@
 
 @media (max-width: 768px) {
   .clippy-float {
+    left: 0;
     right: 0;
-    left: auto;
+    margin-inline: auto;
     top: 20%;
     bottom: auto;
   }

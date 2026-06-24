@@ -727,6 +727,8 @@ document.addEventListener("DOMContentLoaded", function () {
       clippy.style.right     = "auto";
       clippy.style.left      = rect.left + "px";
       clippy.style.top       = rect.top  + "px";
+      // Drop the centering margin now that we position by absolute pixels.
+      clippy.style.marginLeft = "0";
       // Stop animation entirely so inline transform:none takes effect,
       // preventing the frozen transform from double-offsetting the position.
       clippy.style.animation = "none";
@@ -791,6 +793,7 @@ document.addEventListener("DOMContentLoaded", function () {
         clippy.style.top       = (window.innerHeight - clippy.offsetHeight - 16) + "px";
         clippy.style.right     = "auto";
         clippy.style.bottom    = "auto";
+        clippy.style.marginLeft = "0";
         clippy.style.display   = "";
       }, 60000);
     });

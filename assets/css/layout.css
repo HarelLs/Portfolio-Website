@@ -196,7 +196,12 @@ section {
 .clippy-float {
   position: fixed;
   top: 40%;
-  right: 48rem;
+  /* Horizontally center on first launch at any screen width. The idle
+     animation drives `transform`, so we center with left/right:0 +
+     auto inline margins instead of translateX. */
+  left: 0;
+  right: 0;
+  margin-inline: auto;
   transform: translateY(-50%);
   width: 140px;
   z-index: 3000;
