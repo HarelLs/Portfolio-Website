@@ -6,11 +6,17 @@ if (history.scrollRestoration) { history.scrollRestoration = "manual"; }
 window.scrollTo(0, 0);
 
 var PHOTO_EXIF = {
-  "01-opt": null,
+  "01-opt": { camera: "Nikon D3400", lens: "18–55mm f/3.5–5.6", focal: "55mm (82mm)", aperture: "f/5.6", shutter: "1/500s", iso: "ISO 100", date: "May 3, 2026" },
   "02-opt": { camera: "Nikon D3400", lens: "18–55mm f/3.5–5.6", focal: "18mm (27mm)", aperture: "f/4.5", shutter: "1/320s", iso: "ISO 100", date: "Sep 2, 2025" },
   "03-opt": { camera: "Nikon D3400", lens: "18–55mm f/3.5–5.6", focal: "18mm (27mm)", aperture: "f/3.5", shutter: "1/1250s", iso: "ISO 100", date: "Sep 8, 2025" },
   "04-opt": { camera: "Nikon D3400", lens: "18–55mm f/3.5–5.6", focal: "18mm (27mm)", aperture: "f/3.5", shutter: "1/2000s", iso: "ISO 100", date: "Apr 22, 2023" },
-  "05-opt": { camera: "Nikon D3400", lens: "18–55mm f/3.5–5.6", focal: "18mm (27mm)", aperture: "f/5.6", shutter: "1/400s",  iso: "ISO 400", date: "Sep 19, 2025" }
+  "05-opt": { camera: "Nikon D3400", lens: "18–55mm f/3.5–5.6", focal: "18mm (27mm)", aperture: "f/5.6", shutter: "1/400s",  iso: "ISO 400", date: "Sep 19, 2025" },
+  "06-opt": null,
+  "07-opt": { camera: "Nikon D3400", lens: "18–55mm f/3.5–5.6", focal: "36mm (54mm)", aperture: "f/4.8", shutter: "1/250s", iso: "ISO 100", date: "Sep 6, 2025" },
+  "08-opt": { camera: "Fujifilm X-S20", lens: "21mm", focal: "21mm (32mm)", aperture: "f/1.0", shutter: "5s", iso: "ISO 1250", date: "May 15, 2026" },
+  "09-opt": null,
+  "10-opt": null,
+  "11-opt": null
 };
 
 document.addEventListener("DOMContentLoaded", function () {

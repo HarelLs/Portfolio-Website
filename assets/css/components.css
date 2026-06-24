@@ -1084,14 +1084,9 @@ body[dir="rtl"] .service-card.arrow-swipe h3::before {
 }
 .xp-msgbox-text p:last-child { margin-bottom: 0; }
 
-/* 5th photo spans the last 2 columns */
-.portfolio-grid[data-category="photos"] .gallery-track picture:nth-child(5) {
+/* last visible photo spans the remaining columns — class set by gallery.js slideshow */
+.portfolio-grid[data-category="photos"] .gallery-track picture.grid-last {
   grid-column: span 2;
-}
-
-/* hide scroll duplicates */
-.portfolio-grid[data-category="photos"] .gallery-track picture:nth-child(n+6) {
-  display: none;
 }
 
 .photo-placeholder {

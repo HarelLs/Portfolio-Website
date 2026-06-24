@@ -108,4 +108,30 @@
     if (wrapper.closest('.portfolio-grid[data-category="photos"]')) return;
     initGallery(wrapper);
   });
+
+  // Photo grid slideshow: show 5 at a time, cycle every 30s, wrap-around
+  (function () {
+    var track = document.querySelector('.portfolio-grid[data-category="photos"] .gallery-track');
+    if (!track) return;
+    var pics = Array.from(track.querySelectorAll("picture"));
+    if (pics.length <= 5) return;
+
+    var PAGE = 5;
+    var start = 0;
+
+    function showPage() {
+      pics.forEach(function (p) { p.classList.remove("grid-last"); p.style.display = "none"; });
+      for (var i = 0; i < PAGE; i++) {
+        var p = pics[(start + i) % pics.length];
+        p.style.display = "";
+        if (i === PAGE - 1) p.classList.add("grid-last");
+      }
+    }
+
+    showPage();
+    setInterval(function () {
+      start = (start + PAGE) % pics.length;
+      showPage();
+    }, 30000);
+  })();
 })();
