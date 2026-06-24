@@ -70,6 +70,16 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
+  /* disable aspect-ratio on mobile — explicit img heights control slot sizes instead */
+  .portfolio-grid[data-category="photos"] .gallery-track .photo-slot {
+    aspect-ratio: auto;
+  }
+
+  /* 5th slot spans full width on mobile to fill the last row */
+  .portfolio-grid[data-category="photos"] .gallery-track .photo-slot.grid-last {
+    grid-column: span 2;
+  }
+
   .portfolio-grid[data-category="photos"] .gallery-track img {
     height: 140px;
   }

@@ -1082,10 +1082,7 @@ body[dir="rtl"] .service-card.arrow-swipe h3::before {
 }
 .xp-msgbox-text p:last-child { margin-bottom: 0; }
 
-/* last slot in a 3-col grid row spans 2 columns to fill the remainder */
-.portfolio-grid[data-category="photos"] .gallery-track .photo-slot.grid-last {
-  grid-column: span 2;
-}
+/* grid-last only spans on mobile — see responsive.css */
 
 .photo-placeholder {
   aspect-ratio: 4 / 3;
