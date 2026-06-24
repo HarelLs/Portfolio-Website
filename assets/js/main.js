@@ -406,6 +406,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function placeOnPage(pageLeft, pageTop, w) {
       if (card.dataset.placed === "1") return;
+      // Freeze the folder height before pulling this card out of the grid, so
+      // it doesn't collapse on mobile (desktop already locks min-height).
+      var innerEl = document.querySelector(".portfolio-inner");
+      if (innerEl && !innerEl.style.minHeight) {
+        innerEl.style.minHeight = innerEl.offsetHeight + "px";
+      }
       card.dataset.placed = "1";
       card.style.width    = (w || card.offsetWidth) + "px";
       card.style.margin   = "0";
@@ -498,6 +504,10 @@ document.addEventListener("DOMContentLoaded", function () {
       resetCards('.portfolio-card[data-note-index]',  '.portfolio-grid[data-category="music"]', "noteIndex");
       resetCards('.video-card[data-video-index]',     '.portfolio-grid[data-category="video"]',  "videoIndex");
       document.querySelectorAll(".custom-note").forEach(function (n) { n.remove(); });
+      // Release the mobile height freeze set when a card was lifted (desktop
+      // keeps its own measured lock).
+      var innerEl = document.querySelector(".portfolio-inner");
+      if (innerEl && window.innerWidth <= 720) innerEl.style.minHeight = "";
       reorderBtn.classList.remove("is-visible");
     });
   }
@@ -603,6 +613,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function placeOnPage(pageLeft, pageTop, w) {
       if (card.dataset.placed === "1") return;
+      // Freeze the folder height before pulling this card out of the grid, so
+      // it doesn't collapse on mobile (desktop already locks min-height).
+      var innerEl = document.querySelector(".portfolio-inner");
+      if (innerEl && !innerEl.style.minHeight) {
+        innerEl.style.minHeight = innerEl.offsetHeight + "px";
+      }
       card.dataset.placed = "1";
       card.style.width    = (w || card.offsetWidth) + "px";
       card.style.margin   = "0";
@@ -804,7 +820,10 @@ document.addEventListener("DOMContentLoaded", function () {
             }, 150);
           }
         }, { threshold: 0.6 });
-        observer.observe(contact);
+        // Observe the (small) mail button, not the tall contact section — on
+        // short mobile viewports the section never reaches a 0.6 ratio, so the
+        // jump/shine animation would never fire.
+        observer.observe(mailBtn);
       }
     });
   }

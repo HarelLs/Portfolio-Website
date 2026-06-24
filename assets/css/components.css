@@ -82,6 +82,11 @@
   text-align: left;
   max-height: 260px;
   overflow-y: auto;
+  /* Keep touch scrolling inside the list — don't chain to the page when the
+     user reaches the top/bottom of the credits (mobile scroll-chaining). */
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
 }
 .cmd-output[hidden] { display: none; }
 
@@ -241,6 +246,15 @@
   padding: var(--space-3);
   text-align: center;
   cursor: default;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Grid cells stretch to equal height, so pinning the action to the bottom
+   keeps all three buttons aligned even when a description wraps to 2 lines. */
+.service-card > .cmd-wrap,
+.service-card > .cmd-btn {
+  margin-top: auto;
 }
 
 @keyframes service-streak-text {
@@ -472,10 +486,10 @@
   color: rgba(255,255,255,0.4);
 }
 
-/* tabs fixed positions + graduated depth shading: front = lightest, back = darkest */
-.filter-btn:nth-child(1) { inset-inline-start: 0;     background: #3c3c58; }
+/* tabs fixed positions + graduated depth shading: Music darkest → Photos brightest */
+.filter-btn:nth-child(1) { inset-inline-start: 0;     background: #1e1e30; }
 .filter-btn:nth-child(2) { inset-inline-start: 185px; background: #2a2a40; }
-.filter-btn:nth-child(3) { inset-inline-start: 370px; background: #1e1e30; }
+.filter-btn:nth-child(3) { inset-inline-start: 370px; background: #3c3c58; }
 
 .filter-btn.is-active {
   background: var(--color-surface);
@@ -577,6 +591,12 @@
 .portfolio-card picture { display: block; }
 
 .portfolio-card img {
+  /* Reserve square space up-front so lazy-loaded covers don't shift the page
+     as they load — otherwise the growth retargets in-flight smooth scrolls
+     (e.g. the Clippy → contact jump never reaches the bottom). */
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
 

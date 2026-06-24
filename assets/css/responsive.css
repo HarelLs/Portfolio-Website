@@ -117,7 +117,9 @@
   }
 
   body[dir="ltr"] .main-nav a { font-size: var(--fs-sm); }
-  body[dir="rtl"] .main-nav a { font-size: var(--fs-xl); }
+  /* UpheavalPro renders larger per-px than Pixeloid, so size the Hebrew links
+     down to visually match the English menu's footprint. */
+  body[dir="rtl"] .main-nav a { font-size: 1.375rem; }
 
   .services-grid { grid-template-columns: 1fr; }
   .portfolio-grid[data-category="music"] .portfolio-card { flex: 0 0 200px; max-width: 200px; }
