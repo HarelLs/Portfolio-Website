@@ -75,14 +75,23 @@
           <article class="service-card">
             <h3><span data-i18n="services.mix.title">מיקסינג</span></h3>
             <p data-i18n="services.mix.desc">לסינגלים ואלבומים, כל ז׳אנר כל מוד</p>
+            <div class="cmd-wrap">
+              <button class="cmd-btn" id="mix-credits-btn">&gt; show_credits<span class="cmd-cursor">_</span></button>
+              <div class="cmd-output" id="mix-output" hidden></div>
+            </div>
           </article>
           <article class="service-card">
             <h3><span data-i18n="services.sounddesign.title">סאונד למשחקי מחשב</span></h3>
             <p data-i18n="services.sounddesign.desc">אפקטים, אטמוספרות ומוזיקה</p>
+            <button class="cmd-btn" id="sounddesign-btn">&gt; see_my_work<span class="cmd-cursor">_</span></button>
           </article>
           <article class="service-card">
             <h3><span data-i18n="services.master.title">מאסטרינג</span></h3>
             <p data-i18n="services.master.desc">פינש עם צבע אקרילי, סטרילי ורועש בקטע מכבד</p>
+            <div class="cmd-wrap">
+              <button class="cmd-btn" id="master-credits-btn">&gt; show_credits<span class="cmd-cursor">_</span></button>
+              <div class="cmd-output" id="master-output" hidden></div>
+            </div>
           </article>
         </div>
       </div>
@@ -278,60 +287,6 @@
     <div class="xp-divider"></div>
     <div class="xp-footer">
       <button class="xp-btn" id="xp-help-ok" data-i18n="xp.ok">OK</button>
-    </div>
-  </div>
-
-  <!-- Mixing Credits window -->
-  <div class="xp-window xp-dialog" id="mixing-credits-window" hidden>
-    <div class="xp-titlebar" id="mixing-credits-handle">
-      <img class="xp-title-icon" src="assets/images/ui/props-icon.png" alt="" aria-hidden="true" style="transform:scale(0.94);" />
-      <span class="xp-title" data-i18n="xp.mixing.title">Mixing Properties</span>
-      <div class="xp-title-btns">
-        <button class="xp-btn-help xp-credits-help-btn" aria-label="Help">?</button>
-        <button class="xp-title-close" id="mixing-close" aria-label="Close">&#x2715;</button>
-      </div>
-    </div>
-    <div class="xp-tabs"><span class="xp-tab" data-i18n="xp.credits.tab">Credits</span></div>
-    <div class="xp-body">
-      <div class="xp-group">
-        <span class="xp-group-label" data-i18n="xp.mixing.groupLabel">Mixing credits</span>
-        <div class="xp-cols-header"><span data-i18n="xp.credits.colProject">Project:</span><span data-i18n="xp.credits.colDetails">Details:</span></div>
-        <div class="xp-list-row">
-          <ul class="xp-list" id="mixing-list"></ul>
-          <div class="xp-value" id="mixing-value"></div>
-        </div>
-      </div>
-    </div>
-    <div class="xp-divider"></div>
-    <div class="xp-footer">
-      <button class="xp-btn" id="mixing-ok" data-i18n="xp.ok">OK</button>
-    </div>
-  </div>
-
-  <!-- Mastering Credits window -->
-  <div class="xp-window xp-dialog" id="mastering-credits-window" hidden>
-    <div class="xp-titlebar" id="mastering-credits-handle">
-      <img class="xp-title-icon" src="assets/images/ui/props-icon.png" alt="" aria-hidden="true" style="transform:scale(0.94);" />
-      <span class="xp-title" data-i18n="xp.mastering.title">Mastering Properties</span>
-      <div class="xp-title-btns">
-        <button class="xp-btn-help xp-credits-help-btn" aria-label="Help">?</button>
-        <button class="xp-title-close" id="mastering-close" aria-label="Close">&#x2715;</button>
-      </div>
-    </div>
-    <div class="xp-tabs"><span class="xp-tab" data-i18n="xp.credits.tab">Credits</span></div>
-    <div class="xp-body">
-      <div class="xp-group">
-        <span class="xp-group-label" data-i18n="xp.mastering.groupLabel">Mastering credits</span>
-        <div class="xp-cols-header"><span data-i18n="xp.credits.colProject">Project:</span><span data-i18n="xp.credits.colDetails">Details:</span></div>
-        <div class="xp-list-row">
-          <ul class="xp-list" id="mastering-list"></ul>
-          <div class="xp-value" id="mastering-value"></div>
-        </div>
-      </div>
-    </div>
-    <div class="xp-divider"></div>
-    <div class="xp-footer">
-      <button class="xp-btn" id="mastering-ok" data-i18n="xp.ok">OK</button>
     </div>
   </div>
 

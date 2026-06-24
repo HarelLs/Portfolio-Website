@@ -700,13 +700,15 @@ document.addEventListener("DOMContentLoaded", function () {
     var dragStartY  = 0;
 
     function dragStart(clientX, clientY) {
+      // Read visual position BEFORE stopping animation (includes current transform offset)
       var rect = clippy.getBoundingClientRect();
-      // switch from bottom/right to top/left so we can position freely
-      clippy.style.bottom = "auto";
-      clippy.style.right  = "auto";
-      clippy.style.left   = rect.left + "px";
-      clippy.style.top    = rect.top  + "px";
-      clippy.style.animationPlayState = "paused";
+      clippy.style.bottom    = "auto";
+      clippy.style.right     = "auto";
+      clippy.style.left      = rect.left + "px";
+      clippy.style.top       = rect.top  + "px";
+      // Stop animation entirely so inline transform:none takes effect,
+      // preventing the frozen transform from double-offsetting the position.
+      clippy.style.animation = "none";
       dragOffsetX = clientX - rect.left;
       dragOffsetY = clientY - rect.top;
       dragStartX  = clientX;
@@ -728,7 +730,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function dragEnd() {
       if (!isDragging) return;
       isDragging = false;
-      clippy.style.animationPlayState = "";
+      clippy.style.animation = "";  // restore idle float animation
       document.body.style.cursor = "";
     }
 
@@ -850,109 +852,132 @@ document.addEventListener("DOMContentLoaded", function () {
     { project: "没有人 演示 6.7.23", artist: "哈雷尔·莱斯尼克",                       role: "Mastering Engineer", year: "2025", tracks: [] }
   ];
 
-  var mixingWin    = document.getElementById("mixing-credits-window");
-  var masteringWin = document.getElementById("mastering-credits-window");
-
-  var ROLE_ZH = {
-    "Mixer & Engineer":    "混音师兼工程师",
-    "Mastering Engineer":  "母带工程师",
-    "Mixer & Producer":    "混音师兼制作人"
+  // ── Inline CMD credits list ──
+  var CREDIT_LINKS = {
+    "אני לא נושם (אלבום)": "https://distrokid.com/hyperfollow/harellesnick/---3",
+    "我不呼吸（专辑）":      "https://distrokid.com/hyperfollow/harellesnick/---3",
+    "IZ 514":              "https://distrokid.com/hyperfollow/arl51/iz-514",
+    "300 ק״מ":             "https://distrokid.com/hyperfollow/harellesnick/-300",
+    "300 公里":             "https://distrokid.com/hyperfollow/harellesnick/-300",
+    "עוד רגע עוד":         "https://distrokid.com/hyperfollow/harellesnick/---feat-wheres-the-plot",
+    "再一刻再":              "https://distrokid.com/hyperfollow/harellesnick/---feat-wheres-the-plot",
+    "לחצים / קצת אור":     "https://distrokid.com/hyperfollow/harellesnick/---",
+    "压力 / 一点光":         "https://distrokid.com/hyperfollow/harellesnick/---",
+    "I'M BACK":            "https://distrokid.com/hyperfollow/arl51/im-back",
+    "我回来了":              "https://distrokid.com/hyperfollow/arl51/im-back",
+    "Froth":               "https://distrokid.com/hyperfollow/arl51/froth",
+    "泡沫":                 "https://distrokid.com/hyperfollow/arl51/froth",
+    "Pondering":           "https://distrokid.com/hyperfollow/arl51/pondering",
+    "沉思":                 "https://distrokid.com/hyperfollow/arl51/pondering",
+    "אף אחד דמו 6.7.23":  "https://distrokid.com/hyperfollow/harellesnick/--6723---",
+    "没有人 演示 6.7.23":   "https://distrokid.com/hyperfollow/harellesnick/--6723---"
   };
 
-  function renderCreditDetails(el, item) {
-    var role = (window.App.i18n.current === "zh" && ROLE_ZH[item.role]) ? ROLE_ZH[item.role] : item.role;
-    var html = '<div style="font-weight:700;margin-bottom:3px;">' + item.artist + '</div>' +
-               '<div style="margin-bottom:4px;">' + role + ', ' + item.year + '</div>';
-    if (item.tracks && item.tracks.length) {
-      html += '<ul style="margin:0;padding-left:14px;">';
-      item.tracks.forEach(function(t) { html += '<li>' + t + '</li>'; });
-      html += '</ul>';
-    }
-    el.innerHTML = html;
-  }
+  function buildCmdOutput(outputEl, credits) {
+    outputEl.innerHTML = "";
+    var sorted = credits.slice().sort(function(a, b) {
+      return parseInt(b.year) - parseInt(a.year);
+    });
+    sorted.forEach(function(item) {
+      var hasTracks = item.tracks && item.tracks.length > 0;
+      var link = CREDIT_LINKS[item.project];
 
-  function populateCreditsList(listEl, valueEl, credits) {
-    listEl.innerHTML = ""; valueEl.innerHTML = "";
-    credits.forEach(function(item, i) {
-      var li = document.createElement("li");
-      li.textContent = item.project;
-      li.addEventListener("click", function() {
-        listEl.querySelectorAll("li").forEach(function(el) { el.classList.remove("is-selected"); });
-        li.classList.add("is-selected");
-        renderCreditDetails(valueEl, item);
-      });
-      listEl.appendChild(li);
-      if (i === 0) { li.classList.add("is-selected"); renderCreditDetails(valueEl, item); }
+      var entry = document.createElement("div");
+      entry.className = "cmd-entry";
+
+      var content = document.createElement("div");
+      content.className = "cmd-entry-content";
+
+      var header = document.createElement("div");
+      header.className = "cmd-entry-header" + (hasTracks ? " has-tracks" : "");
+
+      var name = document.createElement("span");
+      name.className = "cmd-name" + (link ? " cmd-link" : "");
+      name.textContent = item.project;
+      header.appendChild(name);
+      content.appendChild(header);
+
+      var meta = document.createElement("div");
+      meta.className = "cmd-meta";
+      meta.textContent = item.artist + " · " + item.year + " · " + item.role;
+      content.appendChild(meta);
+
+      if (hasTracks) {
+        var tracks = document.createElement("div");
+        tracks.className = "cmd-tracks";
+        tracks.hidden = true;
+        item.tracks.forEach(function(t) {
+          var tl = document.createElement("div");
+          tl.className = "cmd-track";
+          tl.textContent = "└ " + t;
+          tracks.appendChild(tl);
+        });
+        content.appendChild(tracks);
+        header.addEventListener("click", function(e) {
+          e.stopPropagation();
+          tracks.hidden = !tracks.hidden;
+        });
+      }
+
+      if (link) {
+        entry.style.cursor = "pointer";
+        entry.addEventListener("click", function() {
+          window.open(link, "_blank", "noopener,noreferrer");
+        });
+      }
+
+      entry.appendChild(content);
+      outputEl.appendChild(entry);
     });
   }
 
-  function openCreditsWindow(type) {
-    var win     = type === "mixing" ? mixingWin : masteringWin;
-    var isZh    = window.App.i18n.current === "zh";
+  function closeCmdOutput(outputEl) {
+    var btn = outputEl.previousElementSibling;
+    outputEl.hidden = true;
+    if (btn) { btn.style.borderRadius = ""; btn.style.borderBottom = ""; }
+    if (outputEl._outsideHandler) {
+      document.removeEventListener("click", outputEl._outsideHandler);
+      outputEl._outsideHandler = null;
+    }
+  }
+
+  function toggleCmdCredits(outputEl, type) {
+    var btn = outputEl.previousElementSibling;
+    if (!outputEl.hidden) { closeCmdOutput(outputEl); return; }
+
+    var isZh = window.App.i18n.current === "zh";
     var credits = type === "mixing"
       ? (isZh ? ZH_MIXING_CREDITS : MIXING_CREDITS)
       : (isZh ? ZH_MASTERING_CREDITS : MASTERING_CREDITS);
-    var listEl  = document.getElementById(type + "-list");
-    var valueEl = document.getElementById(type + "-value");
-    populateCreditsList(listEl, valueEl, credits);
-    if (win.hidden) {
-      var posKey = type + "-credits";
-      var saved  = loadPos(posKey);
-      if (saved) {
-        win.style.left = saved.left + "px";
-        win.style.top  = saved.top  + "px";
-      } else {
-        win.style.left = Math.max(0, window.innerWidth  / 2 - 170) + "px";
-        win.style.top  = Math.max(0, window.innerHeight / 2 - 180) + "px";
+    buildCmdOutput(outputEl, credits);
+    outputEl.hidden = false;
+    if (btn) { btn.style.borderRadius = "2px 2px 0 0"; btn.style.borderBottom = "none"; }
+
+    outputEl._outsideHandler = function(e) {
+      if (!outputEl.contains(e.target) && (!btn || !btn.contains(e.target))) {
+        closeCmdOutput(outputEl);
       }
-      win.hidden = false;
-    }
-    bringToFront(win);
-  }
-
-  makeWinDraggable(mixingWin,    document.getElementById("mixing-credits-handle"),    "mixing-credits");
-  makeWinDraggable(masteringWin, document.getElementById("mastering-credits-handle"), "mastering-credits");
-
-  document.getElementById("mixing-close").addEventListener("click",    function() { mixingWin.hidden    = true; });
-  document.getElementById("mixing-ok").addEventListener("click",       function() { mixingWin.hidden    = true; });
-  document.getElementById("mastering-close").addEventListener("click", function() { masteringWin.hidden = true; });
-  document.getElementById("mastering-ok").addEventListener("click",    function() { masteringWin.hidden = true; });
-
-  document.querySelectorAll(".xp-credits-help-btn").forEach(function(btn) {
-    btn.addEventListener("click", function(e) { e.stopPropagation(); showHelpMessage(e.currentTarget); });
-  });
-
-  // ── Service card click: arrow swipe + text fade then action ──
-  function actOnCard(card, action) {
-    card.classList.add("text-out");
+    };
     setTimeout(function() {
-      action();
-      card.classList.remove("text-out");
-    }, 280);
+      document.addEventListener("click", outputEl._outsideHandler);
+    }, 0);
   }
 
-  document.querySelectorAll(".service-card").forEach(function(card) {
-    var h3     = card.querySelector("h3");
-    var keyEl  = h3 && (h3.querySelector("[data-i18n]") || h3);
-    var key    = keyEl ? keyEl.getAttribute("data-i18n") : "";
-    card.addEventListener("click", function() {
-      card.classList.remove("arrow-swipe");
-      void card.offsetWidth;
-      card.classList.add("arrow-swipe");
-      setTimeout(function() { card.classList.remove("arrow-swipe"); }, 600);
-      if (key === "services.mix.title") {
-        actOnCard(card, function() { openCreditsWindow("mixing"); });
-      } else if (key === "services.master.title") {
-        actOnCard(card, function() { openCreditsWindow("mastering"); });
-      } else if (key === "services.sounddesign.title") {
-        actOnCard(card, function() {
-          var videoBtn = document.querySelector('.filter-btn[data-filter="video"]');
-          if (videoBtn) videoBtn.click();
-          var portfolio = document.getElementById("portfolio");
-          if (portfolio) portfolio.scrollIntoView({ behavior: "smooth" });
-        });
-      }
-    });
+  // ── Service action buttons ──
+  document.getElementById("mix-credits-btn").addEventListener("click", function(e) {
+    e.stopPropagation();
+    toggleCmdCredits(document.getElementById("mix-output"), "mixing");
+  });
+  document.getElementById("master-credits-btn").addEventListener("click", function(e) {
+    e.stopPropagation();
+    toggleCmdCredits(document.getElementById("master-output"), "mastering");
+  });
+  document.getElementById("sounddesign-btn").addEventListener("click", function(e) {
+    e.stopPropagation();
+    var videoBtn = document.querySelector('.filter-btn[data-filter="video"]');
+    if (videoBtn) videoBtn.click();
+    var portfolio = document.getElementById("portfolio");
+    if (portfolio) portfolio.scrollIntoView({ behavior: "smooth" });
   });
 
   // Bing Easter egg: random placement in zh mode

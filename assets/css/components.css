@@ -25,10 +25,127 @@
 
 .btn-secondary:hover { border-color: var(--color-accent); transform: translateY(-2px); }
 
+/* ---------- Command-prompt service buttons ---------- */
+@keyframes cmd-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+.cmd-cursor {
+  animation: cmd-blink 1s step-end infinite;
+}
+
+.cmd-btn {
+  display: block;
+  width: 100%;
+  padding: 0.45rem 0.75rem;
+  background: #0c0c0c;
+  border: 1px solid #3a3a3a;
+  border-radius: 2px;
+  color: #c8c8c8;
+  font-family: "Lucida Console", "Courier New", monospace;
+  font-size: 0.72rem;
+  text-align: left;
+  cursor: pointer;
+  letter-spacing: 0.03em;
+  direction: ltr;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.cmd-btn:hover {
+  color: #00e000;
+  border-color: #00b300;
+}
+.cmd-btn:active { background: #111; }
+
+/* CMD wrap — anchor for the absolutely-positioned output */
+.cmd-wrap {
+  position: relative;
+  margin-top: var(--space-2);
+}
+
+/* CMD output (floats over content below, doesn't expand the hero) */
+.cmd-output {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  background: #111;
+  border: 1px solid #444;
+  border-top: none;
+  border-radius: 0 0 2px 2px;
+  padding: 4px 0;
+  font-family: "Lucida Console", "Courier New", monospace;
+  font-size: 0.78rem;
+  color: #d8d8d8;
+  direction: ltr;
+  text-align: left;
+  max-height: 260px;
+  overflow-y: auto;
+}
+.cmd-output[hidden] { display: none; }
+
+.cmd-entry {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 6px 10px;
+  border-bottom: 1px solid #222;
+}
+.cmd-entry:last-child { border-bottom: none; }
+
+.cmd-entry-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.cmd-entry-header {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  line-height: 1.4;
+}
+.cmd-entry-header.has-tracks { cursor: pointer; }
+.cmd-entry-header.has-tracks:hover .cmd-name { color: #00e000; }
+
+.cmd-name {
+  color: #fff;
+  word-break: break-word;
+  position: relative;
+}
+.cmd-name::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: #00cc00;
+  transition: width 0.22s ease;
+}
+.cmd-entry:hover .cmd-name::after { width: 100%; }
+
+.cmd-meta {
+  color: #999;
+  font-size: 0.72rem;
+  line-height: 1.5;
+}
+
+.cmd-tracks { padding-left: 15px; }
+
+.cmd-track {
+  color: #aaa;
+  font-size: 0.72rem;
+  line-height: 1.6;
+}
+
+.cmd-entry:hover .cmd-link {
+  color: #00e000;
+}
+
 /* ---------- Hero/Services wrapper ---------- */
 .hero-services-wrapper {
   position: relative;
-  overflow: hidden;
 }
 
 /* Background image on pseudo-element — avoids iOS Safari fixed-attachment positioning bug */
@@ -123,7 +240,7 @@
 .service-card {
   padding: var(--space-3);
   text-align: center;
-  cursor: pointer;
+  cursor: default;
 }
 
 @keyframes service-streak-text {
@@ -131,15 +248,6 @@
   60% { background-position: 0% 120%; animation-timing-function: steps(8, end); }
   80% { background-position: 0% -10%; animation-timing-function: step-start; }
   100%{ background-position: 0% -10%; }
-}
-
-@keyframes service-text-out {
-  from { opacity: 1; }
-  to   { opacity: 0; }
-}
-.service-card.text-out h3,
-.service-card.text-out p {
-  animation: service-text-out 0.25s ease forwards;
 }
 
 .service-card h3 {
@@ -182,63 +290,6 @@
 .service-card.arrow-swipe h3 span {
   animation-name: none;
   background-position: 0% 120%;
-}
-
-/* Static arrow — inline, sits next to the text on hover */
-body[dir="ltr"] .service-card h3::before {
-  content: "> ";
-  color: transparent;
-  font-family: var(--font-base);
-  vertical-align: middle;
-  transition: color 0.15s ease;
-}
-body[dir="ltr"] .service-card:hover h3::before { color: var(--color-accent); }
-
-body[dir="rtl"] .service-card h3::after {
-  content: " <";
-  color: transparent;
-  font-family: var(--font-base);
-  vertical-align: middle;
-  transition: color 0.15s ease;
-}
-body[dir="rtl"] .service-card:hover h3::after { color: var(--color-accent); }
-
-/* Swipe arrow — absolute, animates on click/touch */
-body[dir="ltr"] .service-card h3::after {
-  content: ">";
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%) translateX(-2em);
-  color: var(--color-accent);
-  font-family: var(--font-base);
-  pointer-events: none;
-}
-body[dir="rtl"] .service-card h3::before {
-  content: "<";
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%) translateX(2em);
-  color: var(--color-accent);
-  font-family: var(--font-base);
-  pointer-events: none;
-}
-
-body[dir="ltr"] .service-card.arrow-swipe h3::after {
-  animation: arrow-swipe-ltr 0.55s ease-in-out;
-}
-body[dir="rtl"] .service-card.arrow-swipe h3::before {
-  animation: arrow-swipe-rtl 0.55s ease-in-out;
-}
-
-@keyframes arrow-swipe-ltr {
-  from { transform: translateY(-50%) translateX(-2em); }
-  to   { transform: translateY(-50%) translateX(30em); }
-}
-@keyframes arrow-swipe-rtl {
-  from { transform: translateY(-50%) translateX(2em); }
-  to   { transform: translateY(-50%) translateX(-30em); }
 }
 
 
