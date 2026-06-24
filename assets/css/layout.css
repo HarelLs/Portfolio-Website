@@ -195,8 +195,9 @@ section {
 
 .clippy-float {
   position: fixed;
-  bottom: 2rem;
-  right: 1rem;
+  top: 40%;
+  right: 26rem;
+  transform: translateY(-50%);
   width: 140px;
   z-index: 3000;
   cursor: grab;
@@ -307,6 +308,48 @@ html[lang="zh"] .clippy-float.show-a .clippy-hover-zh { opacity: 1; }
   border-bottom: none;
 }
 html[lang="zh"] .clippy-float.show-a .clippy-speech-zh { display: block; }
+
+.clippy-speech-hint {
+  display: none;
+  position: absolute;
+  bottom: calc(100% + 12px);
+  right: 12px;
+  width: 120px;
+  background: #ffffc0;
+  border: 1px solid #000;
+  border-radius: 5px;
+  padding: 8px 10px;
+  font-family: Tahoma, "MS Sans Serif", sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 1.4;
+  color: #000;
+  direction: ltr;
+  text-align: center;
+  pointer-events: none;
+  z-index: 1;
+  box-shadow: 2px 2px 0 rgba(0,0,0,0.18);
+}
+.clippy-speech-hint::before {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  right: 22px;
+  border: 9px solid transparent;
+  border-top-color: #000;
+  border-bottom: none;
+}
+.clippy-speech-hint::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  right: 23px;
+  border: 8px solid transparent;
+  border-top-color: #ffffc0;
+  border-bottom: none;
+}
+.clippy-float.show-hint .clippy-speech-hint { display: block; }
+html[lang="zh"] .clippy-float .clippy-speech-hint { display: none !important; }
 
 /* ---------- Bing (zh Easter egg) ---------- */
 #bing-float {

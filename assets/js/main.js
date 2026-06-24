@@ -672,16 +672,32 @@ document.addEventListener("DOMContentLoaded", function () {
     // anchor to left/top immediately so RTL↔LTR toggle doesn't shift position
     (function () {
       var rect = clippy.getBoundingClientRect();
-      clippy.style.right  = "auto";
-      clippy.style.bottom = "auto";
-      clippy.style.left   = rect.left + "px";
-      clippy.style.top    = rect.top  + "px";
+      clippy.style.right     = "auto";
+      clippy.style.bottom    = "auto";
+      clippy.style.transform = "none";
+      clippy.style.left      = rect.left + "px";
+      clippy.style.top       = rect.top  + "px";
     })();
+
+    // Hint bubble: show for 10s, hide, wait 90s cooldown, repeat
+    (function scheduleHint(delay) {
+      setTimeout(function () {
+        if (clippy.style.display === "none") { scheduleHint(90000); return; }
+        clippy.classList.add("show-hint");
+        setTimeout(function () {
+          clippy.classList.remove("show-hint");
+          scheduleHint(90000);
+        }, 10000);
+      }, delay);
+    }(10000));
+    clippy.addEventListener("click", function () { clippy.classList.remove("show-hint"); }, { capture: true });
 
     var isDragging  = false;
     var hasDragged  = false;
     var dragOffsetX = 0;
     var dragOffsetY = 0;
+    var dragStartX  = 0;
+    var dragStartY  = 0;
 
     function dragStart(clientX, clientY) {
       var rect = clippy.getBoundingClientRect();
@@ -693,6 +709,8 @@ document.addEventListener("DOMContentLoaded", function () {
       clippy.style.animationPlayState = "paused";
       dragOffsetX = clientX - rect.left;
       dragOffsetY = clientY - rect.top;
+      dragStartX  = clientX;
+      dragStartY  = clientY;
       isDragging  = true;
       hasDragged  = false;
       document.body.style.cursor = "grabbing";
@@ -700,7 +718,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function dragMove(clientX, clientY) {
       if (!isDragging) return;
-      hasDragged = true;
+      if (Math.abs(clientX - dragStartX) > 5 || Math.abs(clientY - dragStartY) > 5) hasDragged = true;
       var x = Math.max(0, Math.min(clientX - dragOffsetX, window.innerWidth  - clippy.offsetWidth));
       var y = Math.max(0, Math.min(clientY - dragOffsetY, window.innerHeight - clippy.offsetHeight));
       clippy.style.left = x + "px";
@@ -717,7 +735,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // mouse
     clippy.addEventListener("mousedown", function (e) {
       if (e.target.closest(".clippy-close")) return;
-      e.preventDefault();
       dragStart(e.clientX, e.clientY);
     });
     window.addEventListener("mousemove", function (e) { dragMove(e.clientX, e.clientY); });
@@ -744,6 +761,14 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("clippy-close").addEventListener("click", function (e) {
       e.stopPropagation();
       clippy.style.display = "none";
+      setTimeout(function () {
+        clippy.style.transform = "none";
+        clippy.style.left      = "1rem";
+        clippy.style.top       = (window.innerHeight - clippy.offsetHeight - 16) + "px";
+        clippy.style.right     = "auto";
+        clippy.style.bottom    = "auto";
+        clippy.style.display   = "";
+      }, 60000);
     });
 
     // click-to-contact (only if not a drag)
@@ -757,11 +782,16 @@ document.addEventListener("DOMContentLoaded", function () {
           if (entries[0].isIntersecting) {
             obs.disconnect();
             setTimeout(function () {
-              mailBtn.classList.remove("shine-active");
+              mailBtn.classList.remove("shine-active", "jump-active");
               void mailBtn.offsetWidth;
-              mailBtn.classList.add("shine-active");
+              mailBtn.classList.add("jump-active");
               mailBtn.addEventListener("animationend", function () {
-                mailBtn.classList.remove("shine-active");
+                mailBtn.classList.remove("jump-active");
+                void mailBtn.offsetWidth;
+                mailBtn.classList.add("shine-active");
+                mailBtn.addEventListener("animationend", function () {
+                  mailBtn.classList.remove("shine-active");
+                }, { once: true });
               }, { once: true });
             }, 150);
           }
