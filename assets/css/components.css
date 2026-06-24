@@ -466,7 +466,7 @@ body[dir="rtl"] .service-card.arrow-swipe h3::before {
 
 .portfolio-card {
   font-family: var(--font-base);
-  flex: 0 1 240px;
+  flex: 0 1 300px;
   display: block;
   border-radius: 2px;
   padding: var(--space-4);
@@ -633,7 +633,7 @@ body[dir="rtl"] .service-card.arrow-swipe h3::before {
 
 .video-card {
   font-family: var(--font-base);
-  flex: 0 1 240px;
+  flex: 0 1 320px;
   background: transparent;
   border: none;
   border-radius: 2px;
