@@ -835,27 +835,27 @@ document.addEventListener("DOMContentLoaded", function () {
   ];
 
   var ZH_MIXING_CREDITS = [
-    { project: "我不呼吸（专辑）", artist: "哈雷尔·莱斯尼克",                         role: "Mixer & Engineer", year: "2024", tracks: ["介绍", "我不呼吸", "坏掉的", "尖锐和光滑", "\"我以为我成功逃跑了\"", "写作危机", "没有人", "我的轮到什么时候", "我们到达了这里", "总结"] },
-    { project: "IZ 514",          artist: "aRL",                                      role: "Mixer & Producer", year: "2025", tracks: ["2Fr33", "RUN1TUP", "EARS", "NO TIME"] },
-    { project: "300 公里",         artist: "哈雷尔·莱斯尼克",                         role: "Mixer & Engineer", year: "2024", tracks: [] },
-    { project: "再一刻再",         artist: "哈雷尔·莱斯尼克 feat. 情节在哪里",        role: "Mixer & Engineer", year: "2024", tracks: [] },
-    { project: "压力 / 一点光",    artist: "哈雷尔·莱斯尼克",                         role: "Mixer & Engineer", year: "2024", tracks: [] },
-    { project: "我回来了",         artist: "aRL",                                      role: "Mixer & Producer", year: "2024", tracks: [] },
-    { project: "泡沫",             artist: "哈雷尔·莱斯尼克",                         role: "Mixer & Engineer", year: "2025", tracks: [] },
-    { project: "沉思",             artist: "哈雷尔·莱斯尼克",                         role: "Mixer & Engineer", year: "2025", tracks: [] },
-    { project: "没有人 演示 6.7.23", artist: "哈雷尔·莱斯尼克",                       role: "Mixer & Engineer", year: "2025", tracks: [] }
+    { project: "我不呼吸（专辑）", artist: "哈雷尔·莱斯尼克",                         role: "混合液体工程师", year: "2024", tracks: ["介绍", "我不呼吸", "坏掉的", "尖锐和光滑", "\"我以为我成功逃跑了\"", "写作危机", "没有人", "我的轮到什么时候", "我们到达了这里", "总结"] },
+    { project: "IZ 514",          artist: "aRL",                                      role: "混合液体制作者", year: "2025", tracks: ["2Fr33", "RUN1TUP", "EARS", "NO TIME"] },
+    { project: "300 公里",         artist: "哈雷尔·莱斯尼克",                         role: "混合液体工程师", year: "2024", tracks: [] },
+    { project: "再一刻再",         artist: "哈雷尔·莱斯尼克 feat. 情节在哪里",        role: "混合液体工程师", year: "2024", tracks: [] },
+    { project: "压力 / 一点光",    artist: "哈雷尔·莱斯尼克",                         role: "混合液体工程师", year: "2024", tracks: [] },
+    { project: "我回来了",         artist: "aRL",                                      role: "混合液体制作者", year: "2024", tracks: [] },
+    { project: "泡沫",             artist: "哈雷尔·莱斯尼克",                         role: "混合液体工程师", year: "2025", tracks: [] },
+    { project: "沉思",             artist: "哈雷尔·莱斯尼克",                         role: "混合液体工程师", year: "2025", tracks: [] },
+    { project: "没有人 演示 6.7.23", artist: "哈雷尔·莱斯尼克",                       role: "混合液体工程师", year: "2025", tracks: [] }
   ];
 
   var ZH_MASTERING_CREDITS = [
-    { project: "我不呼吸（专辑）", artist: "哈雷尔·莱斯尼克",                         role: "Mastering Engineer", year: "2024", tracks: ["介绍", "我不呼吸", "坏掉的", "尖锐和光滑", "\"我以为我成功逃跑了\"", "写作危机", "没有人", "我的轮到什么时候", "我们到达了这里", "总结"] },
-    { project: "IZ 514",          artist: "aRL",                                      role: "Mastering Engineer", year: "2025", tracks: ["2Fr33", "RUN1TUP", "EARS", "NO TIME"] },
-    { project: "300 公里",         artist: "哈雷尔·莱斯尼克",                         role: "Mastering Engineer", year: "2024", tracks: [] },
-    { project: "再一刻再",         artist: "哈雷尔·莱斯尼克 feat. 情节在哪里",        role: "Mastering Engineer", year: "2024", tracks: [] },
-    { project: "压力 / 一点光",    artist: "哈雷尔·莱斯尼克",                         role: "Mastering Engineer", year: "2024", tracks: [] },
-    { project: "我回来了",         artist: "aRL",                                      role: "Mastering Engineer", year: "2024", tracks: [] },
-    { project: "泡沫",             artist: "哈雷尔·莱斯尼克",                         role: "Mastering Engineer", year: "2025", tracks: [] },
-    { project: "沉思",             artist: "哈雷尔·莱斯尼克",                         role: "Mastering Engineer", year: "2025", tracks: [] },
-    { project: "没有人 演示 6.7.23", artist: "哈雷尔·莱斯尼克",                       role: "Mastering Engineer", year: "2025", tracks: [] }
+    { project: "我不呼吸（专辑）", artist: "哈雷尔·莱斯尼克",                         role: "大师父工程师", year: "2024", tracks: ["介绍", "我不呼吸", "坏掉的", "尖锐和光滑", "\"我以为我成功逃跑了\"", "写作危机", "没有人", "我的轮到什么时候", "我们到达了这里", "总结"] },
+    { project: "IZ 514",          artist: "aRL",                                      role: "大师父工程师", year: "2025", tracks: ["2Fr33", "RUN1TUP", "EARS", "NO TIME"] },
+    { project: "300 公里",         artist: "哈雷尔·莱斯尼克",                         role: "大师父工程师", year: "2024", tracks: [] },
+    { project: "再一刻再",         artist: "哈雷尔·莱斯尼克 feat. 情节在哪里",        role: "大师父工程师", year: "2024", tracks: [] },
+    { project: "压力 / 一点光",    artist: "哈雷尔·莱斯尼克",                         role: "大师父工程师", year: "2024", tracks: [] },
+    { project: "我回来了",         artist: "aRL",                                      role: "大师父工程师", year: "2024", tracks: [] },
+    { project: "泡沫",             artist: "哈雷尔·莱斯尼克",                         role: "大师父工程师", year: "2025", tracks: [] },
+    { project: "沉思",             artist: "哈雷尔·莱斯尼克",                         role: "大师父工程师", year: "2025", tracks: [] },
+    { project: "没有人 演示 6.7.23", artist: "哈雷尔·莱斯尼克",                       role: "大师父工程师", year: "2025", tracks: [] }
   ];
 
   // ── Inline CMD credits list ──
@@ -984,6 +984,19 @@ document.addEventListener("DOMContentLoaded", function () {
     if (videoBtn) videoBtn.click();
     var portfolio = document.getElementById("portfolio");
     if (portfolio) portfolio.scrollIntoView({ behavior: "smooth" });
+  });
+
+  document.addEventListener("languagechange", function(e) {
+    var lang = e.detail.lang;
+    var isZh = lang === "zh";
+    var mixOutput = document.getElementById("mix-output");
+    var masterOutput = document.getElementById("master-output");
+    if (mixOutput && !mixOutput.hidden) {
+      buildCmdOutput(mixOutput, isZh ? ZH_MIXING_CREDITS : MIXING_CREDITS);
+    }
+    if (masterOutput && !masterOutput.hidden) {
+      buildCmdOutput(masterOutput, isZh ? ZH_MASTERING_CREDITS : MASTERING_CREDITS);
+    }
   });
 
   // Bing Easter egg: random placement in zh mode

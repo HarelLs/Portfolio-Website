@@ -349,7 +349,6 @@ html[lang="zh"] .clippy-float.show-a .clippy-speech-zh { display: block; }
   border-bottom: none;
 }
 .clippy-float.show-hint .clippy-speech-hint { display: block; }
-html[lang="zh"] .clippy-float .clippy-speech-hint { display: none !important; }
 
 /* ---------- Bing (zh Easter egg) ---------- */
 #bing-float {

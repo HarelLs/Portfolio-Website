@@ -59,7 +59,7 @@
       "contact.text": "你有钱吗？",
       "contact.email": "电子邮件还存在",
       "hero.contact": "联系我",
-      "clippy.hint": "好像你想发邮件！",
+      "clippy.hint": "点击我！",
       "footer.rights": "© 2026 哈雷尔·莱斯尼克。所有权利被保留了。",
       "xp.ok": "好的",
       "xp.help.title": "帮助",
@@ -88,7 +88,9 @@
       "portfolio.tag.latestSingle": "最新单曲",
       "portfolio.tag.ep": "EP",
       "portfolio.tag.lp": "LP",
-      "notepad.label": "记事本.EXE"
+      "notepad.label": "记事本.EXE",
+      "cmd.showCredits": "显示学分",
+      "cmd.seeMyWork": "看我的工作"
     },
     he: {
       "meta.title": "הראל לסניק",
@@ -171,7 +173,9 @@
       "portfolio.tag.latestSingle": "Latest Single",
       "portfolio.tag.ep": "EP",
       "portfolio.tag.lp": "LP",
-      "notepad.label": "NOTEPAD.EXE"
+      "notepad.label": "NOTEPAD.EXE",
+      "cmd.showCredits": "show_credits",
+      "cmd.seeMyWork": "see_my_work"
     },
     en: {
       "meta.title": "Harel Lesnick",
@@ -254,7 +258,9 @@
       "portfolio.tag.latestSingle": "Latest Single",
       "portfolio.tag.ep": "EP",
       "portfolio.tag.lp": "LP",
-      "notepad.label": "NOTEPAD.EXE"
+      "notepad.label": "NOTEPAD.EXE",
+      "cmd.showCredits": "show_credits",
+      "cmd.seeMyWork": "see_my_work"
     }
   };
 
