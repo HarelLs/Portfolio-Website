@@ -123,7 +123,10 @@
       { jpg: "08-opt.jpg", webp: "08-opt.webp", alt: "צילום עבודתי 08" },
       { jpg: "09-opt.jpg", webp: "09-opt.webp", alt: "צילום עבודתי 09" },
       { jpg: "10-opt.jpg", webp: "10-opt.webp", alt: "צילום עבודתי 10" },
-      { jpg: "11-opt.jpg", webp: "11-opt.webp", alt: "צילום עבודתי 11" }
+      { jpg: "11-opt.jpg", webp: "11-opt.webp", alt: "צילום עבודתי 11" },
+      { jpg: "12-opt.jpg", webp: "12-opt.webp", alt: "צילום עבודתי 12" },
+      { jpg: "13-opt.jpg", webp: "13-opt.webp", alt: "צילום עבודתי 13" },
+      { jpg: "14-opt.jpg", webp: "14-opt.webp", alt: "צילום עבודתי 14" }
     ];
 
     var track = document.querySelector('.portfolio-grid[data-category="photos"] .gallery-track');

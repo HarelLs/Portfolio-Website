@@ -36,6 +36,13 @@
   }
 }
 
+@media (min-width: 721px) {
+  /* 10th slot is desktop-only invisible — exists for mobile's 2×5 grid */
+  .portfolio-grid[data-category="photos"] .gallery-track .photo-slot:nth-child(10) {
+    display: none;
+  }
+}
+
 @media (max-width: 900px) {
   .services-grid { grid-template-columns: repeat(2, 1fr); }
   .hero-media-placeholder { width: 260px; height: 260px; inset-inline-end: -15%; opacity: 0.6; }
