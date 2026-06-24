@@ -131,7 +131,7 @@
     var slots = Array.from(track.querySelectorAll(".photo-slot"));
     if (!slots.length) return;
 
-    var slotContents = slots.map(function(_, i) { return i; }); // [0,1,2,3,4]
+    var slotContents = slots.map(function(_, i) { return i; }); // photo index currently in each slot
     var lastSlotIdx = -1;
     var queue = [];
 

@@ -6,17 +6,17 @@ if (history.scrollRestoration) { history.scrollRestoration = "manual"; }
 window.scrollTo(0, 0);
 
 var PHOTO_EXIF = {
-  "01-opt": { camera: "Nikon D3400", lens: "18–55mm f/3.5–5.6", focal: "55mm (82mm)", aperture: "f/5.6", shutter: "1/500s", iso: "ISO 100", date: "May 3, 2026" },
-  "02-opt": { camera: "Nikon D3400", lens: "18–55mm f/3.5–5.6", focal: "18mm (27mm)", aperture: "f/4.5", shutter: "1/320s", iso: "ISO 100", date: "Sep 2, 2025" },
-  "03-opt": { camera: "Nikon D3400", lens: "18–55mm f/3.5–5.6", focal: "18mm (27mm)", aperture: "f/3.5", shutter: "1/1250s", iso: "ISO 100", date: "Sep 8, 2025" },
-  "04-opt": { camera: "Nikon D3400", lens: "18–55mm f/3.5–5.6", focal: "18mm (27mm)", aperture: "f/3.5", shutter: "1/2000s", iso: "ISO 100", date: "Apr 22, 2023" },
-  "05-opt": { camera: "Nikon D3400", lens: "18–55mm f/3.5–5.6", focal: "18mm (27mm)", aperture: "f/5.6", shutter: "1/400s",  iso: "ISO 400", date: "Sep 19, 2025" },
-  "06-opt": { camera: "Nikon D3400", lens: "18–55mm f/3.5–5.6", focal: "18mm (27mm)", aperture: "f/5.6", shutter: "1/200s", iso: "ISO 3200", date: "Mar 29, 2023" },
-  "07-opt": { camera: "Nikon D3400", lens: "18–55mm f/3.5–5.6", focal: "36mm (54mm)", aperture: "f/4.8", shutter: "1/250s", iso: "ISO 100", date: "Sep 6, 2025" },
-  "08-opt": { camera: "Fujifilm X-S20", lens: "21mm", focal: "21mm (32mm)", aperture: "f/1.0", shutter: "5s", iso: "ISO 1250", date: "May 15, 2026" },
-  "09-opt": { camera: "Fujifilm X-S20", lens: "Samyang 8mm f/2.8 UMC Fisheye II", focal: "8mm (12mm)", aperture: "f/2.8", shutter: "1/3200s", iso: "ISO 800", date: "May 3, 2026" },
-  "10-opt": { camera: "Nikon D3400", lens: "18–55mm f/3.5–5.6", focal: "52mm (78mm)", aperture: "f/5.6", shutter: "1/800s", iso: "ISO 100", date: "May 3, 2026" },
-  "11-opt": { camera: "Nikon D3400", lens: "18–55mm f/3.5–5.6", focal: "26mm (39mm)", aperture: "f/4", shutter: "1/800s", iso: "ISO 100", date: "May 3, 2026" }
+  "01-opt": { camera: "Nikon D3400", lens: "18–55mm f/3.5–5.6", focal: "55mm", aperture: "f/5.6", shutter: "1/500s", iso: "ISO 100", date: "May 3, 2026" },
+  "02-opt": { camera: "Nikon D3400", lens: "18–55mm f/3.5–5.6", focal: "18mm", aperture: "f/4.5", shutter: "1/320s", iso: "ISO 100", date: "Sep 2, 2025" },
+  "03-opt": { camera: "Nikon D3400", lens: "18–55mm f/3.5–5.6", focal: "18mm", aperture: "f/3.5", shutter: "1/1250s", iso: "ISO 100", date: "Sep 8, 2025" },
+  "04-opt": { camera: "Nikon D3400", lens: "18–55mm f/3.5–5.6", focal: "18mm", aperture: "f/3.5", shutter: "1/2000s", iso: "ISO 100", date: "Apr 22, 2023" },
+  "05-opt": { camera: "Nikon D3400", lens: "18–55mm f/3.5–5.6", focal: "18mm", aperture: "f/5.6", shutter: "1/400s",  iso: "ISO 400", date: "Sep 19, 2025" },
+  "06-opt": { camera: "Nikon D3400", lens: "18–55mm f/3.5–5.6", focal: "18mm", aperture: "f/5.6", shutter: "1/200s", iso: "ISO 3200", date: "Mar 29, 2023" },
+  "07-opt": { camera: "Nikon D3400", lens: "18–55mm f/3.5–5.6", focal: "36mm", aperture: "f/4.8", shutter: "1/250s", iso: "ISO 100", date: "Sep 6, 2025" },
+  "08-opt": { camera: "Fujifilm X-S20", lens: "21mm", focal: "21mm", aperture: "f/1.0", shutter: "5s", iso: "ISO 1250", date: "May 15, 2026" },
+  "09-opt": { camera: "Fujifilm X-S20", lens: "Samyang 8mm f/2.8 UMC Fisheye II", focal: "8mm", aperture: "f/2.8", shutter: "1/3200s", iso: "ISO 800", date: "May 3, 2026" },
+  "10-opt": { camera: "Nikon D3400", lens: "18–55mm f/3.5–5.6", focal: "52mm", aperture: "f/5.6", shutter: "1/800s", iso: "ISO 100", date: "May 3, 2026" },
+  "11-opt": { camera: "Nikon D3400", lens: "18–55mm f/3.5–5.6", focal: "26mm", aperture: "f/4", shutter: "1/800s", iso: "ISO 100", date: "May 3, 2026" }
 };
 
 document.addEventListener("DOMContentLoaded", function () {

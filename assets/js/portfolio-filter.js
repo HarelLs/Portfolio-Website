@@ -39,9 +39,11 @@
     }
 
     // Lock min-height to the tallest tab so the background never resizes
+    // Lock min-height to the tallest tab so the folder never resizes between tabs.
+    // Photos is excluded from the measurement (it flex-fills whatever height is set).
     function lockHeight() {
       if (!inner) return;
-      // On mobile the photos grid is static, so don't lock — let each tab size naturally
+      // On mobile every tab sizes naturally, so don't lock
       if (window.innerWidth <= 720) {
         inner.style.minHeight = "";
         applyFilter(currentFilter);
@@ -50,7 +52,7 @@
       var max = 0;
       inner.style.minHeight = "";
       buttons.forEach(function (btn) {
-        if (btn.getAttribute("data-filter") === "photos") return; // absolute-positioned on desktop, skip
+        if (btn.getAttribute("data-filter") === "photos") return; // photos flex-fills, skip measuring
         groups.forEach(function (g) {
           g.hidden = g.getAttribute("data-category") !== btn.getAttribute("data-filter");
         });
