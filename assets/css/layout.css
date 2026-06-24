@@ -196,7 +196,6 @@ section {
 .clippy-float {
   position: fixed;
   top: 40%;
-  right: 26rem;
   transform: translateY(-50%);
   width: 140px;
   z-index: 3000;
