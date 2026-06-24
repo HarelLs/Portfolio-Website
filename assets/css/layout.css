@@ -294,7 +294,8 @@ html[lang="zh"] .clippy-float.show-a .clippy-speech-zh { display: block; }
   font-weight: bold;
   line-height: 1.4;
   color: #000;
-  direction: ltr;
+  /* dir="auto" on the element drives bidi so Hebrew/English/zh each lay out
+     correctly (e.g. the "!" lands on the right side in Hebrew) */
   text-align: center;
   pointer-events: none;
   z-index: 1;

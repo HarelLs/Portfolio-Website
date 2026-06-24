@@ -98,7 +98,7 @@
       "contact.text": "יש לכם רעיון או משהו מגניב?",
       "contact.email": "דברו איתי",
       "clippy.hint": "תלחץ עליי!",
-      "footer.rights": "© 2026 הראל לסניק. כל הזכויות שמורות.",
+      "footer.rights": "⁦© 2026⁩ הראל לסניק. כל הזכויות שמורות.",
       "xp.ok": "OK",
       "xp.help.title": "Help",
       "xp.help.firstMsg": "What did you expect to happen?",

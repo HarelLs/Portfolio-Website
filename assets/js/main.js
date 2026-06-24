@@ -833,10 +833,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // ── Service card credits windows ──
   var MIXING_CREDITS = [
+    { project: "רגשות",               artist: "EYAL.",                             role: "Mixer & Engineer", year: "2026", tracks: [] },
+    { project: "קרבה",                artist: "Harel Lesnick & Where's The Plot",  role: "Mixer & Producer", year: "2026", tracks: [] },
     { project: "אני לא נושם (אלבום)", artist: "Harel Lesnick",                      role: "Mixer & Engineer", year: "2024", tracks: ["אינטרו", "אני לא נושם", "דפוק", "חד וחלק", "״אני חושב שהצלחתי לברוח״", "משבר כתיבה", "אף אחד", "מתי כבר יגיע תורי", "הגענו עד לכאן", "סיכום"] },
     { project: "IZ 514",              artist: "aRL",                               role: "Mixer & Producer", year: "2025", tracks: ["2Fr33", "RUN1TUP", "EARS", "NO TIME"] },
-    { project: "300 ק״מ",             artist: "Harel Lesnick",                      role: "Mixer & Engineer", year: "2024", tracks: [] },
-    { project: "עוד רגע עוד",         artist: "Harel Lesnick feat. Where's The Plot", role: "Mixer & Engineer", year: "2024", tracks: [] },
+    { project: "300 ק״מ",             artist: "Harel Lesnick",                      role: "Mixer & Engineer", year: "2025", tracks: [] },
+    { project: "עוד רגע אחד",         artist: "Harel Lesnick feat. Where's The Plot", role: "Mixer & Engineer", year: "2025", tracks: [] },
     { project: "לחצים / קצת אור",     artist: "Harel Lesnick",                      role: "Mixer & Engineer", year: "2024", tracks: [] },
     { project: "I'M BACK",            artist: "aRL",                               role: "Mixer & Producer", year: "2024", tracks: [] },
     { project: "Froth",               artist: "Harel Lesnick",                      role: "Mixer & Engineer", year: "2025", tracks: [] },
@@ -845,10 +847,11 @@ document.addEventListener("DOMContentLoaded", function () {
   ];
 
   var MASTERING_CREDITS = [
+    { project: "רגשות",               artist: "EYAL.",                             role: "Mastering Engineer", year: "2026", tracks: [] },
     { project: "אני לא נושם (אלבום)", artist: "Harel Lesnick",                      role: "Mastering Engineer", year: "2024", tracks: ["אינטרו", "אני לא נושם", "דפוק", "חד וחלק", "״אני חושב שהצלחתי לברוח״", "משבר כתיבה", "אף אחד", "מתי כבר יגיע תורי", "הגענו עד לכאן", "סיכום"] },
     { project: "IZ 514",              artist: "aRL",                               role: "Mastering Engineer", year: "2025", tracks: ["2Fr33", "RUN1TUP", "EARS", "NO TIME"] },
-    { project: "300 ק״מ",             artist: "Harel Lesnick",                      role: "Mastering Engineer", year: "2024", tracks: [] },
-    { project: "עוד רגע עוד",         artist: "Harel Lesnick feat. Where's The Plot", role: "Mastering Engineer", year: "2024", tracks: [] },
+    { project: "300 ק״מ",             artist: "Harel Lesnick",                      role: "Mastering Engineer", year: "2025", tracks: [] },
+    { project: "עוד רגע אחד",         artist: "Harel Lesnick feat. Where's The Plot", role: "Mastering Engineer", year: "2025", tracks: [] },
     { project: "לחצים / קצת אור",     artist: "Harel Lesnick",                      role: "Mastering Engineer", year: "2024", tracks: [] },
     { project: "I'M BACK",            artist: "aRL",                               role: "Mastering Engineer", year: "2024", tracks: [] },
     { project: "Froth",               artist: "Harel Lesnick",                      role: "Mastering Engineer", year: "2025", tracks: [] },
@@ -857,10 +860,12 @@ document.addEventListener("DOMContentLoaded", function () {
   ];
 
   var ZH_MIXING_CREDITS = [
+    { project: "情绪",            artist: "EYAL.",                                    role: "混合液体工程师", year: "2026", tracks: [] },
+    { project: "亲近",            artist: "哈雷尔·莱斯尼克 & 情节在哪里",            role: "混合液体制作者", year: "2026", tracks: [] },
     { project: "我不呼吸（专辑）", artist: "哈雷尔·莱斯尼克",                         role: "混合液体工程师", year: "2024", tracks: ["介绍", "我不呼吸", "坏掉的", "尖锐和光滑", "\"我以为我成功逃跑了\"", "写作危机", "没有人", "我的轮到什么时候", "我们到达了这里", "总结"] },
     { project: "IZ 514",          artist: "aRL",                                      role: "混合液体制作者", year: "2025", tracks: ["2Fr33", "RUN1TUP", "EARS", "NO TIME"] },
-    { project: "300 公里",         artist: "哈雷尔·莱斯尼克",                         role: "混合液体工程师", year: "2024", tracks: [] },
-    { project: "再一刻再",         artist: "哈雷尔·莱斯尼克 feat. 情节在哪里",        role: "混合液体工程师", year: "2024", tracks: [] },
+    { project: "300 公里",         artist: "哈雷尔·莱斯尼克",                         role: "混合液体工程师", year: "2025", tracks: [] },
+    { project: "再一刻再",         artist: "哈雷尔·莱斯尼克 feat. 情节在哪里",        role: "混合液体工程师", year: "2025", tracks: [] },
     { project: "压力 / 一点光",    artist: "哈雷尔·莱斯尼克",                         role: "混合液体工程师", year: "2024", tracks: [] },
     { project: "我回来了",         artist: "aRL",                                      role: "混合液体制作者", year: "2024", tracks: [] },
     { project: "泡沫",             artist: "哈雷尔·莱斯尼克",                         role: "混合液体工程师", year: "2025", tracks: [] },
@@ -869,10 +874,11 @@ document.addEventListener("DOMContentLoaded", function () {
   ];
 
   var ZH_MASTERING_CREDITS = [
+    { project: "情绪",            artist: "EYAL.",                                    role: "大师父工程师", year: "2026", tracks: [] },
     { project: "我不呼吸（专辑）", artist: "哈雷尔·莱斯尼克",                         role: "大师父工程师", year: "2024", tracks: ["介绍", "我不呼吸", "坏掉的", "尖锐和光滑", "\"我以为我成功逃跑了\"", "写作危机", "没有人", "我的轮到什么时候", "我们到达了这里", "总结"] },
     { project: "IZ 514",          artist: "aRL",                                      role: "大师父工程师", year: "2025", tracks: ["2Fr33", "RUN1TUP", "EARS", "NO TIME"] },
-    { project: "300 公里",         artist: "哈雷尔·莱斯尼克",                         role: "大师父工程师", year: "2024", tracks: [] },
-    { project: "再一刻再",         artist: "哈雷尔·莱斯尼克 feat. 情节在哪里",        role: "大师父工程师", year: "2024", tracks: [] },
+    { project: "300 公里",         artist: "哈雷尔·莱斯尼克",                         role: "大师父工程师", year: "2025", tracks: [] },
+    { project: "再一刻再",         artist: "哈雷尔·莱斯尼克 feat. 情节在哪里",        role: "大师父工程师", year: "2025", tracks: [] },
     { project: "压力 / 一点光",    artist: "哈雷尔·莱斯尼克",                         role: "大师父工程师", year: "2024", tracks: [] },
     { project: "我回来了",         artist: "aRL",                                      role: "大师父工程师", year: "2024", tracks: [] },
     { project: "泡沫",             artist: "哈雷尔·莱斯尼克",                         role: "大师父工程师", year: "2025", tracks: [] },
@@ -882,12 +888,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // ── Inline CMD credits list ──
   var CREDIT_LINKS = {
+    "רגשות":               "https://open.spotify.com/track/4nIIeAKUFHkaki7Newdo5O",
+    "情绪":                 "https://open.spotify.com/track/4nIIeAKUFHkaki7Newdo5O",
+    "קרבה":                "https://distrokid.com/hyperfollow/wherestheplotandharellesnick/KsjsatjzbXZ",
+    "亲近":                 "https://distrokid.com/hyperfollow/wherestheplotandharellesnick/KsjsatjzbXZ",
     "אני לא נושם (אלבום)": "https://distrokid.com/hyperfollow/harellesnick/---3",
     "我不呼吸（专辑）":      "https://distrokid.com/hyperfollow/harellesnick/---3",
     "IZ 514":              "https://distrokid.com/hyperfollow/arl51/iz-514",
     "300 ק״מ":             "https://distrokid.com/hyperfollow/harellesnick/-300",
     "300 公里":             "https://distrokid.com/hyperfollow/harellesnick/-300",
-    "עוד רגע עוד":         "https://distrokid.com/hyperfollow/harellesnick/---feat-wheres-the-plot",
+    "עוד רגע אחד":         "https://distrokid.com/hyperfollow/harellesnick/---feat-wheres-the-plot",
     "再一刻再":              "https://distrokid.com/hyperfollow/harellesnick/---feat-wheres-the-plot",
     "לחצים / קצת אור":     "https://distrokid.com/hyperfollow/harellesnick/---",
     "压力 / 一点光":         "https://distrokid.com/hyperfollow/harellesnick/---",
