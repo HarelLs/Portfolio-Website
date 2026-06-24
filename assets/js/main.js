@@ -359,12 +359,16 @@ document.addEventListener("DOMContentLoaded", function () {
     win.addEventListener("mousedown", function() { bringToFront(win); });
   }
 
-  // wire up gallery photo clicks
-  document.querySelectorAll('.portfolio-grid[data-category="photos"] .gallery-track picture').forEach(function(pic) {
-    if (pic.querySelector("img[aria-hidden]")) return;
-    pic.style.cursor = "pointer";
-    pic.addEventListener("click", function() { openPhotoWindow(pic.querySelector("img")); });
-  });
+  // wire up gallery photo clicks — delegated so it works after slot src swaps
+  var photoTrack = document.querySelector('.portfolio-grid[data-category="photos"] .gallery-track');
+  if (photoTrack) {
+    photoTrack.addEventListener("click", function(e) {
+      var slot = e.target.closest(".photo-slot");
+      if (!slot) return;
+      var img = slot.querySelector("img");
+      if (img) openPhotoWindow(img);
+    });
+  }
 
   // wire up music cover clicks
   document.querySelectorAll('.portfolio-grid[data-category="music"] .portfolio-card picture').forEach(function(pic) {

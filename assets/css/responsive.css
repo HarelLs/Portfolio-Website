@@ -74,7 +74,7 @@
     height: 140px;
   }
 
-  .portfolio-grid[data-category="photos"] .gallery-track picture.grid-last img {
+  .portfolio-grid[data-category="photos"] .gallery-track .photo-slot.grid-last img {
     height: 110px;
   }
 
@@ -164,5 +164,5 @@
   .filter-btn:nth-child(3) { inset-inline-start: 150px; }
   .portfolio-inner { padding: var(--space-3) var(--space-3); }
   .portfolio-grid[data-category="photos"] .gallery-track img { height: 110px; }
-  .portfolio-grid[data-category="photos"] .gallery-track picture.grid-last img { height: 90px; }
+  .portfolio-grid[data-category="photos"] .gallery-track .photo-slot.grid-last img { height: 90px; }
 }

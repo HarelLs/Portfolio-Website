@@ -109,29 +109,48 @@
     initGallery(wrapper);
   });
 
-  // Photo grid slideshow: show 5 at a time, cycle every 30s, wrap-around
+  // Photo grid slideshow: one slot fades out/in every 5s, cycling all 11 photos
   (function () {
+    var BASE = "assets/images/photos/";
+    var PHOTOS = [
+      { jpg: "01-opt.jpg", webp: "01-opt.webp", alt: "צילום עבודתי 01" },
+      { jpg: "02-opt.jpg", webp: "02-opt.webp", alt: "צילום עבודתי 02" },
+      { jpg: "03-opt.jpg", webp: "03-opt.webp", alt: "צילום עבודתי 03" },
+      { jpg: "04-opt.jpg", webp: "04-opt.webp", alt: "צילום עבודתי 04" },
+      { jpg: "05-opt.jpg", webp: "05-opt.webp", alt: "צילום עבודתי 05" },
+      { jpg: "06-opt.jpg", webp: "06-opt.webp", alt: "צילום עבודתי 06" },
+      { jpg: "07-opt.jpg", webp: "07-opt.webp", alt: "צילום עבודתי 07" },
+      { jpg: "08-opt.jpg", webp: "08-opt.webp", alt: "צילום עבודתי 08" },
+      { jpg: "09-opt.jpg", webp: "09-opt.webp", alt: "צילום עבודתי 09" },
+      { jpg: "10-opt.jpg", webp: "10-opt.webp", alt: "צילום עבודתי 10" },
+      { jpg: "11-opt.jpg", webp: "11-opt.webp", alt: "צילום עבודתי 11" }
+    ];
+
     var track = document.querySelector('.portfolio-grid[data-category="photos"] .gallery-track');
     if (!track) return;
-    var pics = Array.from(track.querySelectorAll("picture"));
-    if (pics.length <= 5) return;
+    var slots = Array.from(track.querySelectorAll(".photo-slot"));
+    if (!slots.length) return;
 
-    var PAGE = 5;
-    var start = 0;
+    var nextOut = 0;          // which slot gets replaced next (round-robin)
+    var nextIn = slots.length; // index into PHOTOS of next photo to show
 
-    function showPage() {
-      pics.forEach(function (p) { p.classList.remove("grid-last"); p.style.display = "none"; });
-      for (var i = 0; i < PAGE; i++) {
-        var p = pics[(start + i) % pics.length];
-        p.style.display = "";
-        if (i === PAGE - 1) p.classList.add("grid-last");
-      }
+    function swapSlot() {
+      var slot = slots[nextOut];
+      var photo = PHOTOS[nextIn % PHOTOS.length];
+
+      slot.style.opacity = "0";
+      setTimeout(function () {
+        var img = slot.querySelector("img");
+        var src = slot.querySelector("source");
+        if (img) { img.src = BASE + photo.jpg; img.alt = photo.alt; }
+        if (src) { src.srcset = BASE + photo.webp; }
+        slot.style.opacity = "1";
+      }, 650);
+
+      nextOut = (nextOut + 1) % slots.length;
+      nextIn++;
     }
 
-    showPage();
-    setInterval(function () {
-      start = (start + PAGE) % pics.length;
-      showPage();
-    }, 30000);
+    setInterval(swapSlot, 5000);
   })();
 })();
