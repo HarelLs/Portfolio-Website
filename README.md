@@ -33,7 +33,7 @@
 │       ├── current_project.jpg       # תמונת הפרויקט הנוכחי
 │       ├── backgrounds/              # bg_intro + bg_port (jpg / webp / mobile variants)
 │       ├── music/                    # albumphoto / epphoto / singlephoto (jpg + webp)
-│       ├── photos/                   # 01–05 (jpg + webp) — גלריית הצילום האמיתית
+│       ├── photos/                   # 01–14 (jpg + webp) — גלריית הצילום האמיתית
 │       ├── logos/                    # Spotify / Apple Music / YouTube / music-note SVG
 │       ├── folder_svg/               # SVG לכרטיסיות הפורטפוליו
 │       └── ui/                       # Clippy GIFs, notepad, note textures, XP icons, Peter Griffin
@@ -45,13 +45,13 @@
 - כל הטקסטים מתורגמים דרך `data-i18n` — לא קשיח בתוך ה-HTML.
 - שלוש שפות: עברית (ברירת מחדל), אנגלית, ומנדרינית-גרועה (Easter egg — ספאם 10 קליקים על כפתור השפה תוך 2 שניות).
 - חלונות XP (credits מיקסינג/מאסטרינג, Photo Properties) — גרירה, טאבים, כפתורי chrome, אנימציית סגירה.
+- Clippy צף מעל הדף (draggable), מציג hint bubble ולחיצה עליו גוללת ל-`#contact` — ה-CTA הראשי של הדף.
 - Clippy מוחלף ב-Peter Griffin עם ציטוטים אקראיים; בזה mode — ציטוטים מתורגמים גרועים בסינית.
 - חלון XP: body content = Tahoma; title bar = Pixeloid (font ה-site).
 - צבעים/מרווחים/פונטים מנוהלים כמשתני CSS ב-`variables.css` בלבד.
 
-## עדיין חסר / לפני פרסום
-1. **תמונת פרופיל ל-Hero** — יש Placeholder, צריך להחליף ב-`<img>` אמיתי.
-2. **כותרות שירים/אלבומים** — כרטיסי המוזיקה מציגים "Single" / "Solo Album" גנריים; יש לאשר כותרות רשמיות מ-DistroKid.
+## סטטוס
+האתר **הושלם ופורסם**. תמונת הפרופיל היא תמונת הרקע של סקשן ה-Hero (bg_intro.webp) — אין `<img>` נפרד. אין פריטים פתוחים.
 
 ## פרסום
 - **GitHub Pages**: להפעיל Pages מה-branch הרלוונטי (HTML/CSS/JS טהור — עובד ישירות).

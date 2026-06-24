@@ -19,7 +19,7 @@ Final-project landing page for a college course ("מטלת סיום קורס" �
   - https://distrokid.com/hyperfollow/harellesnick/---3 (solo album)
   - https://distrokid.com/hyperfollow/arl51/iz-514 (electronic album, alias ARL51)
 - Video: YouTube https://www.youtube.com/@Harel_Lesnick/videos; embedded: i_YLgCMyeo4 (first music video), FI3RQ0E-SA8 and RDNfOr1hkk0 (course final projects).
-- Photo gallery: real photos are in place (assets/images/photos/01–05.webp/jpg).
+- Photo gallery: real photos are in place (assets/images/photos/01–14.webp/jpg).
 
 ## Design direction
 - Dark mode, bold pixel typography — direction from roykafri.com and metroboominshop.com.
@@ -28,7 +28,7 @@ Final-project landing page for a college course ("מטלת סיום קורס" �
 - Warm, personal tone — direction from venustheory.com.
 
 ## Tech stack
-Plain vanilla HTML/CSS/JS, no build step. Originally planned as Astro + Tailwind, but built in a sandboxed environment without npm access. Now developed locally on Harel's machine where npm is reachable — migrating to Astro/Tailwind is a viable option if Harel wants it (ask before doing it, it's a meaningful rework).
+Plain vanilla HTML/CSS/JS, no build step. Originally planned as Astro + Tailwind, but built in a sandboxed environment without npm access. Staying vanilla — site is live.
 
 ## Current file structure
 ```
@@ -83,6 +83,13 @@ Plain vanilla HTML/CSS/JS, no build step. Originally planned as Astro + Tailwind
 - Window body content (tabs, labels, credits rows, buttons): Tahoma ("MS Sans Serif" fallback) — set on `.xp-dialog`.
 - Window title bar text (`.xp-title`): `var(--font-en)` = Pixeloid Sans Bold — explicitly overrides Tahoma inheritance.
 
+### Clippy CTA (main.js)
+- Clippy floats over the page (fixed position, draggable).
+- Shows a hint bubble ("תלחץ עליי!" / "Click me!" / zh variant) on a timer.
+- Clicking Clippy smoothly scrolls to the `#contact` section — the primary CTA.
+- Clippy can be dismissed (×); zh mode swaps the GIF to `clippy-hi-zh.gif` + Chinese speech bubble.
+- On hover: swaps to `clippy-dig.gif` animation.
+
 ### Sticky notes (main.js)
 - Draggable sticky notes created via notepad icon; can be closed.
 - "You've Got Mail" sound plays on relevant interactions.
@@ -91,13 +98,15 @@ Plain vanilla HTML/CSS/JS, no build step. Originally planned as Astro + Tailwind
 - Filters cards by `data-category` attribute (music / video / photos).
 - Reorder button resets note positions.
 
+## Hero / About section
+- No separate portrait `<img>` — the hero background image (bg_intro.webp) IS the profile photo.
+- The background fills the full `#about` section and serves as Harel's visual identity on the page.
+
 ## Status
-- Site is live on GitHub. Developed locally on Harel's machine.
+- Site is **complete and live** on GitHub. Developed locally on Harel's machine.
 - All assets load (real photos, backgrounds, music art, UI images, fonts, sound).
 - All three language modes (he / en / zh) fully translated including XP window chrome.
+- Assignment submitted.
 
 ## Outstanding TODOs
-1. **Hero profile photo** — still a placeholder circle in `.hero-media-placeholder`.
-2. **Song/album titles** — music cards show generic "Single" / "Solo Album" labels; confirm official titles from DistroKid and update `i18n.js` (all three dicts).
-3. **Optional: Astro/Tailwind migration** — ask Harel first; npm is reachable locally now.
-4. **Assignment submission** — `01-site-brief.md` covers most of the process doc; final submission email format not drafted yet.
+None — site is complete.
