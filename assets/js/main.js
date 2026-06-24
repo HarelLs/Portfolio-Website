@@ -2,8 +2,7 @@
    main.js — App bootstrap (runs after i18n/nav/filter are loaded)
    ========================================================= */
 
-if (history.scrollRestoration) { history.scrollRestoration = "manual"; }
-window.scrollTo(0, 0);
+window.scrollTo({ top: 0, left: 0, behavior: "instant" });
 
 var PHOTO_EXIF = {
   "01-opt": { camera: "Nikon D3400", lens: "18–55mm f/3.5–5.6", focal: "55mm", aperture: "f/5.6", shutter: "1/500s", iso: "ISO 100", date: "May 3, 2026" },
