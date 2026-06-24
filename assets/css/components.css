@@ -11,13 +11,6 @@
   transition: transform 0.15s ease, background 0.2s ease, border-color 0.2s ease;
 }
 
-.btn-primary {
-  background: var(--color-accent);
-  color: #0a0a0c;
-}
-
-.btn-primary:hover { background: var(--color-accent-hover); transform: translateY(-2px); }
-
 .btn-secondary {
   border: 1px solid var(--color-border);
   color: var(--color-text);
@@ -210,26 +203,6 @@
   margin-bottom: var(--space-3);
 }
 
-.hero-media-placeholder {
-  position: absolute;
-  inset-inline-end: -10%;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 380px;
-  height: 380px;
-  border-radius: 50%;
-  background: var(--color-surface);
-  border: 1px dashed var(--color-border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-text-muted);
-  font-size: var(--fs-xs);
-  text-align: center;
-  padding: var(--space-2);
-  z-index: 1;
-}
-
 /* ---------- Services ---------- */
 
 .services-grid {
@@ -300,8 +273,7 @@
 .services-grid .service-card:nth-child(2) h3 span { animation-delay: -2.7s; }
 .services-grid .service-card:nth-child(3) h3 span { animation-delay: -5.4s; }
 
-.service-card:hover h3 span,
-.service-card.arrow-swipe h3 span {
+.service-card:hover h3 span {
   animation-name: none;
   background-position: 0% 120%;
 }
@@ -445,7 +417,6 @@
   border-bottom: none;
   border-radius: var(--radius-md) var(--radius-md) 0 0;
   color: rgba(255, 255, 255, 0.6);
-  font-family: var(--font-body);
   font-size: var(--fs-sm);
   font-weight: 600;
   cursor: pointer;
@@ -691,18 +662,6 @@
   border: 0;
 }
 
-.sr-only {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
 .video-card {
   font-family: var(--font-base);
   flex: 0 1 320px;
@@ -830,15 +789,6 @@
 }
 
 /* ---------- EXIF Windows (XP Luna style) ---------- */
-.exif-backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: 2000;
-  background: rgba(0,0,0,0.25);
-  direction: ltr;
-}
-.exif-backdrop[hidden] { display: none; }
-
 /* Shared XP window shell */
 .xp-window {
   position: fixed;
@@ -1165,84 +1115,7 @@
 }
 .xp-msgbox-text p:last-child { margin-bottom: 0; }
 
-
-.photo-placeholder {
-  aspect-ratio: 4 / 3;
-  border: 1px dashed var(--color-border);
-  border-radius: var(--radius-md);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--color-text-muted);
-  font-size: var(--fs-xs);
-  background: var(--color-surface);
-}
-
-.photo-card {
-  position: relative;
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-md);
-  background: var(--color-surface);
-}
-
-.photo-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* ---------- Lightbox ---------- */
-.lightbox {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 2000;
-  background: rgba(0, 0, 0, 0.85);
-  align-items: center;
-  justify-content: center;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-}
-
-.lightbox.is-open { display: flex; }
-
-.lightbox img {
-  max-width: 90vw;
-  max-height: 90vh;
-  border-radius: 0;
-  object-fit: contain;
-  box-shadow: 0 8px 48px rgba(0,0,0,0.6);
-}
-
-.lightbox-close {
-  position: absolute;
-  top: var(--space-3);
-  inset-inline-end: var(--space-3);
-  font-size: 1.5rem;
-  color: #fff;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  line-height: 1;
-}
-
 /* ---------- Photo Gallery ---------- */
-.gallery-section {
-  padding-block: var(--space-5);
-  overflow: hidden;
-  max-width: 100%;
-  background-color: #8a8669;
-}
-
-.gallery-title {
-  text-align: center;
-  margin-bottom: var(--space-4);
-  padding-inline: var(--space-4);
-}
-
 .gallery-track-wrapper {
   overflow: hidden;
   width: 100%;

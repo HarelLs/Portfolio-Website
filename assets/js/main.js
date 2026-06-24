@@ -342,7 +342,7 @@ document.addEventListener("DOMContentLoaded", function () {
         '<img class="xp-title-icon" src="assets/images/ui/gallery-icon.png" alt="" aria-hidden="true" style="width:22px;min-width:22px;object-fit:contain;position:relative;top:-1px;" />' +
         '<span class="xp-title">' + (imgEl.alt || "Cover") + '</span>' +
         '<div class="xp-title-btns">' +
-          '<button class="xp-music-help-btn xp-btn-help-inline" aria-label="Help">?</button>' +
+          '<button class="xp-music-help-btn" aria-label="Help">?</button>' +
           '<button class="xp-title-close" aria-label="Close">&#x2715;</button>' +
         '</div>' +
       '</div>' +

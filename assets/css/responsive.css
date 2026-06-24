@@ -45,7 +45,6 @@
 
 @media (max-width: 900px) {
   .services-grid { grid-template-columns: repeat(2, 1fr); }
-  .hero-media-placeholder { width: 260px; height: 260px; inset-inline-end: -15%; opacity: 0.6; }
 
   /* folder: scale tabs down for tablet */
   .portfolio-filters { width: 420px; height: 54px; }
@@ -124,8 +123,6 @@
   .services-grid { grid-template-columns: 1fr; }
   .portfolio-grid[data-category="music"] .portfolio-card { flex: 0 0 200px; max-width: 200px; }
   .video-card { flex: 0 1 100%; }
-
-  .hero-media-placeholder { display: none; }
 
   h1 { font-size: clamp(2rem, 9vw, 3rem); }
 
