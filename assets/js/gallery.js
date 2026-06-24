@@ -109,7 +109,7 @@
     initGallery(wrapper);
   });
 
-  // Photo grid slideshow: one slot fades out/in every 5s, cycling all 11 photos
+  // Photo grid slideshow: one slot fades out/in every 5s, random slot, no repeated photo
   (function () {
     var BASE = "assets/images/photos/";
     var PHOTOS = [
@@ -131,12 +131,36 @@
     var slots = Array.from(track.querySelectorAll(".photo-slot"));
     if (!slots.length) return;
 
-    var nextOut = 0;          // which slot gets replaced next (round-robin)
-    var nextIn = slots.length; // index into PHOTOS of next photo to show
+    var slotContents = slots.map(function(_, i) { return i; }); // [0,1,2,3,4]
+    var lastSlotIdx = -1;
+    var queue = [];
+
+    function buildQueue() {
+      var visible = {};
+      slotContents.forEach(function(p) { visible[p] = true; });
+      var candidates = [];
+      for (var i = 0; i < PHOTOS.length; i++) {
+        if (!visible[i]) candidates.push(i);
+      }
+      for (var j = candidates.length - 1; j > 0; j--) {
+        var k = Math.floor(Math.random() * (j + 1));
+        var tmp = candidates[j]; candidates[j] = candidates[k]; candidates[k] = tmp;
+      }
+      queue = candidates;
+    }
+
+    buildQueue();
 
     function swapSlot() {
-      var slot = slots[nextOut];
-      var photo = PHOTOS[nextIn % PHOTOS.length];
+      var slotIdx;
+      do { slotIdx = Math.floor(Math.random() * slots.length); } while (slotIdx === lastSlotIdx && slots.length > 1);
+      lastSlotIdx = slotIdx;
+
+      if (!queue.length) buildQueue();
+      var photoIdx = queue.shift();
+
+      var slot = slots[slotIdx];
+      var photo = PHOTOS[photoIdx];
 
       slot.style.opacity = "0";
       setTimeout(function () {
@@ -144,11 +168,9 @@
         var src = slot.querySelector("source");
         if (img) { img.src = BASE + photo.jpg; img.alt = photo.alt; }
         if (src) { src.srcset = BASE + photo.webp; }
+        slotContents[slotIdx] = photoIdx;
         slot.style.opacity = "1";
       }, 650);
-
-      nextOut = (nextOut + 1) % slots.length;
-      nextIn++;
     }
 
     setInterval(swapSlot, 5000);
