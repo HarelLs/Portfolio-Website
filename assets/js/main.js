@@ -737,6 +737,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // mouse
     clippy.addEventListener("mousedown", function (e) {
       if (e.target.closest(".clippy-close")) return;
+      e.preventDefault();
       dragStart(e.clientX, e.clientY);
     });
     window.addEventListener("mousemove", function (e) { dragMove(e.clientX, e.clientY); });
