@@ -131,6 +131,10 @@
 
   /* shrink lang button so it doesn't crowd small-screen content */
   .lang-switch { font-size: var(--fs-sm); padding: 0.4rem 0.9rem; }
+
+  /* reorder button: icon-only on mobile */
+  .reorder-btn span { display: none; }
+  .reorder-btn { padding: 0.35rem 0.5rem; }
   /* push hero down enough to clear the fixed button */
   .hero-services-inner { padding-block-start: var(--space-6); }
 
