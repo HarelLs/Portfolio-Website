@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
   window.App.portfolioFilter.init();
 
   // attach mail icon sound effect
-  var contactMailAudio = new Audio("assets/sound/YOUVE GOT MAIL.mp3");
+  var contactMailAudio = new Audio("assets/audio/YOUVE GOT MAIL.mp3");
   contactMailAudio.preload = "auto";
   contactMailAudio.volume = 0.03;
   var mailBtn = document.getElementById("contact-mail-btn");

@@ -26,7 +26,7 @@
 │   ├── fonts/
 │   │   ├── UpheavalPro.ttf           # פונט ברירת מחדל (עברית + כללי)
 │   │   └── pixeloid.sans-bold.ttf    # פונט אנגלית
-│   ├── sound/
+│   ├── audio/
 │   │   └── YOUVE GOT MAIL.mp3        # צליל "You've Got Mail" לפתיחת חלונות XP
 │   └── images/
 │       ├── favicon.png
@@ -35,9 +35,12 @@
 │       ├── music/                    # albumphoto / epphoto / singlephoto (jpg + webp)
 │       ├── photos/                   # 01–14 (jpg + webp) — גלריית הצילום האמיתית
 │       ├── logos/                    # Spotify / Apple Music / YouTube / music-note SVG
-│       ├── folder_svg/               # SVG לכרטיסיות הפורטפוליו
 │       └── ui/                       # Clippy GIFs, notepad, note textures, XP icons, Peter Griffin
-└── 01-site-brief.md                  # מסמך האפיון המלא (15 סעיפים) — להגשה במטלה
+└── docs/                             # מסמכי הקורס + רשימות פיתוח (לא מוגש לאתר)
+    ├── site-brief.md                 # מסמך האפיון המלא (15 סעיפים)
+    ├── dev-notes.md                  # בעיות קשות ואיך פתרנו אותן
+    ├── presentation.pptx
+    └── assignment.pdf
 ```
 
 ## עקרונות קוד

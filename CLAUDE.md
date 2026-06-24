@@ -47,16 +47,21 @@ Plain vanilla HTML/CSS/JS, no build step. Originally planned as Astro + Tailwind
 │   ├── fonts/
 │   │   ├── UpheavalPro.ttf           # --font-base (Hebrew/default)
 │   │   └── pixeloid.sans-bold.ttf    # --font-en (English + XP title bars)
-│   ├── sound/
+│   ├── audio/
 │   │   └── YOUVE GOT MAIL.mp3
 │   └── images/
-│       ├── backgrounds/              # bg_intro + bg_port (jpg/webp/mobile)
+│       ├── favicon.png
+│       ├── current_project.jpg
+│       ├── backgrounds/              # bg_intro + bg_port (jpg/webp/mobile + animated gif)
 │       ├── music/                    # album art (jpg + webp)
-│       ├── photos/                   # 01–05 real photos (jpg + webp)
+│       ├── photos/                   # 01–14 real photos (jpg + webp)
 │       ├── logos/                    # Spotify / Apple Music / YouTube SVGs
-│       ├── folder_svg/               # portfolio folder tab SVGs
 │       └── ui/                       # XP icons, note textures, Clippy GIFs, Peter Griffin
-├── 01-site-brief.md                  # full 15-point characterization doc
+├── docs/                             # course assignment docs + dev notes (not served)
+│   ├── site-brief.md
+│   ├── dev-notes.md
+│   ├── presentation.pptx
+│   └── assignment.pdf
 ├── README.md
 └── CLAUDE.md
 ```
