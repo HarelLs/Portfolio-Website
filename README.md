@@ -46,10 +46,10 @@
 ## עקרונות קוד
 - כל קובץ JS אחראי על דבר אחד בלבד — `i18n.js` תרגום, `main.js` אינטראקטיביות, `nav.js` ניווט.
 - כל הטקסטים מתורגמים דרך `data-i18n` — לא קשיח בתוך ה-HTML.
-- שלוש שפות: עברית (ברירת מחדל), אנגלית, ומנדרינית-גרועה (Easter egg — ספאם 10 קליקים על כפתור השפה תוך 2 שניות).
+- שני שפות: עברית (ברירת מחדל), אנגלית.
 - חלונות XP (credits מיקסינג/מאסטרינג, Photo Properties) — גרירה, טאבים, כפתורי chrome, אנימציית סגירה.
 - Clippy צף מעל הדף (draggable), מציג hint bubble ולחיצה עליו גוללת ל-`#contact` — ה-CTA הראשי של הדף.
-- Clippy מוחלף ב-Peter Griffin עם ציטוטים אקראיים; בזה mode — ציטוטים מתורגמים גרועים בסינית.
+- Peter Griffin - ציטוטים אקראיים שלו hehehe 
 - חלון XP: body content = Tahoma; title bar = Pixeloid (font ה-site).
 - צבעים/מרווחים/פונטים מנוהלים כמשתני CSS ב-`variables.css` בלבד.
 
@@ -58,5 +58,4 @@
 
 ## פרסום
 - **GitHub Pages**: להפעיל Pages מה-branch הרלוונטי (HTML/CSS/JS טהור — עובד ישירות).
-- **Netlify / Vercel**: גרירת התיקייה ל-deploy ידני, או חיבור לריפו ב-GitHub.
-- שתי האפשרויות מספקות HTTPS אוטומטי.
+- depoly in github pages with a cloudflare domain
