@@ -34,6 +34,9 @@ html[lang="en"] body {
 
 html[lang="he"] body {
   font-family: var(--font-base);
+  /* Hebrew reads better with a little air between glyphs. Scoped to he (rather
+     than :root) so the English and zh faces keep their own metrics. */
+  letter-spacing: 2px;
 }
 
 /* zh Easter egg: whole page renders in the Chinese pixel font */
@@ -50,6 +53,24 @@ html[lang="zh"] .cmd-btn,
 html[lang="zh"] .cmd-output,
 html[lang="zh"] .notepad-float-label {
   font-family: var(--font-zh);
+}
+
+/* The he letter-spacing above inherits everywhere, but the terminal and XP
+   chrome render English in fixed fonts (Lucida Console / Tahoma / Pixeloid) and
+   are drawn tight — keep their own metrics. Elements that already declare a
+   letter-spacing (.cmd-btn, .portfolio-card-tag, .hero-eyebrow) don't inherit it. */
+html[lang="he"] .xp-window,
+html[lang="he"] .xp-dialog,
+html[lang="he"] .xp-msgbox,
+html[lang="he"] .cmd-output,
+html[lang="he"] .notepad-float-label,
+html[lang="he"] .custom-note-body {
+  letter-spacing: normal;
+}
+
+/* Portfolio tab titles get a touch more air in Hebrew */
+html[lang="he"] .filter-btn {
+  letter-spacing: 3px;
 }
 
 /* The Hebrew face (UpheavalPro) has wide glyphs. Squeeze the horizontal scale
