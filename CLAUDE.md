@@ -62,6 +62,7 @@ Plain vanilla HTML/CSS/JS, no build step. Originally planned as Astro + Tailwind
 ├── docs/                             # course assignment docs + dev notes (not served)
 │   ├── site-brief.md
 │   ├── dev-notes.md
+│   ├── analytics-plan.md             # spec for a future click-analytics feature — NOT built
 │   ├── presentation.pptx
 │   └── assignment.pdf
 ├── README.md
@@ -116,10 +117,22 @@ Plain vanilla HTML/CSS/JS, no build step. Originally planned as Astro + Tailwind
 - The background fills the full `#about` section and serves as Harel's visual identity on the page.
 
 ## Status
-- Site is **complete and live** on GitHub. Developed locally on Harel's machine.
+- Site is **complete and live** at harellesnick.com. Developed locally on Harel's machine.
+- **Hosting: GitHub Pages behind a Cloudflare proxy** (orange-cloud), verified from the response
+  headers — GitHub Pages' `x-github-request-id` and Fastly headers underneath, `server: cloudflare`
+  on top, Cloudflare nameservers. The repo root `CNAME` is the GitHub Pages custom-domain file.
+  Not Cloudflare Pages — both CVs used to say so and were corrected. Practical consequences: no
+  `_headers` support and no server-side redirects, but because the zone is proxied a Cloudflare
+  Worker route can intercept a path before it reaches GitHub Pages.
 - All assets load (real photos, backgrounds, music art, UI images, fonts, sound).
 - All three language modes (he / en / zh) fully translated including XP window chrome.
 - Assignment submitted.
+
+## Planned, not built
+`docs/analytics-plan.md` specifies a self-hosted click-analytics feature — a Cloudflare Worker on
+`harellesnick.com/px/*` writing aggregate counters to D1, with a terminal-styled dashboard. **None
+of it exists yet**; Harel will say when to start. Read that file before touching the subject, and
+do not re-litigate the decisions recorded in its §1.
 
 ## Outstanding TODOs
 None. CV PDFs are in (`assets/cv/CV_HE_Harel_Lesnick.pdf` / `CV_EN_Harel_Lesnick.pdf`); the `#cv` section (below Portfolio) has a translated `cv.heading` title over two XP document icons (`.doc-launcher`, icon `ui/xpdocicon.png`) that open the PDFs in a new tab. The captions are filenames — "קורות חיים.pdf" / "Resume.pdf" — so they stay fixed in every language; only the row order flips so the current language's document leads. `#cv` is in the main nav / hamburger as `nav.cv`.
