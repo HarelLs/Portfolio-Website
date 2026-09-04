@@ -21,8 +21,14 @@
         e.preventDefault();
         nav.classList.remove("is-open");
         btn.setAttribute("aria-expanded", "false");
-        var target = document.querySelector(link.getAttribute("href"));
-        if (target) target.scrollIntoView({ behavior: "smooth" });
+        var href = link.getAttribute("href");
+        // "Contact" fires the same CTA as clicking Clippy (scroll + mail animation).
+        if (href === "#contact" && window.App.contactCTA) {
+          window.App.contactCTA();
+        } else {
+          var target = document.querySelector(href);
+          if (target) target.scrollIntoView({ behavior: "smooth" });
+        }
         history.replaceState(null, "", window.location.pathname);
       });
     });

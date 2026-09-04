@@ -37,7 +37,9 @@
 }
 
 @media (min-width: 721px) {
-  /* 10th slot is desktop-only invisible — exists for mobile's 2×5 grid */
+  /* slots 9 & 10 are hidden on desktop so the collage stays a clean 3×4 (12);
+     all slots show on mobile's 2-col grid */
+  .portfolio-grid[data-category="photos"] .gallery-track .photo-slot:nth-child(9),
   .portfolio-grid[data-category="photos"] .gallery-track .photo-slot:nth-child(10) {
     display: none;
   }
@@ -162,13 +164,20 @@
 }
 
 @media (max-width: 768px) {
+  /* Clippy: keep him docked to the side, and smaller than on desktop */
   .clippy-float {
-    left: 0;
-    right: 0;
-    margin-inline: auto;
-    top: 20%;
+    right: var(--space-2);
+    left: auto;
+    margin-inline: 0;
+    top: 55%;
     bottom: auto;
+    width: 82px;
   }
+  .clippy-idle { width: 78px; }
+
+  /* notepad.exe launcher: smaller so it doesn't crowd the corner on phones */
+  .notepad-float-img { width: 50px; }
+  .notepad-float-label { font-size: 9px; }
 }
 
 @media (max-width: 768px) {

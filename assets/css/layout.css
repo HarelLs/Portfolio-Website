@@ -136,8 +136,7 @@ section {
   height: auto;
   object-fit: unset;
   display: block;
-  filter: grayscale(100%) blur(20px);
-
+  filter: grayscale(100%);
 }
 
 /* ---------- Footer ---------- */
@@ -160,15 +159,14 @@ section {
 
 .clippy-float {
   position: fixed;
-  top: 40%;
-  /* Horizontally center on first launch at any screen width. The idle
-     animation drives `transform`, so we center with left/right:0 +
-     auto inline margins instead of translateX. */
-  left: 0;
-  right: 0;
-  margin-inline: auto;
+  top: 42%;
+  /* Docked to the right edge (off to the side, out of the content). JS pins the
+     exact left/top on first paint so the RTL↔LTR toggle can't shift it. */
+  right: var(--space-3);
+  left: auto;
+  margin-inline: 0;
   transform: translateY(-50%);
-  width: 140px;
+  width: 110px;
   z-index: 3000;
   cursor: grab;
   user-select: none;
@@ -179,7 +177,7 @@ section {
 
 .clippy-idle {
   display: block;
-  width: 135px;
+  width: 106px;
   height: auto;
   transition: opacity 0.15s ease;
   opacity: 1;
@@ -248,7 +246,7 @@ html[lang="zh"] .clippy-float.show-a .clippy-hover-zh { opacity: 1; }
   border: 1px solid #000;
   border-radius: 5px;
   padding: 8px 10px;
-  font-family: "Microsoft YaHei", "SimHei", Tahoma, "MS Sans Serif", sans-serif;
+  font-family: var(--font-zh);
   font-size: 12px;
   line-height: 1.5;
   color: #000;

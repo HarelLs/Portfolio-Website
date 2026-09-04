@@ -19,6 +19,29 @@
   font-style: normal;
 }
 
+/* Same Pixeloid file, scaled down. Pixeloid's cap-height (0.78em) renders ~30%
+   larger than the Hebrew face (0.60em effective), so English text looked bigger
+   than Hebrew when toggling. size-adjust matches their cap-heights. Used for
+   English body text only — XP title-bar chrome keeps the original size. */
+@font-face {
+  font-family: "Pixeloid Sans Bold Fit";
+  src: url("../fonts/pixeloid.sans-bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  size-adjust: 80%;
+}
+
+/* Simplified-Chinese pixel font — used only by the zh Easter egg, so the
+   ~900KB file is fetched lazily the first time zh text actually renders.
+   Fusion Pixel Font, SIL OFL 1.1 (see fonts/fusion-pixel-OFL.txt). */
+@font-face {
+  font-family: "Fusion Pixel";
+  src: url("../fonts/fusion-pixel-zh.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   /* Colors — dark, bold (Metro Boomin / Roy Kafri direction) */
   --color-bg: #0a0a0c;
@@ -34,12 +57,16 @@
   /* Typography */
   --font-base: "UpheavalPro", "Inter", system-ui, sans-serif;
   --font-en: "Pixeloid Sans Bold", "Inter", system-ui, sans-serif;
+  /* zh Easter egg: Chinese glyphs from Fusion Pixel, Latin/digits fall back to
+     the other pixel fonts so the whole page stays pixel-styled. */
+  --font-zh: "Fusion Pixel", "Pixeloid Sans Bold", "UpheavalPro", monospace;
   --fs-xs: 0.85rem;
   --fs-sm: 1rem;
   --fs-md: 1.125rem;
   --fs-lg: 1.5rem;
   --fs-xl: 2.25rem;
   --fs-xxl: clamp(2.5rem, 6vw, 4.5rem);
+  letter-spacing: 2px;
 
   /* Spacing scale */
   --space-1: 0.5rem;

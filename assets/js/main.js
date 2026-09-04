@@ -21,12 +21,47 @@ var PHOTO_EXIF = {
   "11-opt": { camera: "Nikon D3400", lens: "18–55mm f/3.5–5.6", focal: "26mm", aperture: "f/4", shutter: "1/800s", iso: "ISO 100", date: "May 3, 2026" },
   "12-opt": { camera: "Nikon D3400", lens: "18–55mm f/3.5–5.6", focal: "55mm", aperture: "f/5.6", shutter: "1/1600s", iso: "ISO 400", date: "Apr 6, 2023" },
   "13-opt": { camera: "Nikon D3400", lens: "18–55mm f/3.5–5.6", focal: "55mm", aperture: "f/5.6", shutter: "1/2500s", iso: "ISO 1600", date: "Oct 12, 2025" },
-  "14-opt": { camera: "Nikon D3400", lens: "18–55mm f/3.5–5.6", focal: "18mm", aperture: "f/3.5", shutter: "1/2000s", iso: "ISO 800", date: "Oct 13, 2025" }
+  "14-opt": { camera: "Nikon D3400", lens: "18–55mm f/3.5–5.6", focal: "18mm", aperture: "f/3.5", shutter: "1/2000s", iso: "ISO 800", date: "Oct 13, 2025" },
+  "15-opt": { camera: "Fujifilm X-S20", lens: "XC 15–45mm f/3.5–5.6", focal: "44.5mm", aperture: "f/5.6", shutter: "1/640s", iso: "ISO 640", date: "Jul 22, 2026" },
+  "16-opt": { camera: "Fujifilm X-S20", lens: "XC 15–45mm f/3.5–5.6", focal: "15.2mm", aperture: "f/6.4", shutter: "1/60s",  iso: "ISO 640", date: "Jul 28, 2026" },
+  "17-opt": { camera: "Nikon D3400", lens: "18–55mm f/3.5–5.6", focal: "40mm", aperture: "f/20", shutter: "1/80s",  iso: "ISO 100", date: "Feb 9, 2024" },
+  "18-opt": { camera: "Nikon D3400", lens: "18–55mm f/3.5–5.6", focal: "18mm", aperture: "f/14", shutter: "1/200s", iso: "ISO 200", date: "Feb 9, 2024" }
 };
 
 document.addEventListener("DOMContentLoaded", function () {
   window.App.nav.init();
   window.App.portfolioFilter.init();
+
+  // Shared "go to contact" CTA — used by both Clippy and the menu's Contact link.
+  // Scrolls to #contact and plays the mail button's jump/shine once it's in view.
+  window.App.contactCTA = function () {
+    var contact = document.getElementById("contact");
+    var mailBtn = document.getElementById("contact-mail-btn");
+    if (!contact) return;
+    contact.scrollIntoView({ behavior: "smooth" });
+    if (!mailBtn) return;
+    var observer = new IntersectionObserver(function (entries, obs) {
+      if (entries[0].isIntersecting) {
+        obs.disconnect();
+        setTimeout(function () {
+          mailBtn.classList.remove("shine-active", "jump-active");
+          void mailBtn.offsetWidth;
+          mailBtn.classList.add("jump-active");
+          mailBtn.addEventListener("animationend", function () {
+            mailBtn.classList.remove("jump-active");
+            void mailBtn.offsetWidth;
+            mailBtn.classList.add("shine-active");
+            mailBtn.addEventListener("animationend", function () {
+              mailBtn.classList.remove("shine-active");
+            }, { once: true });
+          }, { once: true });
+        }, 150);
+      }
+    }, { threshold: 0.6 });
+    // Observe the (small) mail button, not the tall contact section — on short
+    // mobile viewports the section never reaches a 0.6 ratio.
+    observer.observe(mailBtn);
+  };
 
   // attach mail icon sound effect
   var contactMailAudio = new Audio("assets/audio/YOUVE GOT MAIL.mp3");
@@ -548,7 +583,9 @@ document.addEventListener("DOMContentLoaded", function () {
       '<div class="custom-note-header">' +
         '<button class="custom-note-close" aria-label="מחק פתק">×</button>' +
       '</div>' +
-      '<textarea class="custom-note-body" placeholder="…"></textarea>';
+      // dir="auto" makes the field follow whatever the user types — Hebrew flips
+      // it RTL, English flips it LTR — independent of the site's current language.
+      '<textarea class="custom-note-body" dir="auto" placeholder="…"></textarea>';
 
     document.body.appendChild(note);
     bringToFront(note);
@@ -801,33 +838,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // click-to-contact (only if not a drag)
     clippy.addEventListener("click", function () {
       if (hasDragged) { hasDragged = false; return; }
-      var contact = document.getElementById("contact");
-      var mailBtn = document.getElementById("contact-mail-btn");
-      contact.scrollIntoView({ behavior: "smooth" });
-      if (mailBtn) {
-        var observer = new IntersectionObserver(function (entries, obs) {
-          if (entries[0].isIntersecting) {
-            obs.disconnect();
-            setTimeout(function () {
-              mailBtn.classList.remove("shine-active", "jump-active");
-              void mailBtn.offsetWidth;
-              mailBtn.classList.add("jump-active");
-              mailBtn.addEventListener("animationend", function () {
-                mailBtn.classList.remove("jump-active");
-                void mailBtn.offsetWidth;
-                mailBtn.classList.add("shine-active");
-                mailBtn.addEventListener("animationend", function () {
-                  mailBtn.classList.remove("shine-active");
-                }, { once: true });
-              }, { once: true });
-            }, 150);
-          }
-        }, { threshold: 0.6 });
-        // Observe the (small) mail button, not the tall contact section — on
-        // short mobile viewports the section never reaches a 0.6 ratio, so the
-        // jump/shine animation would never fire.
-        observer.observe(mailBtn);
-      }
+      window.App.contactCTA();
     });
   }
 
@@ -1017,6 +1028,23 @@ document.addEventListener("DOMContentLoaded", function () {
     var portfolio = document.getElementById("portfolio");
     if (portfolio) portfolio.scrollIntoView({ behavior: "smooth" });
   });
+
+  // ── CV "Resume" terminal control — same expand/close behaviour as the credits buttons ──
+  var cvBtn = document.getElementById("cv-btn");
+  var cvOutput = document.getElementById("cv-output");
+  if (cvBtn && cvOutput) {
+    cvBtn.addEventListener("click", function(e) {
+      e.stopPropagation();
+      if (!cvOutput.hidden) { closeCmdOutput(cvOutput); return; }
+      cvOutput.hidden = false;
+      cvBtn.style.borderRadius = "2px 2px 0 0";
+      cvBtn.style.borderBottom = "none";
+      cvOutput._outsideHandler = function(ev) {
+        if (!cvOutput.contains(ev.target) && !cvBtn.contains(ev.target)) closeCmdOutput(cvOutput);
+      };
+      setTimeout(function() { document.addEventListener("click", cvOutput._outsideHandler); }, 0);
+    });
+  }
 
   document.addEventListener("languagechange", function(e) {
     var lang = e.detail.lang;

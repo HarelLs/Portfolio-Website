@@ -45,8 +45,10 @@ Plain vanilla HTML/CSS/JS, no build step. Originally planned as Astro + Tailwind
 │   │   ├── lightbox.js               # photo lightbox
 │   │   └── parallax.js               # background parallax
 │   ├── fonts/
-│   │   ├── UpheavalPro.ttf           # --font-base (Hebrew/default)
-│   │   └── pixeloid.sans-bold.ttf    # --font-en (English + XP title bars)
+│   │   ├── UpheavalPro.ttf           # --font-base (Hebrew/default); narrowed via scaleX in he mode
+│   │   ├── pixeloid.sans-bold.ttf    # --font-en (English + XP title bars); also loaded as "…Fit" @font-face (size-adjust:80%) for en body
+│   │   ├── fusion-pixel-zh.woff2     # --font-zh (zh Easter egg, Simplified-Chinese pixel; SIL OFL 1.1)
+│   │   └── fusion-pixel-OFL.txt      # license for the above
 │   ├── audio/
 │   │   └── YOUVE GOT MAIL.mp3
 │   └── images/
@@ -54,7 +56,7 @@ Plain vanilla HTML/CSS/JS, no build step. Originally planned as Astro + Tailwind
 │       ├── current_project.jpg
 │       ├── backgrounds/              # bg_intro + bg_port (jpg/webp/mobile + animated gif)
 │       ├── music/                    # album art (jpg + webp)
-│       ├── photos/                   # 01–14 real photos (jpg + webp)
+│       ├── photos/                   # NN-opt real photos (jpg + webp); gallery uses 01–10 + 15–18 (12 shown desktop 3×4, all on mobile)
 │       ├── logos/                    # Spotify / Apple Music / YouTube SVGs
 │       └── ui/                       # XP icons, note textures, Clippy GIFs, Peter Griffin
 ├── docs/                             # course assignment docs + dev notes (not served)
@@ -86,12 +88,18 @@ Plain vanilla HTML/CSS/JS, no build step. Originally planned as Astro + Tailwind
 
 ### Fonts in XP windows
 - Window body content (tabs, labels, credits rows, buttons): Tahoma ("MS Sans Serif" fallback) — set on `.xp-dialog`.
-- Window title bar text (`.xp-title`): `var(--font-en)` = Pixeloid Sans Bold — explicitly overrides Tahoma inheritance.
+- Window title bar text (`.xp-title`): `var(--font-en)` = Pixeloid Sans Bold — explicitly overrides Tahoma inheritance. Kept at original size (NOT the size-adjusted "Fit" face).
+
+### Language fonts (base.css / variables.css)
+- Body font per `html[lang]`: he → UpheavalPro; en → "Pixeloid Sans Bold Fit" (same TTF, `size-adjust:80%` so English matches Hebrew's visual size); zh → `--font-zh` (Fusion Pixel).
+- Hero inherits the body font (the old Noto Sans Hebrew Google Fonts load was removed).
+- Hebrew is horizontally compressed with `transform: scaleX(0.8)` on text-only blocks in he mode — keeps the font, just narrows it.
+- zh mode re-points hardcoded-font components (xp titles/dialogs, cmd output, notepad label, clippy speech) at `--font-zh`.
 
 ### Clippy CTA (main.js)
-- Clippy floats over the page (fixed position, draggable).
+- Clippy floats over the page (fixed position, draggable). Docked to the right edge (top ~42% desktop, ~55% mobile) and smaller on mobile than desktop.
 - Shows a hint bubble ("תלחץ עליי!" / "Click me!" / zh variant) on a timer.
-- Clicking Clippy smoothly scrolls to the `#contact` section — the primary CTA.
+- Clicking Clippy runs `window.App.contactCTA()` — smooth-scroll to `#contact` + mail-button jump/shine. The mobile menu's "Contact" link calls the same function.
 - Clippy can be dismissed (×); zh mode swaps the GIF to `clippy-hi-zh.gif` + Chinese speech bubble.
 - On hover: swaps to `clippy-dig.gif` animation.
 
@@ -114,4 +122,4 @@ Plain vanilla HTML/CSS/JS, no build step. Originally planned as Astro + Tailwind
 - Assignment submitted.
 
 ## Outstanding TODOs
-None — site is complete.
+None. CV PDFs are in (`assets/cv/CV_HE_Harel_Lesnick.pdf` / `CV_EN_Harel_Lesnick.pdf`); the `#cv` section (below Portfolio) is a terminal-style "Resume" button (`.cmd-btn`) that expands a `.cmd-output` with Hebrew/English rows, each opening a PDF in a new tab (English-only labels, like the other cmd buttons — no i18n).

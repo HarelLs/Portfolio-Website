@@ -11,12 +11,6 @@
   <meta property="og:type" content="website" />
   <link rel="icon" href="assets/images/favicon.png" type="image/png" />
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <!-- Non-blocking font load — browser fetches it after first paint -->
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Hebrew:wght@400;600;800;900&display=swap" as="style" />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Hebrew:wght@400;600;800;900&display=swap" media="print" onload="this.media='all'" />
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Hebrew:wght@400;600;800;900&display=swap" /></noscript>
   <!-- Preload hero background so it's fetched immediately, not after CSS is parsed -->
   <link rel="preload" as="image" href="assets/images/backgrounds/bg_intro-mobile.webp" type="image/webp" media="(max-width: 768px)" />
   <link rel="preload" as="image" href="assets/images/backgrounds/bg_intro.webp" type="image/webp" media="(min-width: 769px)" />
@@ -247,12 +241,34 @@
               <div class="photo-slot"><picture><source srcset="assets/images/photos/08-opt.webp" type="image/webp" /><img src="assets/images/photos/08-opt.jpg" alt="צילום עבודתי 08" loading="lazy" decoding="async" /></picture></div>
               <div class="photo-slot"><picture><source srcset="assets/images/photos/09-opt.webp" type="image/webp" /><img src="assets/images/photos/09-opt.jpg" alt="צילום עבודתי 09" loading="lazy" decoding="async" /></picture></div>
               <div class="photo-slot"><picture><source srcset="assets/images/photos/10-opt.webp" type="image/webp" /><img src="assets/images/photos/10-opt.jpg" alt="צילום עבודתי 10" loading="lazy" decoding="async" /></picture></div>
+              <div class="photo-slot"><picture><source srcset="assets/images/photos/15-opt.webp" type="image/webp" /><img src="assets/images/photos/15-opt.jpg" alt="צילום עבודתי 15" loading="lazy" decoding="async" /></picture></div>
+              <div class="photo-slot"><picture><source srcset="assets/images/photos/16-opt.webp" type="image/webp" /><img src="assets/images/photos/16-opt.jpg" alt="צילום עבודתי 16" loading="lazy" decoding="async" /></picture></div>
+              <div class="photo-slot"><picture><source srcset="assets/images/photos/17-opt.webp" type="image/webp" /><img src="assets/images/photos/17-opt.jpg" alt="צילום עבודתי 17" loading="lazy" decoding="async" /></picture></div>
+              <div class="photo-slot"><picture><source srcset="assets/images/photos/18-opt.webp" type="image/webp" /><img src="assets/images/photos/18-opt.jpg" alt="צילום עבודתי 18" loading="lazy" decoding="async" /></picture></div>
             </div>
           </div>
         </div>
 
         </div>
       </div>
+      </div>
+    </section>
+
+    <!-- CV / RÉSUMÉ — terminal-style control (matches the service show_credits buttons) -->
+    <section id="cv" class="cv-section">
+      <div class="container">
+        <div class="cmd-wrap cv-cmd-wrap">
+          <button class="cmd-btn" id="cv-btn">&gt; <span>Resume</span><span class="cmd-cursor">_</span></button>
+          <!-- Both language versions, offered regardless of the current site language -->
+          <div class="cmd-output" id="cv-output" hidden>
+            <a class="cmd-entry cv-entry" href="assets/cv/CV_HE_Harel_Lesnick.pdf" target="_blank" rel="noopener">
+              <span class="cmd-name cmd-link">Hebrew</span>
+            </a>
+            <a class="cmd-entry cv-entry" href="assets/cv/CV_EN_Harel_Lesnick.pdf" target="_blank" rel="noopener">
+              <span class="cmd-name cmd-link">English</span>
+            </a>
+          </div>
+        </div>
       </div>
     </section>
 

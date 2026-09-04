@@ -4,3 +4,12 @@
 summarized.md
 eye-eyes.gif
 *.mov
+
+# The blanket *.pdf above is for the course docs — the CV PDFs are served by the
+# site (the #cv "Resume" button links to them), so they must be committed.
+!assets/cv/*.pdf
+
+# Raw camera exports (NN.jpg) live here only until they're converted to NN-opt
+# jpg/webp — the site only ever loads the -opt versions, so keep the originals
+# local instead of committing multi-MB files.
+assets/images/photos/[0-9][0-9].jpg
