@@ -56,7 +56,7 @@ Plain vanilla HTML/CSS/JS, no build step. Originally planned as Astro + Tailwind
 │       ├── current_project.jpg
 │       ├── backgrounds/              # bg_intro + bg_port (jpg/webp/mobile + animated gif)
 │       ├── music/                    # album art (jpg + webp)
-│       ├── photos/                   # NN-opt real photos (jpg + webp); gallery uses 01–10 + 15–18 (12 shown desktop 3×4, all on mobile)
+│       ├── photos/                   # NN-opt real photos (jpg + webp); markup seeds 14 slots with 01–10 + 15–18; desktop shows the first 9 in a 3×3 collage, mobile shows all 14 in 2 cols; the slideshow cycles the full 01–18 pool through the visible slots
 │       ├── logos/                    # Spotify / Apple Music / YouTube SVGs
 │       └── ui/                       # XP icons, note textures, Clippy GIFs, Peter Griffin
 ├── docs/                             # course assignment docs + dev notes (not served)

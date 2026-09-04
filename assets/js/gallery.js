@@ -4,29 +4,28 @@
   // Photo grid slideshow: one slot fades out/in every 5s, random slot, no repeated photo
   (function () {
     var BASE = "assets/images/photos/";
-    var PHOTOS = [
-      { jpg: "01-opt.jpg", webp: "01-opt.webp", alt: "צילום עבודתי 01" },
-      { jpg: "02-opt.jpg", webp: "02-opt.webp", alt: "צילום עבודתי 02" },
-      { jpg: "03-opt.jpg", webp: "03-opt.webp", alt: "צילום עבודתי 03" },
-      { jpg: "04-opt.jpg", webp: "04-opt.webp", alt: "צילום עבודתי 04" },
-      { jpg: "05-opt.jpg", webp: "05-opt.webp", alt: "צילום עבודתי 05" },
-      { jpg: "06-opt.jpg", webp: "06-opt.webp", alt: "צילום עבודתי 06" },
-      { jpg: "07-opt.jpg", webp: "07-opt.webp", alt: "צילום עבודתי 07" },
-      { jpg: "08-opt.jpg", webp: "08-opt.webp", alt: "צילום עבודתי 08" },
-      { jpg: "09-opt.jpg", webp: "09-opt.webp", alt: "צילום עבודתי 09" },
-      { jpg: "10-opt.jpg", webp: "10-opt.webp", alt: "צילום עבודתי 10" },
-      { jpg: "11-opt.jpg", webp: "11-opt.webp", alt: "צילום עבודתי 11" },
-      { jpg: "12-opt.jpg", webp: "12-opt.webp", alt: "צילום עבודתי 12" },
-      { jpg: "13-opt.jpg", webp: "13-opt.webp", alt: "צילום עבודתי 13" },
-      { jpg: "14-opt.jpg", webp: "14-opt.webp", alt: "צילום עבודתי 14" }
-    ];
+    var PHOTOS = [];
+    for (var n = 1; n <= 18; n++) {
+      var id = (n < 10 ? "0" : "") + n;
+      PHOTOS.push({ id: id, jpg: id + "-opt.jpg", webp: id + "-opt.webp", alt: "צילום עבודתי " + id });
+    }
 
     var track = document.querySelector('.portfolio-grid[data-category="photos"] .gallery-track');
     if (!track) return;
     var slots = Array.from(track.querySelectorAll(".photo-slot"));
     if (!slots.length) return;
 
-    var slotContents = slots.map(function(_, i) { return i; }); // photo index currently in each slot
+    // Which photo each slot currently holds — read off the markup, not assumed
+    // to be slot order (the slots in index.html are not photos 1..N in sequence).
+    var slotContents = slots.map(function (slot) {
+      var img = slot.querySelector("img");
+      var file = img ? img.getAttribute("src").split("/").pop() : "";
+      for (var i = 0; i < PHOTOS.length; i++) {
+        if (PHOTOS[i].jpg === file) return i;
+      }
+      return -1;
+    });
+
     var lastSlotIdx = -1;
     var queue = [];
 
@@ -47,22 +46,32 @@
     buildQueue();
 
     function swapSlot() {
+      // Only cycle slots that are actually on screen — slots hidden by the
+      // desktop/mobile breakpoints (and the whole tab when it's not active)
+      // shouldn't burn a turn.
+      var live = [];
+      slots.forEach(function (slot, i) { if (slot.offsetParent !== null) live.push(i); });
+      if (!live.length) return;
+
       var slotIdx;
-      do { slotIdx = Math.floor(Math.random() * slots.length); } while (slotIdx === lastSlotIdx && slots.length > 1);
+      do { slotIdx = live[Math.floor(Math.random() * live.length)]; } while (slotIdx === lastSlotIdx && live.length > 1);
       lastSlotIdx = slotIdx;
 
       if (!queue.length) buildQueue();
       var photoIdx = queue.shift();
+      var photo = PHOTOS[photoIdx];
+      // Every photo is already on screen — nothing to swap in. Bail out before
+      // touching opacity, or the slot would fade out and never come back.
+      if (!photo) return;
 
       var slot = slots[slotIdx];
-      var photo = PHOTOS[photoIdx];
 
       slot.style.opacity = "0";
       setTimeout(function () {
         var img = slot.querySelector("img");
         var src = slot.querySelector("source");
-        if (img) { img.src = BASE + photo.jpg; img.alt = photo.alt; }
         if (src) { src.srcset = BASE + photo.webp; }
+        if (img) { img.src = BASE + photo.jpg; img.alt = photo.alt; }
         slotContents[slotIdx] = photoIdx;
         slot.style.opacity = "1";
       }, 650);

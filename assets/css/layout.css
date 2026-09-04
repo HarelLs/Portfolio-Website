@@ -360,7 +360,9 @@ html[lang="zh"] .clippy-float.show-a .clippy-speech-zh { display: block; }
     1px -1px 1px #000,
    -1px  1px 1px #000;
   margin-top: 3px;
-  letter-spacing: 0.03em;
+  /* No tracking — Hebrew mode used to reset this to normal while en/zh kept
+     0.03em, which made the English label render ~5% wider than the Hebrew one. */
+  letter-spacing: normal;
   user-select: none;
   -webkit-user-select: none;
   pointer-events: none;

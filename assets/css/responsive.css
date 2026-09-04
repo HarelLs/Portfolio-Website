@@ -37,10 +37,9 @@
 }
 
 @media (min-width: 721px) {
-  /* slots 9 & 10 are hidden on desktop so the collage stays a clean 3×4 (12);
-     all slots show on mobile's 2-col grid */
-  .portfolio-grid[data-category="photos"] .gallery-track .photo-slot:nth-child(9),
-  .portfolio-grid[data-category="photos"] .gallery-track .photo-slot:nth-child(10) {
+  /* desktop collage is a 3×3 grid — slots past the 9th are hidden here and
+     exist for mobile's 2-col grid (the slideshow only cycles visible slots) */
+  .portfolio-grid[data-category="photos"] .gallery-track .photo-slot:nth-child(n+10) {
     display: none;
   }
 }
