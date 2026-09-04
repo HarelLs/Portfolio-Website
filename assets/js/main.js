@@ -1029,23 +1029,6 @@ document.addEventListener("DOMContentLoaded", function () {
     if (portfolio) portfolio.scrollIntoView({ behavior: "smooth" });
   });
 
-  // ── CV "Resume" terminal control — same expand/close behaviour as the credits buttons ──
-  var cvBtn = document.getElementById("cv-btn");
-  var cvOutput = document.getElementById("cv-output");
-  if (cvBtn && cvOutput) {
-    cvBtn.addEventListener("click", function(e) {
-      e.stopPropagation();
-      if (!cvOutput.hidden) { closeCmdOutput(cvOutput); return; }
-      cvOutput.hidden = false;
-      cvBtn.style.borderRadius = "2px 2px 0 0";
-      cvBtn.style.borderBottom = "none";
-      cvOutput._outsideHandler = function(ev) {
-        if (!cvOutput.contains(ev.target) && !cvBtn.contains(ev.target)) closeCmdOutput(cvOutput);
-      };
-      setTimeout(function() { document.addEventListener("click", cvOutput._outsideHandler); }, 0);
-    });
-  }
-
   document.addEventListener("languagechange", function(e) {
     var lang = e.detail.lang;
     var isZh = lang === "zh";

@@ -348,7 +348,9 @@ html[lang="zh"] .clippy-float.show-a .clippy-speech-zh { display: block; }
 }
 
 
-.notepad-float-label {
+/* XP desktop-icon caption — shared by the notepad.exe launcher and the CV documents */
+.notepad-float-label,
+.doc-launcher-label {
   display: block;
   text-align: center;
   font-family: "Tahoma", "Arial", sans-serif;

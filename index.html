@@ -51,6 +51,7 @@
       <li><a href="#about" data-i18n="nav.about">אודות</a></li>
       <li><a href="#current-project" data-i18n="nav.currentProject">פרויקט נוכחי</a></li>
       <li><a href="#portfolio" data-i18n="nav.portfolio">תיק עבודות</a></li>
+      <li><a href="#cv" data-i18n="nav.cv">קורות חיים</a></li>
       <li><a href="#contact" data-i18n="nav.contact">יצירת קשר</a></li>
     </ul>
   </nav>
@@ -254,20 +255,21 @@
       </div>
     </section>
 
-    <!-- CV / RÉSUMÉ — terminal-style control (matches the service show_credits buttons) -->
+    <!-- CV / RÉSUMÉ — a pair of XP desktop document icons, styled like the notepad.exe launcher -->
     <section id="cv" class="cv-section">
       <div class="container">
-        <div class="cmd-wrap cv-cmd-wrap">
-          <button class="cmd-btn" id="cv-btn">&gt; <span>Resume</span><span class="cmd-cursor">_</span></button>
-          <!-- Both language versions, offered regardless of the current site language -->
-          <div class="cmd-output" id="cv-output" hidden>
-            <a class="cmd-entry cv-entry" href="assets/cv/CV_HE_Harel_Lesnick.pdf" target="_blank" rel="noopener">
-              <span class="cmd-name cmd-link">עברית</span>
-            </a>
-            <a class="cmd-entry cv-entry" href="assets/cv/CV_EN_Harel_Lesnick.pdf" target="_blank" rel="noopener">
-              <span class="cmd-name cmd-link">English</span>
-            </a>
-          </div>
+        <h2 data-i18n="cv.heading">קורות חיים</h2>
+        <!-- Both language versions, offered regardless of the current site language.
+             The captions are filenames, so they stay fixed instead of translating. -->
+        <div class="cv-docs">
+          <a class="doc-launcher" href="assets/cv/CV_HE_Harel_Lesnick.pdf" target="_blank" rel="noopener">
+            <img src="assets/images/ui/xpdocicon.png" alt="" class="doc-launcher-img" aria-hidden="true" />
+            <span class="doc-launcher-label">קורות חיים.pdf</span>
+          </a>
+          <a class="doc-launcher" href="assets/cv/CV_EN_Harel_Lesnick.pdf" target="_blank" rel="noopener">
+            <img src="assets/images/ui/xpdocicon.png" alt="" class="doc-launcher-img" aria-hidden="true" />
+            <span class="doc-launcher-label">Resume.pdf</span>
+          </a>
         </div>
       </div>
     </section>

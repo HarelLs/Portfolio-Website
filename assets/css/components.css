@@ -1196,21 +1196,57 @@
   flex-wrap: wrap;
 }
 
-/* ---------- CV / résumé section — terminal "Resume" control ---------- */
+/* ---------- CV / résumé section — two XP document icons ---------- */
 .cv-section {
   text-align: center;
   background: var(--color-bg-alt);
 }
 
-/* constrain the cmd button + its dropdown to a button-sized, centered column */
-.cv-cmd-wrap {
-  max-width: 300px;
-  margin-inline: auto;
-  margin-top: 0;
+.cv-docs {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-5);
+  margin-top: var(--space-4);
 }
 
-/* dropdown rows are <a> links to the PDFs */
-.cv-entry { text-decoration: none; }
+/* DOM order puts the Hebrew CV first, which lands it under the reader's eye in
+   RTL. Flip the row in the LTR languages so the matching document leads there too. */
+html[lang="en"] .cv-docs,
+html[lang="zh"] .cv-docs { flex-direction: row-reverse; }
+
+/* Same icon-over-caption stack as the notepad.exe launcher. LTR so the ".pdf"
+   suffix stays at the end of the Hebrew filename instead of flipping to the front. */
+.doc-launcher {
+  display: block;
+  width: 104px;
+  padding: 8px 4px;
+  border-radius: 2px;
+  direction: ltr;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  transition: background 0.15s ease;
+}
+
+/* XP selection tint on hover, like an icon on the desktop */
+.doc-launcher:hover,
+.doc-launcher:focus-visible {
+  background: rgba(255, 255, 255, 0.09);
+  outline: none;
+}
+
+.doc-launcher-img {
+  display: block;
+  width: 72px;
+  height: auto;
+  margin: 0 auto;
+  image-rendering: pixelated;
+  transition: transform 0.15s ease;
+}
+
+.doc-launcher:hover .doc-launcher-img,
+.doc-launcher:focus-visible .doc-launcher-img { transform: translateY(-2px); }
 
 @keyframes mail-jump {
   0%   { transform: translateY(0)    scale(1); }

@@ -122,4 +122,4 @@ Plain vanilla HTML/CSS/JS, no build step. Originally planned as Astro + Tailwind
 - Assignment submitted.
 
 ## Outstanding TODOs
-None. CV PDFs are in (`assets/cv/CV_HE_Harel_Lesnick.pdf` / `CV_EN_Harel_Lesnick.pdf`); the `#cv` section (below Portfolio) is a terminal-style "Resume" button (`.cmd-btn`) that expands a `.cmd-output` with Hebrew/English rows, each opening a PDF in a new tab (English-only labels, like the other cmd buttons — no i18n).
+None. CV PDFs are in (`assets/cv/CV_HE_Harel_Lesnick.pdf` / `CV_EN_Harel_Lesnick.pdf`); the `#cv` section (below Portfolio) has a translated `cv.heading` title over two XP document icons (`.doc-launcher`, icon `ui/xpdocicon.png`) that open the PDFs in a new tab. The captions are filenames — "קורות חיים.pdf" / "Resume.pdf" — so they stay fixed in every language; only the row order flips so the current language's document leads. `#cv` is in the main nav / hamburger as `nav.cv`.
